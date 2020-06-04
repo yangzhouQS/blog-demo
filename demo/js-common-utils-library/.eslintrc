@@ -1,0 +1,50 @@
+{
+  "root": true,
+  "extends": [
+    "standard",
+    "plugin:node/recommended",
+    "plugin:security/recommended"
+  ],
+  "plugins": [
+    "node",
+    "security"
+  ],
+  "globals": {},
+  "env": {
+    "commonjs": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "security/detect-object-injection": 0,
+    "no-process-exit": 0,
+    "max-len": [
+      1,
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": "test/**",
+      "rules": {
+        "node/no-unpublished-require": [
+          "error",
+          {
+            "allowModules": [
+              "chai",
+              "platform-product-test"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
