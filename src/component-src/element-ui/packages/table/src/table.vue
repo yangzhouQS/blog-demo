@@ -631,6 +631,7 @@
     },
 
     mounted() {
+      debugger
       this.bindEvents();
       this.store.updateColumns();
       this.doLayout();

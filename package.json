@@ -7,7 +7,9 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@babel/core": "^7.10.2",
     "axios": "^0.19.2",
+    "babel-types": "^6.26.0",
     "core-js": "^3.6.4",
     "dayjs": "^1.8.27",
     "element-ui": "^2.13.1",
@@ -22,6 +24,9 @@
     "@vue/cli-plugin-router": "~4.3.0",
     "@vue/cli-plugin-vuex": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
+    "escodegen": "^1.14.2",
+    "esprima": "^4.0.1",
+    "estraverse": "^5.1.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"

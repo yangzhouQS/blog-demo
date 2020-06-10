@@ -19,6 +19,11 @@ Vue.use(VueRouter)
     path: '/tree',
     name: 'tree',
     component: () => import('../views/yl-tree.vue')
+  },
+  {
+    path: '/table',
+    name: 'table-test',
+    component: () => import('../views/table/test-table.vue')
   }
 ]
 
