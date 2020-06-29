@@ -1,8 +1,5 @@
-const moment = require('moment')
-const Decimal = require('decimal.js')
-
 function transForm(arrData) {
-	const getTimeDifference = (startDate, endDate) => Math.abs(moment(endDate).diff(startDate, 'day'))
+	const getTimeDifference = (startDate, endDate) => Math.abs(moment(endDate).diff(startDate, 'day')) + 1
 	let arr = [] // 未变更数据,主合同数据
 	let changeData = [] // 变更数据
 	let changeAddData = [] // 变更新增材料数据
@@ -53,7 +50,6 @@ function transForm(arrData) {
 				row.itemDay = getTimeDifference(startDate, endDate)
 				return row
 			}
-			// index = 2 , len = 3
 			if (index + 1 < len) {
 				let nextData = data[index + 1]
 				let startDate = row.effectDate // 自己开始时间
@@ -64,7 +60,6 @@ function transForm(arrData) {
 				return row
 			} else if (index + 1 === len) { // 最后一次变更
 			}
-			
 		})
 	}
 	let result = []
@@ -72,13 +67,13 @@ function transForm(arrData) {
 	arr.map(row => {
 		// 未变更合同
 		if (row.children && row.children.length === 0) {
-			
 			row.itemDay = getTimeDifference(row.beginDate, row.endDate)
 			result.push(row)
 		} else if (row.children && row.children.length > 0) { // 变更合同
 			let {beginDate, effectDate} = row.children[0] // effectDate,结束时间
 			let days = getTimeDifference(beginDate, effectDate)
-			row.endDate = effectDate
+			// row._startDate = row.beginDate
+			row.endDate = effectDate // 结束时间下次变更时间
 			row.itemDay = days // 天数
 			let tmp = JSON.parse(JSON.stringify(row))
 			delete tmp.children
@@ -91,15 +86,15 @@ function transForm(arrData) {
 	let addArr = Array.from(addDataMap.values())
 	addArr.map(row => {
 		if (row.children && row.children.length === 0) {
-			row.beginDate = row.effectDate
-			row.itemDay = getTimeDifference(row.effectDate, row.endDate)
+			// row.beginDate = row.effectDate // 自己变更开始时间
+			row.itemDay = getTimeDifference(row.beginDate, row.endDate)
 			result.push(row)
 		} else if (row.children && row.children.length > 0) { // 再次变更
 			let {effectDate} = row.children[0] // effectDate,结束时间
 			let days = getTimeDifference(row.effectDate, effectDate)
-			row.startDate = row.effectDate
+			// row.startDate = row.effectDate
 			row.endDate = effectDate
-			row.itemDay = days // 天数
+			row.itemDay = days
 			let tmp = JSON.parse(JSON.stringify(row))
 			delete tmp.children
 			result.push(tmp)
@@ -115,4 +110,3 @@ function transForm(arrData) {
 	})
 	return result
 }
-
