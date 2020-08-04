@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="./dist/leon.js"></script>
+</head>
+<body>
+<!--<div id="root" style="background-color: rgb(255, 255, 255);">
+  <canvas width="720" height="1280"
+          style="touch-action: none; width: 360px; height: 640px; cursor: inherit; display: none;"></canvas>
+  <canvas id="canvas" width="720" height="1280" style="display: block; width: 360px; height: 640px;"></canvas>
+</div>-->
+<script>
+  let leon, canvas, ctx;
+
+  const sw = 800;
+  const sh = 600;
+  const pixelRatio = 2;
+
+  function init () {
+    canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    ctx = canvas.getContext('2d');
+
+    canvas.width = sw * pixelRatio;
+    canvas.height = sh * pixelRatio;
+    canvas.style.width = sw + 'px';
+    canvas.style.height = sh + 'px';
+    ctx.scale(pixelRatio, pixelRatio);
+
+    leon = new LeonSans({
+      text: 'hello',
+      color: [ '#000000' ],
+      size: 80,
+      weight: 200
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  function animate (t) {
+    requestAnimationFrame(animate);
+
+    ctx.clearRect(0, 0, sw, sh);
+
+    const x = (sw - leon.rect.w) / 2;
+    const y = (sh - leon.rect.h) / 2;
+    leon.position(x, y);
+
+    leon.draw(ctx);
+  }
+
+  window.onload = () => {
+    init();
+  };
+</script>
+</body>
+</html>
