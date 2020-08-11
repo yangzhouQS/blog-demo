@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button onclick="add()">创建动态元素</button>
+
+<div id="app" style="width: 1000px;height: 300px;border: 1px solid #ff0000">
+
+</div>
+
+<script>
+  function add () {
+
+  }
+
+  function test (a) {
+    console.log(a)
+  }
+
+
+  let app = document.getElementById('app')
+  let tableEl = document.createElement('table')
+  for (let i = 0; i < 10; i++) {
+    let trEL = document.createElement('tr')
+    let str = ''
+    for (let j = 0; j < 5; j++) {
+      if (j === 0) {
+        str += `<a onclick="test(${i})">点击测试</a>`
+      } else {
+        str += `<td>第${ j }列</td>`
+      }
+    }
+    trEL.innerHTML = str
+    tableEl.appendChild(trEL)
+  }
+
+  app.appendChild(tableEl)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+let a = { tenantId: 100, tenantCode: 'mclab4dev', tenantName: '梦诚公共租户', orgId: 100, orgName: '梦诚公共租户', children: [] }

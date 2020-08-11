@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<style>
+  .line {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 5px;
+    border-radius: 15%;
+    background-image: linear-gradient(to right,
+    rgba(37, 216, 253, 0) 0%,
+    rgba(37, 216, 253, .1) 40%,
+    rgba(37, 216, 253, .3) 70%,
+    rgba(37, 216, 253, 1) 100%);
+    offset-path: path('M10 290 Q 250 100 490 290');
+    offset-distance: 0%;
+    animation: flyline 2s ease-in-out infinite;
+  }
+  @keyframes flyline {
+    from {
+      offset-distance: 0%;
+    }
+    to {
+      offset-distance: 100%;
+    }
+  }
+</style>
+<svg wdth="500px" height="300px">
+  <path fill="transparent" stroke="#888888" stroke-width="1" d="M10 290 Q 250 0 490 290" />
+</svg>
+
+<div class="line"></div>
+</body>
+</html>

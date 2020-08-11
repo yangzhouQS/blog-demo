@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>完美解决多行文本溢出显示省略号的问题</title>
+  <style type="text/css">
+    .figcaption {
+      background: #EEE;
+      width: 300px;
+      height: 80px;
+    }
+    .figcaption p {
+      margin: 0;
+      line-height: 20px;
+
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div class="figcaption">
+  <p>完美解决多行文本溢出显示省略号的问题完美解决多行文本溢出显示省略号的问题完美解决多行文本溢出显示省略号的问题完美解决多行文本溢出显示省略号的问题完美解决多行文本溢出显示省略号的问题完美解决多行文本溢出显示省略号的问题</p>
+</div>
+<div class="figcaption">
+  <p>From the golden-tipped fields of mid-west America to the ancient kingdoms of verdant Palestine, there is a happy truth to be shared with all who would take heed. In more recent times, this truth has been expressed as: April showers bring May flowers. This is a truth that promises light bursting from darkness, strength born from weakness and, if one dares to believe, life emerging from death.</p>
+</div>
+<div class="figcaption">
+  <p>From 完美解决多行文本溢出显示省略号的问题the 完美解决多行文本溢出显示省略号的问题golden-tipped fields of mid-west America to the ancient kingdoms of verdant Palestine, there is a happy truth to be 完美解决多行文本溢出显示省略号的问题shared with all who would take heed. In more recent times, this truth has been expressed as: April showers br完美解决多行文本溢出显示省略号的问题ing May flowers. This is a truth that promises light bursting from darkness, strength born 完美解决多行文本溢出显示省略号的问题 from weakness and, if one dares to believe, life emerging from death.</p>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.2.3/jquery.min.js"></script>
+<script>
+  /*$(".figcaption").each(function(i){
+    var divH = $(this).height();
+    var $p = $("p", $(this)).eq(0);
+    while ($p.outerHeight() > divH) {
+      $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
+    };
+  });*/
+</script>
+</html>
