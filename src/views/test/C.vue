@@ -1,6 +1,7 @@
 <template>
   <div>
     test-b
+    ///
     <el-divider>C组件</el-divider>
     <el-input v-model="input" placeholder="C组件"></el-input>
     <el-button type="primary" @click="goTo">去B组件</el-button>
