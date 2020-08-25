@@ -20,7 +20,7 @@ dayjs('2018-06-08').diff(dayjs('2017-06-01'),'years')
 dayjs('2018-06-08').diff(dayjs('2017-06-01'),'day')
 dayjs('2018-06-08').diff(dayjs('2017-06-01'),'hour')
 * */
-console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))
+// console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))
 
 /*
 
@@ -39,7 +39,12 @@ dayjs().startOf('month')
 返回当前时间的末尾时间的 Dayjs() 对象，如月份的最后一天。
 dayjs().endOf('month')
 dayjs().endOf('year')
-
 * */
 
-console.log(Math.abs(dayjs(new Date()).diff(dayjs('2020-08-07 12:05:06'), 'hour')));
+const lastUploadDateTime = Math.abs(dayjs(new Date()).diff(dayjs('2020-08-10 12:05:06'), 'hour'))
+console.log(lastUploadDateTime)
+if (lastUploadDateTime>72){
+  console.log(Math.abs(dayjs(new Date()).diff(dayjs('2020-08-10 12:05:06'), 'day')))
+  console.log('dayjs')
+}
+console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))

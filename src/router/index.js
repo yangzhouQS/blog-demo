@@ -4,13 +4,19 @@ import Home from '../views/Home.vue'
 import tableRouter from './table/index'
 import formRouter from './form/form'
 import treeRouter from './tree/index'
-
+import testRouter from './testRouter';
 Vue.use(VueRouter)
-
+// 解决Vue-Router升级导致的Uncaught(in promise) navigation guard问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}
 const routes = [
   ...tableRouter,
   ...formRouter,
   ...treeRouter,
+  ...testRouter,
   {
     path: '/',
     name: 'Home',
@@ -49,7 +55,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

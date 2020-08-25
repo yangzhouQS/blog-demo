@@ -1,23 +1,22 @@
 <template>
   <div id="app">
-    <router-view />
+    <navigation>
+      <router-view/>
+    </navigation>
   </div>
 </template>
 <script>
   export default {
     name: 'App',
-    data() {
+    data () {
       return {}
     },
-    methods: {
-      _test() {
-        console.log(arguments)
-      },
-    },
-
+    methods: {}
   }
-
 </script>
 <style lang="scss">
-
+  html, body, #app {
+    width: 100%;
+    height: 100%;
+  }
 </style>
