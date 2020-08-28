@@ -41,10 +41,20 @@ dayjs().endOf('month')
 dayjs().endOf('year')
 * */
 
-const lastUploadDateTime = Math.abs(dayjs(new Date()).diff(dayjs('2020-08-10 12:05:06'), 'hour'))
+/*const lastUploadDateTime = Math.abs(dayjs(new Date()).diff(dayjs('2020-08-10 12:05:06'), 'hour'))
 console.log(lastUploadDateTime)
 if (lastUploadDateTime>72){
   console.log(Math.abs(dayjs(new Date()).diff(dayjs('2020-08-10 12:05:06'), 'day')))
   console.log('dayjs')
 }
-console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))
+console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))*/
+
+const item = {
+  uploadDate: null
+}
+
+const lastUploadDateTime2 = Math.abs(dayjs(new Date()).diff(dayjs(item.uploadDate || new Date()), 'hour'))
+console.log(lastUploadDateTime2)
+
+
+

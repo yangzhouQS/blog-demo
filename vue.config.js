@@ -1,4 +1,5 @@
 module.exports = {
+  lintOnSave: false,
   css: {
     loaderOptions: {
       stylus: {
@@ -12,7 +13,7 @@ module.exports = {
   pluginOptions: {
     'cube-ui': {
       postCompile: true,
-      theme: true
+      theme: false
     }
   }
 }

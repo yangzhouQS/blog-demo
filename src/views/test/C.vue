@@ -27,7 +27,8 @@
         this.$router.push({ name: 'b-test' })
       },
       goTo2 () {
-        this.$router.push({ name: 'a-test' })
+        // this.$router.push({ name: 'a-test' })
+        this.$router.go(-1)
       },
       getData () {
       }
