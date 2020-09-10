@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from './component-src/element-ui/lib/element-ui.common'
 import Navigation from 'vue-navigation'
-
+import './views/row/index.scss'
 Vue.use(ElementUI)
 
 // Vue.use(Navigation, {router,keyName: 'ok-ok'})

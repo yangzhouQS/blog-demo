@@ -1,38 +1,51 @@
 <script>
   export default {
-    name: 'row',
-    data () {
-      return {}
-    },
-    mounted () {
-      this.reload()
-    },
+    name: 'CustomRow',
     props: {
-      gutter: Number
+      type: String,
+      align: String,
+      justify: String,
+      tag: {
+        type: String,
+        default: 'div'
+      },
+      gutter: {
+        type: [ Number, String ],
+        default: 0
+      }
     },
     computed: {
       classes () {
-        return [ 'kanban-row', 'clearfix' ]
+        const flex = this.type === 'flex';
+        const { align, justify } = this
+        return [
+          'custom-row',
+          {
+            [`custom-row--flex`]: flex,
+            [`align-${ align }`]: flex && align,
+            [`justify-${ justify }`]: flex && justify
+          }
+        ]
       }
     },
     methods: {
-      reload () {
-        this.getData()
-      },
-      getData () {
+      onClick (event) {
+        this.$emit('click', event);
       }
     },
     render (h) {
-      const { classes, $slots, gutter } = this
+      const { classes, $slots, gutter, onClick, tag } = this
+
+
       const rowStyle = {
         marginLeft: `-${ gutter / 2 }px`,
-        marginRight: `-${ gutter / 2 }px`,
+        marginRight: `-${ gutter / 2 }px`
       }
-      return (<div class={ classes } style={ rowStyle }>{ $slots.default }</div>)
+      return (<tag class={ classes } onClick={ onClick } style={ rowStyle }>{ $slots.default }</tag>)
     }
   }
 </script>
 
-<style scoped>
-  @import "./style.scss";
+<style lang="scss">
+  @import "./row-style.scss";
 </style>
