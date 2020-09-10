@@ -13,7 +13,7 @@ import Navigation from 'vue-navigation'
 
 Vue.use(ElementUI)
 
-Vue.use(Navigation, {router,keyName: 'ok-ok'})
+// Vue.use(Navigation, {router,keyName: 'ok-ok'})
 new Vue({
   router,
   store,

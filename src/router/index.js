@@ -51,6 +51,16 @@ const routes = [
     path:'/parent',
     name:'params-type2',
     component: ()=>import('@/views/parent/demo.vue')
+  },
+  {
+    path:'/row',
+    name:'row-index',
+    component: ()=>import('@/views/row/row-index.vue')
+  },
+  {
+    path:'/flex',
+    name:'flex-index',
+    component: ()=>import('@/views/row/yl-flex.vue')
   }
 ]
 
