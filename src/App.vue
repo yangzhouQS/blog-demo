@@ -14,7 +14,6 @@
     },
     mounted () {
       document.querySelector('#app').onclick = function (e) {
-        console.log('app')
         e.stopPropagation()
         e.preventDefault()
       }
