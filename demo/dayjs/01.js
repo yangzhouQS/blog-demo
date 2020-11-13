@@ -49,12 +49,17 @@ if (lastUploadDateTime>72){
 }
 console.log(dayjs().diff(dayjs('2020-08-09'),'hour'))*/
 
-const item = {
+/*const item = {
   uploadDate: null
 }
 
 const lastUploadDateTime2 = Math.abs(dayjs(new Date()).diff(dayjs(item.uploadDate || new Date()), 'hour'))
 console.log(lastUploadDateTime2)
 
+dayjs('2018-06-08').diff(dayjs('2017-06-01'),'years')*/
 
-
+const time = '2020-10-09 09:0:00'
+console.log(dayjs(time).add(24, 'hour').format('YYYY-MM-DD HH:ss:mm'));
+// console.log(dayjs().add(7, 'year'));
+console.log(dayjs('2018-06-01').isBefore(dayjs('2018-06-02')))
+console.log(dayjs(null).isBefore(dayjs('2018-06-02')))

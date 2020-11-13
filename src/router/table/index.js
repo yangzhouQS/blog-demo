@@ -9,4 +9,9 @@ export default [
     name: 'table-dy',
     component: () => import('@/views/table/dy-tab.vue')
   },
+  {
+    path: '/import',
+    name: 'table-import',
+    component: () => import('@/views/table/import-table.vue')
+  },
 ]

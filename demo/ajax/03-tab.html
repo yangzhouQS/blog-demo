@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .sheet-container {
+      width: 100%;
+      height: 600px;
+    }
+  </style>
+  <script src="jquery.js"></script>
+</head>
+<body>
+<div class="sheet-container">
+  <div>
+    <table id="x-table" border="1" width="300px">
+      <tr>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    hello
+  </div>
+</div>
+<script>
+  $(function () {
+    $('.sheet-container').children(':first').css({ 'min-height': '400px', 'height': '100%' })
+  })
+</script>
+</body>
+</html>

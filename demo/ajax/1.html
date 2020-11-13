@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="jquery.js"></script>
+</head>
+<body>
+<a href=""></a>
+<button id="get">GET请求</button>
+<button id="post">POST请求</button>
+<script>
+  function showData (data) {
+    console.log(data)
+  }
+
+  // alert(456456654)
+
+  $(document).ready(function () {
+
+    // alert(456456654)
+
+    $('#post').click(function () {
+      $.ajax({
+        url: 'http://localhost:8180/smconfig/get-test-demo',
+        type: 'post',
+        success: function (data) {
+          console.log(data)
+        },
+        error: function (err) {
+          console.log(err)
+        }
+      })
+    })
+
+
+    $('#get').click(function () {
+      // $('head').append('<script src=\'http://localhost:8180/smconfig/get-test-demo?callback=showData\'><\/script>');
+      /*$.get('http://localhost:8180/smconfig/get-test-demo', function () {
+        console.log('ok')
+      })*/
+      $.ajax({
+        // url: 'http://localhost:8195/mreport/r-delete-dynamic-data?callbackparam=jsonpCallback&orgId=755506599686656&id=847354457993216&tenantCode=menglong&tenantId=590714034630656&_=1600667612987',
+        url: 'https://test.mctech.vip/mreport/r-delete-dynamic-data?callbackparam=jsonpCallback&orgId=755506599686656&id=847354457993216&tenantCode=menglong&tenantId=590714034630656&_=1600667612987',
+        type: 'GET',
+        dataType: 'jsonp',
+        beforeSend: function(request) {
+          request.setRequestHeader("x-tenant-id",590714034630656);
+          request.setRequestHeader("tenantId",590714034630656);
+        },
+        success: function (data) {
+          console.log(result)
+        },
+        error: function (err) {
+          console.log(err)
+        }
+      });
+    })
+  });
+</script>
+</body>
+</html>

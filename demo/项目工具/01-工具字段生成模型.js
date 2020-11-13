@@ -29,4 +29,8 @@ let ret = columnsStr.split(',').filter(row => {
     return transRecords(row)
   }
 })
-console.log(ret)
+// console.log(ret)
+const str=`
+OriOrgId
+`
+console.log(transUnderscore(str).substring(2))

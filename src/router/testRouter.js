@@ -13,5 +13,10 @@ export default [
     path: '/c',
     name: 'c-test',
     component: () => import('@/views/test/C.vue')
+  },
+  {
+    path: '/fream',
+    name: 'fream',
+    component: () => import('@/views/fream/demo')
   }
 ]

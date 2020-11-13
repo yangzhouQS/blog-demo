@@ -15,6 +15,10 @@
       data: {
         type: Array,
         default: () => []
+      },
+      soltConf: {
+        type: Array,
+        default: () => []
       }
     },
     data () {
@@ -32,7 +36,8 @@
         return props
       },
       getColumns (h, columns = []) {
-        const { getColumns, getProps, $scopedSlots } = this
+        const self = this
+        const { getColumns, getProps, $scopedSlots, soltConf } = this
         return columns.map(column => {
           const props = {
             attrs: getProps(column),
@@ -41,7 +46,46 @@
             }
           }
           if (column && !column.children) {
-            return (<el-table-column { ...props } >{ $scopedSlots[column.prop] }</el-table-column>)
+            const child = soltConf.map(row => {
+              const itemRowProps = {
+                attrs: getProps(row.elmentConfig),
+                on: {
+                  ...getListeners(this)
+                }
+              }
+              if (row.name === column.prop) {
+                // console.log($scopedSlots)
+                // console.log(self)
+                return (<el-input { ...itemRowProps } />)
+              } else {
+                return ($scopedSlots[column.prop])
+              }
+            })
+            /*渲染头部*/
+            /*if (column['elHeader']) {
+              return (<el-table-column { ...props } >{ $scopedSlots[column.prop] }</el-table-column>)
+            }*/
+
+            const renderCell = (scope) => {
+              console.log(1111111111, scope.row);
+              return (<p>{ scope.row }</p>)
+            }
+
+            const slotScope = {
+              scopedSlots: {
+                default (scope) {
+                  console.log('900000000000')
+                  renderCell(scope)
+                }
+              }
+            };
+            let headerContent
+            headerContent = <span slot="header" slot-scope="{ column, $index}">
+                456564645
+            </span>
+            return (<el-table-column { ...props } >
+              { /*$scopedSlots[column.prop]*/ }
+            </el-table-column>)
           } else if (column && column.children.length > 0) {
             return (<el-table-column label={ column.label }>{ getColumns(h, column.children) }</el-table-column>)
           }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script src="jquery.js"></script>
+</head>
+<body>
+<table id="x-table" border="1" width="300px">
+  <tr>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+</table>
+<input type="text" name="ACTIVEID">
+<button id="btn" onclick="alert(45564)">点击测试</button>
+<script>
+
+  $(function () {
+    $("input:text[name='ACTIVEID']").val(54546)
+    $('#x-table').find('tr').on('click', function () {
+      console.log('212121')
+      $(this).siblings().css('background', '#fff')
+      $(this).css('background', 'red')
+    })
+    $('.x-table').find('tr').on('mousemove', function () {
+      // $(this).css('background', '#eee')
+    })
+    $('.x-table').find('tr').on('mouseout', function () {
+      // $(this).css('background', '#fff')
+    })
+  })
+
+</script>
+</body>
+</html>

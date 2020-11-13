@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<iframe src="demo.html"></iframe>
+<script>
+    function demo(params) {
+        console.log(Object.prototype.toString.call(params))
+        console.log(params)
+    }
+
+    window.onload = function () {
+        window.$messageError = function (...args) {
+            console.log(args)
+            demo(...args)
+        }
+    }
+</script>
+</body>
+</html>

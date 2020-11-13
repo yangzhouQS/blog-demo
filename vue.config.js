@@ -1,4 +1,15 @@
 module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://172.21.48.71:8080/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '/wddm-api'
+        }
+      }
+    }
+  },
   lintOnSave: false,
   css: {
     loaderOptions: {

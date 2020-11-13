@@ -1220,8 +1220,6 @@ const data = [ {
     'factAmnt': 718.6
   } ]
 } ]
-
-
 const cols = [ {
   'material': '425水泥',
   'materialinfonm': '425水泥591154085111361',
@@ -1279,7 +1277,253 @@ const cols = [ {
   'materialModel': '细1.6-2.2mm',
   'materialUnit': '吨'
 } ]
-
-cols.forEach(row => {
-  console.log(JSON.stringify(row))
+const coluns = [
+  { type: 'index', label: '序号', width: 75 },
+  { prop: 'datTim', label: '操作', width: 75 },
+  { prop: 'datTim', label: '发料时间', width: 175 },
+  { prop: 'vehicle', label: '车牌号', width: 175 },
+  {
+    label: '半成品',
+    children: [ { prop: 'taskNo', label: '匹配前', width: 175 }, {
+      label: '匹配后',
+      children: [
+        { prop: 'materialName', label: '材料名称', width: 175 },
+        { prop: 'materialModel', label: '规格型号', width: 175 }
+      ]
+    } ]
+  },
+  { prop: 'prodMete', label: '生产数量', width: 175 },
+  { prop: 'transMete', label: '运单数量', width: 175 },
+  { prop: 'materialUnit', label: '单位', width: 175 },
+  { prop: 'reciepeNo', label: '配比编号', width: 175 },
+  { prop: 'proLine', label: '机组编号', width: 175 },
+  { prop: 'operator', label: '操作员', width: 175 },
+  {
+    label: '收料单位', children: [
+      { prop: 'customer', label: '匹配前', width: 100 },
+      { prop: 'labourName', label: '匹配后', width: 100 }
+    ]
+  },
+  { prop: 'projectName', label: '工程名称', width: 175 },
+  { prop: 'consPos', label: '使用部位', width: 175 },
+  { prop: 'station', label: '拌合站名称', width: 175 }
+]
+const row = {
+  'id': 779383044067840,
+  'station': '代旭波普通测试拌合站一',
+  'vehicle': '15#鲁H87Y72',
+  'driver': '东才秀',
+  'customer': '曹湾隧道C15填充',
+  'operator': 'Admin',
+  'lands': '',
+  'pour': '',
+  'qualitor': '无',
+  'orgId': 716507510001664,
+  'orgName': '代旭波普通测试项目部',
+  'proLine': 'Z1',
+  'scheduleId': '1200430234023-5',
+  'taskNo': '曹湾C15',
+  'consPos': '填充',
+  'betLev': '曹湾C15',
+  'labourId': 750484128936448,
+  'labourName': '测试施工队队伍一',
+  'pieCnt': 5,
+  'projectName': '彭大三期土建二标',
+  'datTim': '2020-08-06 15:54:00',
+  'planMete': 0,
+  'morMete': 0,
+  'prodMete': 10,
+  'transMete': 10,
+  'reciepeNo': 'C15填充',
+  'carAmnt': 10,
+  'materialId': 591154085111954,
+  'materialUnit': '立方米',
+  'materialName': '自拌混凝土',
+  'materialModel': 'C15',
+  'materialCode': '00057',
+  'items': [ {
+    'material': '中碎石',
+    'materialId': 591154085111265,
+    'materialCode': '00019',
+    'materialName': '碎石',
+    'materialModel': '10-15mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 6260,
+    'factAmnt': 6262
+  }, {
+    'material': '粉煤灰',
+    'materialId': 591154085111410,
+    'materialCode': '00003',
+    'materialName': '粉煤灰硅酸盐水泥',
+    'materialModel': 'PF-42.5-袋装',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 700,
+    'factAmnt': 699.2
+  }, {
+    'material': '大碎石',
+    'materialId': 591154085111283,
+    'materialCode': '00037',
+    'materialName': '碎石',
+    'materialModel': '16.5-31.5mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1930,
+    'factAmnt': 1934
+  }, {
+    'material': '水M1',
+    'materialId': 0,
+    'materialCode': null,
+    'materialName': null,
+    'materialModel': null,
+    'materialUnit': null,
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1300,
+    'factAmnt': 1298.3
+  }, {
+    'material': '小碎石',
+    'materialId': 591154085111256,
+    'materialCode': '00010',
+    'materialName': '碎石',
+    'materialModel': '0-10mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1440,
+    'factAmnt': 1455
+  }, {
+    'material': '细沙',
+    'materialId': 591154085111197,
+    'materialCode': '00009',
+    'materialName': '河砂',
+    'materialModel': '细1.6-2.2mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 9510,
+    'factAmnt': 9534
+  }, {
+    'material': '425水泥',
+    'materialId': 591154085111361,
+    'materialCode': '00002',
+    'materialName': '普通硅酸盐水泥',
+    'materialModel': 'P·O 42.5袋装',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 2600,
+    'factAmnt': 2597.7
+  } ]
+}
+const items = [
+  {
+    'material': '中碎石',
+    'materialId': 591154085111265,
+    'materialCode': '00019',
+    'materialName': '碎石',
+    'materialModel': '10-15mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 6260,
+    'factAmnt': 6262
+  }, {
+    'material': '粉煤灰',
+    'materialId': 591154085111410,
+    'materialCode': '00003',
+    'materialName': '粉煤灰硅酸盐水泥',
+    'materialModel': 'PF-42.5-袋装',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 700,
+    'factAmnt': 699.2
+  }, {
+    'material': '大碎石',
+    'materialId': 591154085111283,
+    'materialCode': '00037',
+    'materialName': '碎石',
+    'materialModel': '16.5-31.5mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1930,
+    'factAmnt': 1934
+  }, {
+    'material': '水M1',
+    'materialId': 0,
+    'materialCode': null,
+    'materialName': null,
+    'materialModel': null,
+    'materialUnit': null,
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1300,
+    'factAmnt': 1298.3
+  }, {
+    'material': '小碎石',
+    'materialId': 591154085111256,
+    'materialCode': '00010',
+    'materialName': '碎石',
+    'materialModel': '0-10mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 1440,
+    'factAmnt': 1455
+  }, {
+    'material': '细沙',
+    'materialId': 591154085111197,
+    'materialCode': '00009',
+    'materialName': '河砂',
+    'materialModel': '细1.6-2.2mm',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 9510,
+    'factAmnt': 9534
+  }, {
+    'material': '425水泥',
+    'materialId': 591154085111361,
+    'materialCode': '00002',
+    'materialName': '普通硅酸盐水泥',
+    'materialModel': 'P·O 42.5袋装',
+    'materialUnit': '吨',
+    'proLine': 'Z1',
+    'scheduleId': '1200430234023-5',
+    'planAmn': 2600,
+    'factAmnt': 2597.7
+  } ]
+const dynamicColums = []
+items.forEach((row, itemIndex) => {
+  const { materialName, materialModel, material, materialId } = row
+  const column = {
+    label: material,
+    children: [
+      {
+        label: `${ materialName }|${ materialId }`,
+        children: [
+          { props: `planAmn-${ materialId }`, label: '应耗', width: 175 },
+          { props: `factAmnt-${ materialId }`, label: '实耗', width: 175 }
+        ]
+      }
+    ]
+  }
+  // dynamicColums.push(column)
+  // console.log(JSON.stringify(column, null, 2))
+  // console.log(JSON.stringify(row))
 })
+data.forEach((row, index) => {
+  const { items } = row
+  items.forEach((item, i) => {
+    const { planAmn, factAmnt, materialId } = item
+    row[`planAmn-${ materialId }`] = planAmn
+    row[`factAmnt-${ materialId }`] = factAmnt
+  })
+})
+

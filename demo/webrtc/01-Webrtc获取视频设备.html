@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="adapter-latest.js"></script>
+    <style>
+        /* 定义四种滤镜 */
+        .none {
+            -webkit-filter: none;
+            filter: none;
+        }
+
+        /* 模糊度 */
+        .blur {
+            -webkit-filter: blur(3px);
+            filter: blur(3px);
+        }
+
+        /* 灰度 */
+        .grayscale {
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1);
+        }
+
+        /* 反转 */
+        .invert {
+            -webkit-filter: invert(1);
+            filter: invert(1);
+        }
+
+        /* 深褐色 */
+        .sepia {
+            -webkit-filter: sepia(1);
+            filter: sepia(1);
+        }
+    </style>
+</head>
+<body>
+<p>audio input 音频输入: <select id="audioInput"></select></p>
+<p>audio output音频输出: <select id="audioOutput"></select></p>
+<p>video input: <select id="videoInput"></select></p>
+<select id="filter">
+    <option value="none">None</option>
+    <option value="blur">blur</option>
+    <option value="grayscale">Grayscale</option>
+    <option value="invert">Invert</option>
+    <option value="sepia">sepia</option>
+</select>
+<button id="btn">保存图片</button>
+<button id="save">保存在本地</button>
+<br>
+<video playsinline autoplay id="video"></video>
+<audio controls id="audio"></audio>
+<canvas id="canvas" style="width: 600px;height: 300px;"></canvas>
+<script>
+    if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+        console.log('浏览器不支持')
+    }
+    const ePromise = navigator.mediaDevices.enumerateDevices()
+    const audioInput = document.querySelector('#audioInput')
+    const audioOutput = document.querySelector('#audioOutput')
+    const videoInput = document.querySelector('#videoInput')
+    const player = document.querySelector('#video')
+    const filter = document.querySelector('#filter')
+    const saveBtn = document.querySelector('#btn')
+    const canvas = document.querySelector('#canvas')
+    const audio = document.querySelector('#audio')
+
+    ePromise.then(res => {
+        res.forEach(deviceInfo => {
+            const {kind, label, deviceId} = deviceInfo
+            const option = document.createElement('option')
+            option.value = deviceId
+            option.text = label
+            if (kind === 'audioinput') {
+                audioInput.appendChild(option)
+            } else if (kind === 'audiooutput') {
+                audioOutput.appendChild(option)
+            } else if (kind === 'videoinput') {
+                videoInput.appendChild(option)
+            }
+            // console.log(`${deviceInfo.kind}, label=${deviceInfo.label}, deviceId = ${deviceInfo.deviceId},groupId = ${deviceInfo.groupId}`)
+        })
+    }, onerror => {
+        console.log(onerror)
+    })
+    // 1.音视频采集
+    const constrants = {
+        video: {
+            frameRate: {min: 20},
+            width: {min: 640, ideal: 640},
+            height: {min: 360, ideal: 360},
+            aspectRatio: 16 / 9,
+            facingMode: 'enviroment' // 前后摄像头
+        },
+        audio: {
+            echoCancellation: true, // 开启回音消除
+            noiseSuppression: true, // 开启降噪
+            autoGainControl: true // 开启自动增益功能
+        }
+    }
+    const promise = navigator.mediaDevices.getUserMedia(constrants).then(stream => {
+        player.srcObject = stream
+        const videoTrack = stream.getVideoTracks()[0]
+        console.log(videoTrack.getCapabilities())
+        console.log(videoTrack.getConstraints())
+        console.log(videoTrack.getSettings());
+        /*aspectRatio: 1.7777777777777777
+        deviceId: "730f002be2d983f5eb99f7810f5366792f67bcc700ce043b64b21530440620ed"
+        facingMode: "user"
+        frameRate: 30 帧率
+        groupId: "f99e0359ef879653f11072bb41e80141aa95a720229ecdf0640c1bb61fe491f7"
+        height: 360
+        resizeMode: "none"
+        width: 640*/
+    }).catch(e => {
+        console.log(e)
+    })
+
+    // 视频滤镜特效
+    filter.onchange = function () {
+        player.className = filter.value
+    }
+
+    // 保存图片
+    saveBtn.onclick = function () {
+        canvas.getContext('2d').drawImage(player, 0, 0, canvas.width, canvas.height)
+        canvas.className = filter.value
+    }
+
+    // 获取视频的约束
+
+</script>
+
+</body>
+</html>
