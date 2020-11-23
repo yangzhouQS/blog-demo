@@ -5,6 +5,7 @@ import tableRouter from './table/index'
 import formRouter from './form/form'
 import treeRouter from './tree/index'
 import testRouter from './testRouter';
+import bpmnRouter from './bpmn/index';
 Vue.use(VueRouter)
 // 解决Vue-Router升级导致的Uncaught(in promise) navigation guard问题
 const originalPush = VueRouter.prototype.push
@@ -13,6 +14,7 @@ VueRouter.prototype.push = function push (location, onResolve, onReject) {
   return originalPush.call(this, location).catch(err => err)
 }
 const routes = [
+  ...bpmnRouter,
   ...tableRouter,
   ...formRouter,
   ...treeRouter,

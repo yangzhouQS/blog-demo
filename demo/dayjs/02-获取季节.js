@@ -44,12 +44,16 @@ function quarterToDate (date = new Date()) {
   const q = getQuarter(date)
   switch (q) {
     case 1:
+    case "第一季度":
       return [ `${ year }-01`, `${ year }-03` ]
     case 2:
+    case "第二季度":
       return [ `${ year }-04`, `${ year }-06` ]
     case 3:
+    case "第三季度":
       return [ `${ year }-07`, `${ year }-09` ]
     case 4:
+    case "第四季度":
       return [ `${ year }-10`, `${ year }-12` ]
   }
 }

@@ -9,6 +9,7 @@
   "dependencies": {
     "ant-design-vue": "^1.6.5",
     "axios": "^0.19.2",
+    "commmander": "^0.0.1-security",
     "core-js": "^3.6.5",
     "cube-ui": "^1.12.42",
     "dayjs": "^1.8.27",
