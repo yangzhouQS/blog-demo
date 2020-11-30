@@ -282,7 +282,7 @@ function allWeeks(now_month) {
         )
         i += 7;
     }
-    console.log(week_array)
+    console.log(JSON.stringify(week_array))
     return week_array;
 }
 
@@ -298,3 +298,7 @@ allWeeks('2020-09')
 allWeeks('2020-10')
 allWeeks('2020-11')
 allWeeks('2020-12')
+
+
+
+
