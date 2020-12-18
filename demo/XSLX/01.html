@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/xlsx/dist/xlsx.js"></script>
+</head>
+<body>
+<script>
+  var ws_name = "SheetJS";
+
+  /* make worksheet */
+  var ws_data = [
+    [ "S", "h", "e", "e", "t", "J", "S" ],
+    [  1 ,  2 ,  3 ,  4 ,  5 ]
+  ];
+  var ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+  /* Add the worksheet to the workbook */
+  XLSX.utils.book_append_sheet(wb, ws, ws_name);
+</script>
+</body>
+</html>
