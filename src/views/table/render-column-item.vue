@@ -53,6 +53,7 @@
                   ...getListeners(this)
                 }
               }
+              console.log(column,row)
               if (row.name === column.prop) {
                 // console.log($scopedSlots)
                 // console.log(self)

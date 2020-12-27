@@ -21,6 +21,7 @@
     "json-templater": "^1.0.4",
     "lodash": "^4.17.19",
     "moment": "^2.26.0",
+    "node-impala": "^2.0.4",
     "pkg-dir": "^4.2.0",
     "pl-table": "^2.7.5",
     "script-loader": "^0.7.2",

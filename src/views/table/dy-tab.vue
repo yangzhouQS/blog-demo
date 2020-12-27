@@ -9,6 +9,9 @@
       <template slot="address" slot-scope="s">
         {{ s.row }} - {{ s.$index }}
       </template>
+      <template slot="itemRemark" slot-scope="s">
+        参数传递删除的删除的
+      </template>
       <template slot="age" slot-scope="s">
 
         {{ s.row }} - {{ s.$index }}
@@ -30,7 +33,7 @@
       return {
         input: '',
         table: [],
-        data: data,
+        data: [],
         // 固定列
         columns: [
           { type: 'index', label: '序号', width: 75 },
