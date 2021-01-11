@@ -79,4 +79,36 @@ const arr2 = [
 arr2.map((item, index) => {
     item.a = item.a + index
 })
-console.log(arr2)
+
+
+function fn(n) {
+    setTimeout(function () {
+        console.log('123', n)
+    })
+    setImmediate(() => {
+    })
+    setInterval(() => {
+    })
+}
+
+
+/*for (let i = 0; i < 10; i++) {
+    console.log('a=', i)
+    fn(i)
+    console.log('b=', i)
+}*/
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    run(){
+        console.log(this.name)
+    }
+}
+
+const p = new Person("李四", 16)
+console.log(p)
+const p2 = new Person("", 16)
+console.log(p2.name)
