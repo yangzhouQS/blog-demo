@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../node_modules/canvas-datagrid/dist/canvas-datagrid.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+	const grid = canvasDatagrid({
+		parentNode: document.querySelector('#app')
+	})
+	grid.data = [
+		{ name: "tom", age: 16, sex: "男" },
+		{ name: "sam", age: 26, sex: "男" },
+		{ name: "alis", age: 36, sex: "女" },
+	]
+	document.body.appendChild(grid);
+</script>
+</body>
+</html>

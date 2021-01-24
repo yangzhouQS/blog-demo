@@ -6,10 +6,10 @@
 <script>
 export default {
   name: 'App',
-  data () {
+  data() {
     return {}
   },
-  mounted () {
+  mounted() {
     document.querySelector('#app').onclick = function (e) {
       e.stopPropagation()
       e.preventDefault()
@@ -19,9 +19,16 @@ export default {
 }
 </script>
 <style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html, body, #app {
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 #xx {

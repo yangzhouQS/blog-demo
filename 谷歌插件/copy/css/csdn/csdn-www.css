@@ -1,0 +1,11 @@
+[id^='kp_box'] {
+  display: block;
+}
+[id^='floor-ad'] {
+  display: none;
+}
+.top-banner,
+.hot-brand,
+.google-auto-placed {
+  display: none !important;
+}

@@ -9,3 +9,10 @@ const ret = data.reduce((memo, cur) => {
 	return memo
 }, { vehicle: 0, carAmnt: 0, transMete: 0 })
 console.log(ret)
+console.log('--------')
+data.forEach((cur) => {
+	console.log(cur)
+})
+
+data.map((cur) =>{
+})

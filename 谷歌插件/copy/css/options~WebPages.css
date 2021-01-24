@@ -1,0 +1,2 @@
+.web-pages .code-editer-wrap{border-radius:8px;border:1px solid #d9d9d9;padding:3px;min-height:500px;max-height:500px;overflow-y:auto}.web-pages .code-editer-wrap>iframe{width:100%;min-height:500px;max-height:500px}.web-pages .code-editer-wrap>.CodeMirror{font-family:monaco, Consolas, Menlo, Courier, monospace;font-size:13px;height:100%;line-height:1.5em}.web-pages .code-editer-wrap>.CodeMirror .CodeMirror-scroll{min-height:490px}
+
