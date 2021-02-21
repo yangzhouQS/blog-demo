@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/mustache/mustache.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+	const str = `
+  <ul>
+  {{#arr}}
+  <li>
+      <p>{{sortOrder}}</p>
+      <p>{{isCurrent}}</p>
+      <p><a href="{{systemHttpUrl}}">{{systemName}}</a></p>
+  </li>
+  <hr>
+  {{/arr}}
+</ul>
+  `
+	const data = {
+		arr: [
+			{
+				"sortOrder": 1,
+				"isCurrent": true,
+				"systemHttpUrl": "http://xxxx:8080/permission",
+				"systemName": "统一权限管理系统"
+			},
+			{
+				"sortOrder": 2,
+				"isCurrent": false,
+				"systemHttpUrl": "http://xxxx:8080/systemA",
+				"systemName": "业务系统A"
+			},
+			{
+				"sortOrder": 3,
+				"isCurrent": false,
+				"systemHttpUrl": "http://xxxx:8080/systemB",
+				"systemName": "业务系统B"
+			}
+		]
+	}
+	const render = Mustache.render(str, data);
+	document.querySelector('#app').innerHTML = render
+	console.log(render)
+</script>
+</body>
+</html>

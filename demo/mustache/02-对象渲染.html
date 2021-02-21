@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/mustache/mustache.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+	const str = `
+我是{{name}},年龄{{age}},性别{{sex}}
+</ul>
+  `
+	const data = {
+		name: "tom",
+		age: 26,
+		sex: "男"
+	}
+	const render = Mustache.render(str, data);
+	document.querySelector('#app').innerHTML = render
+	console.log(render)
+</script>
+</body>
+</html>

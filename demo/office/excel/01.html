@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--    <script src="../../../node_modules/exceljs/dist/exceljs.js"></script>
+        <script src="../../../node_modules/exceljs/dist/exceljs.bare.js"></script>-->
+    <script src="../../../node_modules/xlsx/dist/xlsx.full.min.js"></script>
+    <!--    <script src="../../../node_modules/xlsx/dist/xlsx.js"></script>-->
+</head>
+<body>
+<input type="file" id="file">
+<script>
+	window.onload = function () {
+		const fileObj = document.querySelector('#file')
+		fileObj.onchange = function () {
+			const sheet = this.files
+			const file = this.files[0]
+			const reader = new FileReader()
+			reader.onload = function (e) {
+				const bstr = e.target.result
+				const wb2 = XLSX.read(bstr, { type: 'binary' })
+				const wsname = wb2.SheetNames[0]
+				const ws = wb2.Sheets[wsname]
+				const data = XLSX.utils.sheet_to_json(ws, { header: 1 })
+				debugger
+				/* const tableData = []
+                for (let index = 0; index < data.length; index++) {
+                  const cur = data[index]
+                  const obj = {}
+                  const numPoint = [ 'quantity', 'electricityPrice', 'electricitySum', 'marketPrice', 'marketSum', 'saveSum', 'savieRate' ]
+                  const stringField = [ 'bypassAccount', 'supplierPhone' ]
+                  _this.columns.forEach((row, i) => {
+                    if (numPoint.includes(row.prop)) {
+                      obj[row.prop] = Number((Number(cur[i]) || 0).toFixed(2))
+                    } else if (stringField.includes(row.prop)) {
+                      obj[row.prop] = `'${cur[i]}'`
+                    } else {
+                      obj[row.prop] = cur[i]
+                    }
+                  })
+                  tableData.push(obj)
+                }
+                _this.$emit('setData', Object.freeze(tableData)) */
+			}
+			reader.readAsBinaryString(file)
+		}
+	}
+
+	// 读取本地excel文件
+	function readWorkbookFromLocalFile(file, callback) {
+		debugger
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			var data = e.target.result;
+			var workbook = XLSX.read(data, { type: 'binary' });
+			debugger
+			if (callback) callback(workbook);
+		};
+		// reader.readAsBinaryString(file);
+	}
+</script>
+</body>
+</html>

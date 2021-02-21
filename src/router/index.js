@@ -64,6 +64,11 @@ const routes = [
 		path: '/flex',
 		name: 'flex-index',
 		component: () => import('@/views/row/yl-flex.vue')
+	},
+	{
+		path: '/demo',
+		name: 'demo-index',
+		component: () => import('@/views/demo-demo.vue')
 	}
 ]
 
