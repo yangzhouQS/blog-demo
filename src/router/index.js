@@ -69,6 +69,11 @@ const routes = [
 		path: '/demo',
 		name: 'demo-index',
 		component: () => import('@/views/demo-demo.vue')
+	},
+	{
+		path: '/demo2',
+		name: 'demo-index',
+		component: () => import('@/views/demo-demo2.vue')
 	}
 ]
 
