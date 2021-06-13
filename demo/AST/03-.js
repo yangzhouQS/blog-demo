@@ -10,7 +10,6 @@ function compile(code) {
 
     // 2,traverse 转换代码
     traverse.default(ast, {});
-
     // 3. generator 将 AST 转回成代码
     return generator.default(ast, {}, code);
 }
