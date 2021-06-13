@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="500" height="300"></canvas>
+<script>
+	// 获取画布
+	const canvas = document.getElementById("canvas")
+	// 设置画布大小
+	// canvas.width = 300
+	// canvas.height = 300
+
+	// 获取上下文对象
+	const ctx = canvas.getContext("2d");
+
+	// 线的颜色
+	ctx.fillStyle = '#ff3040';
+
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	// 封装一个绘制矩形的函数
+	function juXing(startX, startY, width, height, lineWidth, strokeStyle, fillStyle) {
+		ctx.moveTo(startX, startY);
+		ctx.lineTo(startX + width, startY);
+		ctx.lineTo(startX + width, startY + height);
+		ctx.lineTo(startX, startY + height);
+		ctx.closePath();
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = strokeStyle;  //描边颜色
+		ctx.fillStyle = fillStyle;  //填充颜色
+
+		ctx.fill();  //填充
+		ctx.stroke();  //描边
+	}
+
+	// juXing(20, 20, 100, 100, 6, 'red', 'green');
+</script>
+</body>
+</html>

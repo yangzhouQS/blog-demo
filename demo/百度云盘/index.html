@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="axios.js"></script>
+</head>
+<body>
+
+<button id="oauth">授权</button>
+<a href="http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=iruIiQnI43V1isHKF3jFhl3Re2Ejepi3&redirect_uri=YOUR_REGISTERED_REDIRECT_URI&scope=basic,netdisk&display=tv&qrcode=1&force_login=1">
+    sxsa
+</a>
+
+<!--
+
+URI&scope=basic,netdisk&display=tv&qrcode=1&force_login=1
+-->
+
+<script>
+	const oauthBtn = document.getElementById('oauth')
+	const oauthUrl2 = 'http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=iruIiQnI43V1isHKF3jFhl3Re2Ejepi3&redirect_uri=YOUR_REGISTERED_REDIRECT_URI&scope=basic,netdisk&display=tv&qrcode=1&force_login=1'
+	const oauthUrl = 'http://openapi.baidu.com/oauth/2.0/authorize'
+	const params = {
+		response_type: 'code',
+		client_id: 'iruIiQnI43V1isHKF3jFhl3Re2Ejepi3',
+		redirect_uri: 'http://localhost:63342/blog-demo/demo/%E7%99%BE%E5%BA%A6%E4%BA%91%E7%9B%98/index.html?_ijt=iripmqff7tj1tf4dr2hebr2lcg',
+		scope: 'basic,netdisk',
+		display: 'tv',
+		state: 'code',
+		qrcode: 1,
+		force_login: 1,
+	}
+
+	oauthBtn.onclick = function () {
+		axios.get(oauthUrl, {
+			params
+		}).then(result => {
+
+		}).catch(err => {
+			console.log(err)
+		})
+	}
+</script>
+</body>
+</html>
