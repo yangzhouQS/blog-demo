@@ -50,10 +50,11 @@ console.log('------------')
 // console.log(dayjs().get('month') + 1);
 // console.log(dayjs().get('month'));
 // console.log(dayjs().daysInMonth());// 获取本月的天数
-// console.log(dayjs('2021-02').daysInMonth());// 获取本月的天数
+
+console.log(dayjs('2021-02').daysInMonth());// 获取本月的天数
 
 
-
+console.log(dayjs('2021-02').format("YYYY-MM-DD HH:mm:ss"));// 获取本月的天数
 
 
 

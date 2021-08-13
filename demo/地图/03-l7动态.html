@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 1200px;
+            height: 600px;
+            border: 1px solid chartreuse;
+        }
+
+        .l7-control-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="map">
+
+</div>
+
+
+<script src='https://unpkg.com/@antv/l7'></script>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=f3ca7ee301a8d5b81e70205c47757b04"></script>
+<script>
+  const mapStyles = { // 地图换肤使用的邱致遥的账号
+    dark: 'amap://styles/a8ec7db01d78221b549d9bd7257e383a',
+    blue: 'amap://styles/dc87d20169644e5727ff32a1376e630e',
+    light: 'amap://styles/280f0f058f3d74794b6e45f42639cb92'
+  }
+  window.onload = function () {
+    const map = new window.AMap.Map('map', {
+      resizeEnable: true,
+      center: [112.56617, 37.881319],
+      zoom: 7,
+      viewMode: '3D',
+      pitch: 0,
+      mapStyle: mapStyles.light
+    })
+    const scene = new window.L7.Scene({
+      id: 'map',
+      map: new window.L7.GaodeMap({
+        // pitch: 0,
+        // style: 'dark',
+        // center: [ 112, 23.69 ],
+        // zoom: 2.5
+        mapInstance: map
+      })
+    });
+
+    scene.on('loaded', function () {
+      const data = [
+        {
+          'id': 115447320523904,
+          'name': '静庄项目部一分部',
+          'manager': '曹丽燕',
+          'address': '甘肃省庆阳市西峰区',
+          'longitude': 107.68358313879492,
+          'latitude': 35.7529739841781,
+          'province': '甘肃省',
+          'city': '庆阳市',
+          'overview': '1、清风吹过，bai一阵阵花雨飘落下来，du山野像铺上了一床zhi彩色的大锦被。\n2、夏日里，清清的小dao河成了孩子们避暑的好去处，你看，他们在水中嬉闹着，一会儿打水仗，一会儿扎猛子摸鱼，玩得十分开心。\n3、满塘的荷花荷叶，远远望去就像碧波上荡着点点五颜六色的帆，煞是好看。\n4、水牛早就躲到了池塘里，整个身子埋在了池水中，只露出一个头在水面上透气。\n6、当花翅膀的麦雀子把乡村每个日子叫甜的时候，把黑土地的渴盼叫成金黄色，叫成起伏不平的波浪形，一个最最撩拨庄稼人的时令，又从镰刀上和红缨鞭上熟落了，又从那些古铜色的胸大肌、肱二头肌和醉意朦胧的微笑上熟落了！<p><br></p>',
+          'orgId': 115447320523904,
+          'shortName': '静庄一分部'
+        }, {
+          'id': 115447557551104,
+          'name': '静庄二分部',
+          'manager': null,
+          'address': '青海省海西蒙古族藏族自治州都兰县',
+          'longitude': 96.1990705837108,
+          'latitude': 36.508544625279846,
+          'province': '青海省',
+          'city': '海西蒙古族藏族自治州',
+          'overview': '',
+          'orgId': 115447557551104,
+          'shortName': '静庄二分部'
+        }, {
+          'id': 115447621801088,
+          'name': '静庄三分部（v2）',
+          'manager': '猫胖胖',
+          'address': 'Kumamoto小島新町線',
+          'longitude': 130.66894058088985,
+          'latitude': 32.79120371694397,
+          'province': null,
+          'city': null,
+          'overview': '由三分部承建的段落ZK35+101(YK35+080)-ZK40+443.511(YK40+455)，全长5.34km。路线途径庄浪县赵墩乡胡家塬村、南湖镇曹湾村等。主要工程量有：路基挖方846576.4m3;填方82423m3;废方687239m3;防护工程18435.5m3;排水工程3884m；大桥1255m/5座；中桥97.5m/1座；箱涵（1-2*2m）143.35m/3道；隧道工程：赵墩隧道左线1146米，右线1162米；南湖隧道左线1400.511米，右线1367米。',
+          'orgId': 115447621801088,
+          'shortName': '静庄三分部'
+        }, {
+          'id': 115448070424192,
+          'name': '静庄项目经理部',
+          'manager': null,
+          'address': null,
+          'longitude': 107.4,
+          'latitude': 33.42,
+          'province': '安徽省',
+          'city': null,
+          'overview': '初夏的雨，稍急，显促，来得快，去得速，不粘不滞，快阴速晴，它能轻松地把握生命对湿润的量的需求，速酿快走，点到为止，让世间的生命总能得到恰到好处的滋润。之后，就迅速地撤身，再让位给光、风等因素，把继续发育的环节传承下去\n初夏的阳光，温和，年轻，活泼，善良，它会不辞辛苦地四下里奔波，把温暖慷慨地洒向世界，为呼唤成熟的生命提供成长必需的热度，它有时会配合着清风，为那些新妆初成的花儿、草儿在悄悄地营造心情和条件。世界的成熟离不开这些不急不躁、不温不火的温暖的参与。',
+          'orgId': 115448070424192,
+          'shortName': '静庄项目经理部'
+        }, {
+          'id': 152278900854784,
+          'name': '蓝帆集团呼伦贝尔项目',
+          'manager': null,
+          'address': '重庆市渝北区礼仁立交',
+          'longitude': 106.50944838813622,
+          'latitude': 29.67621437303044,
+          'province': '重庆',
+          'city': null,
+          'overview': '工程概况十多年了手机端1',
+          'orgId': 152278900854784,
+          'shortName': '呼伦贝尔项目'
+        }, {
+          'id': 152290216435712,
+          'name': '蓝帆渤海湾项目',
+          'manager': null,
+          'address': '安徽省宿州市埇桥区',
+          'longitude': 117.15225255759115,
+          'latitude': 33.717993363146284,
+          'province': '安徽省',
+          'city': '蚌埠市',
+          'overview': '222\n22222\n    444444\n   而我饿的无额',
+          'orgId': 152290216435712,
+          'shortName': '渤海湾项目'
+        }, {
+          'id': 152309112049664,
+          'name': '小毛毛虫指挥部',
+          'manager': null,
+          'address': '台湾省南投县',
+          'longitude': 121.14015408926228,
+          'latitude': 23.77032308221529,
+          'province': '台湾',
+          'city': null,
+          'overview': '',
+          'orgId': 152309112049664,
+          'shortName': '小毛毛虫指挥部'
+        }, {
+          'id': 154337576046592,
+          'name': '蓝帆黄海项目',
+          'manager': null,
+          'address': null,
+          'longitude': 107.4,
+          'latitude': 33.42,
+          'province': null,
+          'city': null,
+          'overview': '',
+          'orgId': 154337576046592,
+          'shortName': '黄海项目'
+        }, {
+          'id': 157272731267328,
+          'name': '就是瞎指挥部',
+          'manager': '范增',
+          'address': '陕西省汉中市洋县',
+          'longitude': 107.54947803686028,
+          'latitude': 33.6203340486649,
+          'province': '陕西省',
+          'city': '汉中市',
+          'overview': '1、我是\n2、你是、\n3、太阳',
+          'orgId': 157272731267328,
+          'shortName': '就是瞎指挥部'
+        }, {
+          'id': 162240508846080,
+          'name': 'Excel导入项目-gai',
+          'manager': '5',
+          'address': '重庆市江北区红原路',
+          'longitude': 106.50755413130828,
+          'latitude': 29.572765816842672,
+          'province': '重庆',
+          'city': null,
+          'overview': '概况\n框',
+          'orgId': 162240508846080,
+          'shortName': 'Excel导入项目'
+        }, {
+          'id': 163912030056448,
+          'name': '内蒙乌兰布统项目',
+          'manager': null,
+          'address': '内蒙古自治区锡林郭勒盟锡林浩特市',
+          'longitude': 116.03915617929644,
+          'latitude': 43.91895862070539,
+          'province': '内蒙古',
+          'city': '锡林郭勒盟',
+          'overview': '秋季1',
+          'orgId': 163912030056448,
+          'shortName': '乌兰布统项目'
+        }, {
+          'id': 167584442171392,
+          'name': '南海项目',
+          'manager': '11',
+          'address': '甘肃省庆阳市西峰区',
+          'longitude': 107.70887942195634,
+          'latitude': 35.66481588816481,
+          'province': '甘肃省',
+          'city': '庆阳市',
+          'overview': '11',
+          'orgId': 167584442171392,
+          'shortName': '南海项目'
+        }, {
+          'id': 176658790076416,
+          'name': '张家口百盛广场项目->11',
+          'manager': null,
+          'address': '内蒙古自治区包头市东河区',
+          'longitude': 110.25772183628996,
+          'latitude': 40.59967359061839,
+          'province': '内蒙古',
+          'city': '赤峰市',
+          'overview': '',
+          'orgId': 176658790076416,
+          'shortName': '百盛广场项目'
+        }, {
+          'id': 176678315827200,
+          'name': '测试项目二',
+          'manager': null,
+          'address': '北京市',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 176678315827200,
+          'shortName': '测试项目2'
+        }, {
+          'id': 176678465417216,
+          'name': '测试项目4',
+          'manager': null,
+          'address': '北京市丰台区',
+          'longitude': 116.32552403064824,
+          'latitude': 39.827394535039794,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 176678465417216,
+          'shortName': '测试项目4'
+        }, {
+          'id': 176678541266944,
+          'name': '测试项目5',
+          'manager': null,
+          'address': '北京市',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 176678541266944,
+          'shortName': '测试项目5'
+        }, {
+          'id': 176678606487552,
+          'name': '测试项目6',
+          'manager': null,
+          'address': '河北省保定市涿州市',
+          'longitude': 116.17834565589348,
+          'latitude': 39.58314545528876,
+          'province': '河北省',
+          'city': null,
+          'overview': '<p><span style="font-size: large;">1（全称）23悔不<em>当初看见啊啊是恢复开户入方法就按</em><u>了皇家赌场没话说把客服号vkadtttt</u></span></p>',
+          'orgId': 176678606487552,
+          'shortName': '测试项目6'
+        }, {
+          'id': 176678681792512,
+          'name': '测试项目7',
+          'manager': null,
+          'address': '山东省德州市齐河县',
+          'longitude': 116.4292962831609,
+          'latitude': 36.6666920085436,
+          'province': '山东省',
+          'city': null,
+          'overview': '',
+          'orgId': 176678681792512,
+          'shortName': '测试项目7'
+        }, {
+          'id': 176678986420224,
+          'name': '测试项目11',
+          'manager': null,
+          'address': '天津市静海区',
+          'longitude': 117.02481061151327,
+          'latitude': 39.02027237696564,
+          'province': '湖北省',
+          'city': '武汉市',
+          'overview': 'Ⅰ',
+          'orgId': 176678986420224,
+          'shortName': '测试项目11'
+        }, {
+          'id': 176682388398080,
+          'name': '测试项目14',
+          'manager': null,
+          'address': '河北省保定市定兴县',
+          'longitude': 115.85869262322292,
+          'latitude': 39.25716849643533,
+          'province': '河北省',
+          'city': null,
+          'overview': '',
+          'orgId': 176682388398080,
+          'shortName': '测试项目14'
+        }, {
+          'id': 176682609909760,
+          'name': '测试项目15',
+          'manager': null,
+          'address': '陕西省西安市长安区',
+          'longitude': 109.11982028069067,
+          'latitude': 34.128029947686386,
+          'province': '陕西省',
+          'city': null,
+          'overview': '',
+          'orgId': 176682609909760,
+          'shortName': '测试项目15'
+        }, {
+          'id': 176682675810304,
+          'name': '测试项目16',
+          'manager': null,
+          'address': '山东省济宁市嘉祥县',
+          'longitude': 116.30051520525046,
+          'latitude': 35.557342017327784,
+          'province': '山东省',
+          'city': null,
+          'overview': '',
+          'orgId': 176682675810304,
+          'shortName': '测试项目16'
+        }, {
+          'id': 176683121491968,
+          'name': '测试项目22',
+          'manager': null,
+          'address': '甘肃省定西市岷县',
+          'longitude': 104.38586767944588,
+          'latitude': 34.56123952566083,
+          'province': '甘肃省',
+          'city': '定西市',
+          'overview': '',
+          'orgId': 176683121491968,
+          'shortName': '测试项目22'
+        }, {
+          'id': 176683285938176,
+          'name': '测试项目24',
+          'manager': null,
+          'address': '湖南省怀化市沅陵县',
+          'longitude': 110.33461677440889,
+          'latitude': 28.412749265170305,
+          'province': '湖南省',
+          'city': null,
+          'overview': '',
+          'orgId': 176683285938176,
+          'shortName': '测试项目24'
+        }, {
+          'id': 176683352363008,
+          'name': '测试项目25',
+          'manager': null,
+          'address': null,
+          'longitude': 112.29900498462108,
+          'latitude': 34.678164197121205,
+          'province': null,
+          'city': null,
+          'overview': '',
+          'orgId': 176683352363008,
+          'shortName': '测试项目25'
+        }, {
+          'id': 177454612365312,
+          'name': '内蒙古锡林郭勒盟地质公园项目',
+          'manager': null,
+          'address': '北京市',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 177454612365312,
+          'shortName': '锡林郭勒地质公园项目'
+        }, {
+          'id': 179443329822720,
+          'name': '猫胖胖',
+          'manager': '曹操',
+          'address': '台湾省南投县',
+          'longitude': 120.95148337412876,
+          'latitude': 23.57437847725476,
+          'province': '台湾',
+          'city': null,
+          'overview': '<div style="text-align: center;"><span style="font-family: 楷体; font-size: large; color: rgb(255, 0, 0);">中铁隧道局</span></div><div style="text-align: center;"><div style="text-align: left;"></div><div style="text-align: left;"><span style="font-weight: bold; font-size: large;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span></div><div style="text-align: left;"><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span>&nbsp;&nbsp;<span style="font-weight: bold; font-size: large;"><br></span></div></div><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span>&nbsp;</p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span></p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span><span style="font-size: 1rem;">&nbsp;</span><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span></p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span>&nbsp;</p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span></p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span></p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span>&nbsp;<span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span><span style="font-size: large; font-weight: 700;"><br></span></p><p><span style="font-size: large; font-weight: 700;">规范地方换届大会交换机的会计师防护服回到家后翻江倒海发动机</span>&nbsp;</p><table style="border-collapse: collapse;color: rgba(0, 0, 0, 0.7);border-top: 1px solid #ccc;border-left: 1px solid #ccc; display: table;table-layout: fixed;word-wrap: break-word;margin:10px 0;" border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr style="height: 26px;border: 1px solid  #ccc;"><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;\n\n<span style="font-size: large; text-align: left;">规范地方</span></th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;\n\n<span style="font-size: large; text-align: left;">规范地方换届大</span></th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;"><span style="font-size: large; font-weight: 700;">倒海发动机</span>&nbsp;&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr></tbody></table>',
+          'orgId': 179443329822720,
+          'shortName': '猫胖胖（勿动！！！）'
+        }, {
+          'id': 181378079232000,
+          'name': '子项目',
+          'manager': null,
+          'address': 'GangwonPyeongchang',
+          'longitude': 128.4645779125231,
+          'latitude': 37.39005891852708,
+          'province': null,
+          'city': null,
+          'overview': '<table style="border-collapse: collapse;color: rgba(0, 0, 0, 0.7);border-top: 1px solid #ccc;border-left: 1px solid #ccc; display: table;table-layout: fixed;word-wrap: break-word;margin:10px 0;" border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr style="height: 26px;border: 1px solid  #ccc;"><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">&nbsp;</th></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr></tbody></table><p>22222</p><p>444</p>',
+          'orgId': 181378079232000,
+          'shortName': '子项目'
+        }, {
+          'id': 196105947377664,
+          'name': '江左盟项目',
+          'manager': '项目经理',
+          'address': '河南省南阳市唐河县',
+          'longitude': 109.957768641219,
+          'latitude': 33.853569544107856,
+          'province': '',
+          'city': '',
+          'overview': '555',
+          'orgId': 196105947377664,
+          'shortName': '江左盟项目'
+        }, {
+          'id': 436831310925824,
+          'name': '性能测试项目（勿动）',
+          'manager': null,
+          'address': '北京市西城区承恩胡同5号',
+          'longitude': 116.373673,
+          'latitude': 39.907584,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 436831310925824,
+          'shortName': '性能测试项目（勿动）'
+        }, {
+          'id': 483560913252864,
+          'name': '坏毛毛虫',
+          'manager': null,
+          'address': null,
+          'longitude': 116.440651,
+          'latitude': 39.914557,
+          'province': null,
+          'city': null,
+          'overview': '',
+          'orgId': 483560913252864,
+          'shortName': '坏毛毛虫'
+        }, {
+          'id': 490643766628352,
+          'name': 'AAAA',
+          'manager': null,
+          'address': '北京市西城区三里河东路甲9',
+          'longitude': 116.351251,
+          'latitude': 39.917103,
+          'province': null,
+          'city': null,
+          'overview': '',
+          'orgId': 490643766628352,
+          'shortName': 'AAA'
+        }, {
+          'id': 500646014963712,
+          'name': '123',
+          'manager': null,
+          'address': 'TexasHoustonBuschong Street',
+          'longitude': -95.35720539063304,
+          'latitude': 29.92711069137522,
+          'province': null,
+          'city': null,
+          'overview': '<p><span style="font-size: large;">1（</span></p><p><span style="font-size: large;">全称）23悔不<em>当初看见啊啊是恢复开户入方法就按</em><u>了皇家赌场没话说把客服号vkadtttt</u></span></p>',
+          'orgId': 500646014963712,
+          'shortName': '123'
+        }, {
+          'id': 512798763397120,
+          'name': '银河系指挥部',
+          'manager': null,
+          'address': '新疆维吾尔自治区塔城地区和布克赛尔蒙古自治县',
+          'longitude': 87.06897477270864,
+          'latitude': 45.89744185378908,
+          'province': '新疆',
+          'city': null,
+          'overview': '',
+          'orgId': 512798763397120,
+          'shortName': '银河系指挥部'
+        }, {
+          'id': 516114075209728,
+          'name': '分包项目01',
+          'manager': null,
+          'address': '北京市',
+          'longitude': 116.4133836971231,
+          'latitude': 39.910924547299565,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 516114075209728,
+          'shortName': '分包项目01'
+        }, {
+          'id': 545319886385664,
+          'name': '蓝帆总指挥部1',
+          'manager': null,
+          'address': '江苏省南京市玄武区',
+          'longitude': 118.8620692071083,
+          'latitude': 32.06563209557228,
+          'province': '江苏省',
+          'city': null,
+          'overview': '',
+          'orgId': 545319886385664,
+          'shortName': '蓝帆指挥部1'
+        }, {
+          'id': 558048699559936,
+          'name': 'test123完整名称',
+          'manager': null,
+          'address': '北京市',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '北京',
+          'city': null,
+          'overview': '',
+          'orgId': 558048699559936,
+          'shortName': 'test123'
+        }, {
+          'id': 592670042943488,
+          'name': 'A项目部',
+          'manager': null,
+          'address': '河北省衡水市冀州区',
+          'longitude': 115.40709647724678,
+          'latitude': 37.73275121996032,
+          'province': '河北省',
+          'city': null,
+          'overview': '',
+          'orgId': 592670042943488,
+          'shortName': 'A项目部'
+        }, {
+          'id': 629467277283840,
+          'name': '陈寿莹测试项目部',
+          'manager': null,
+          'address': '运城市',
+          'longitude': 111.003957,
+          'latitude': 35.022778,
+          'province': '山西省',
+          'city': '运城市',
+          'overview': '运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市运城市',
+          'orgId': 629467277283840,
+          'shortName': '陈寿莹测试项目部'
+        }, {
+          'id': 631480250135552,
+          'name': '北京项目部',
+          'manager': null,
+          'address': null,
+          'longitude': 104.51464875735633,
+          'latitude': 34.248628023642375,
+          'province': null,
+          'city': null,
+          'overview': '',
+          'orgId': 631480250135552,
+          'shortName': '北京项目部'
+        }, {
+          'id': 651991434883072,
+          'name': '随便指挥部',
+          'manager': '曹丽燕',
+          'address': '河北省保定市涞水县',
+          'longitude': 115.59883080529649,
+          'latitude': 39.50435636415488,
+          'province': '河北省',
+          'city': '石家庄市',
+          'overview': '亮点一：国内最大跨度最大吨位高速铁路墩顶转体连续梁\n设计单位编制完成了“通桥2321”系列梁图，在跨越京藏高速公路和大秦铁路时采用了自主研发的创新型工法―――“连续梁墩顶转体施工”工法，墩顶转体连续梁最大跨度128米，最大转体重量8700吨，为目前国内最大跨度、最大吨位的高速铁路墩顶转体连续梁。\n亮点二：沿线车站及车内实现无线上网\n信号系统是控制高铁列车安全行车的“中枢神经系统”，满足列车高速度、高密度及不同速度等级列车跨线运行要求。采用世界领先水平的ctcs-3级列车运行控制系统，基于gsm-r网络实现地面与动车组控车信息的双向实时传输。沿线车站及动车组内提供无线上网服务，奥运期间旅客能实时了解奥运信息。\n亮点三：清华园隧道国内穿地最复杂\n清华园隧道穿越北京市核心区，全长5.33公里。隧道穿越多处地铁、城市道路及众多重要市政管线，是目前国内位于城市核心区，穿越地层最复杂、重要建筑物最多的国铁单洞双线、大直径盾构、高风险隧道。\n亮点四：12公里新八达岭隧道环保要求最严格\n新八达岭隧道全长12.01公里，隧道设计体现了高铁隧道与环境共生的设计理念，为全线最长的隧道，是环保要求最严格，工期最紧张的控制性工程。\n亮点五：国内埋深最大高铁地下车站\n八达岭长城站是设在新八达岭隧道内的地下车站，位于八达岭景区滚天沟停车场下方，毗邻八达岭长城，独占4个“全国之最”和4个“首次”。\n车站最大埋深102米，地下建筑面积3.98万平方米，是目前国内埋深最大的高速铁路地下车站；车站主洞数量多、洞型复杂、交叉节点密集，是目前国内最复杂的暗挖洞群车站；车站两端渡线段单洞开挖跨度达32.7米，是目前国内单拱跨度最大的暗挖铁路隧道；旅客进出站提升高度62米，是目前国内旅客提升高度最大的高速铁路地下车站。\n亮点六：9公里特大桥跨官厅水库\n官厅水库特大桥是京张高速铁路上的重点控制性工程之一，位于张家口市怀来县境内，全长9.08公里，主桥采用8孔110米简支拱形钢桁梁跨越官厅水库，是国内首例适用于350公里时速有砟轨道高速铁路的钢桁梁桥。大桥的设计充分体现了“轻质、大跨、环保”的现代铁路建设理念。主桥由八个造型优美的曲弦桁梁组成一道长虹跨越宽阔平静的官厅水库，与湖面交相辉映，建成后将成为一道亮丽的风景线。\n亮点七：以隧道引入城区减少环境影响\n京张高速铁路注重绿色环保设计，对路基、桥梁、隧道及其他相关场',
+          'orgId': 651991434883072,
+          'shortName': '随便指挥部'
+        }, {
+          'id': 723748318076416,
+          'name': 'AAAA',
+          'manager': '',
+          'address': '2222222222222222222222222222222',
+          'longitude': 123.43166923755756,
+          'latitude': 41.83848715565205,
+          'province': '甘肃省',
+          'city': null,
+          'overview': '111',
+          'orgId': 723748318076416,
+          'shortName': 'AAAA'
+        }, {
+          'id': 751287133533184,
+          'name': '刘旭测试项目部',
+          'manager': '范增',
+          'address': null,
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '陕西省',
+          'city': '西安市',
+          'overview': '',
+          'orgId': 751287133533184,
+          'shortName': '刘旭测试项目部'
+        }, {
+          'id': 751290170020864,
+          'name': '6666',
+          'manager': '',
+          'address': '陕西省西安市延平市盐县狮子村',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '安徽省',
+          'city': '合肥市',
+          'overview': '<table style="border-collapse: collapse;color: rgba(0, 0, 0, 0.7);border-top: 1px solid #ccc;border-left: 1px solid #ccc; display: table;table-layout: fixed;word-wrap: break-word;margin:10px 0;" border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr style="height: 26px;border: 1px solid  #ccc;"><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">111&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">666&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">44&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">444&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">555&nbsp;</th></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;2222</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;777</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;333</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;888</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;444</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;999</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;555</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;0000</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;</td></tr></tbody></table><p><span style="color: rgb(153, 0, 0);"><span style="font-family: 微软雅黑; font-size: 16px;">女主舆洪图，虎视何雄哉！</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">千秋王气尽，陵墓空崔嵬。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">我今登其岭，萧萧怒风来。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">饥鸢猎旷野，寒狐叫山隈。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">妆阁岂云秘，翁仲在莓台。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">石兽夜吼天，霜风日以摧。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">咄嗟此高阜，万古云雷埋。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">我本侠烈人，长揖过夜台。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">腰下看青萍，肝胆历然开。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">谁使贻妖氛，民生逢祸灾。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">慷慨挥长剑，坐使狻猊颓。</span><br style="font-family: 微软雅黑; font-size: 16px;"><span style="font-family: 微软雅黑; font-size: 16px;">相顾起叱啸，旦夕风云回</span><span style="font-family: 微软雅黑; font-size: 16px;">。</span>&nbsp;</span>&nbsp;<br></p>',
+          'orgId': 751290170020864,
+          'shortName': '中铁十四局集团二公司广深港项目部'
+        }, {
+          'id': 751296138810368,
+          'name': '西秦指挥部',
+          'manager': '',
+          'address': '风光无限好红灯路灯',
+          'longitude': 116.51288495608856,
+          'latitude': 39.84746927558593,
+          'province': '北京',
+          'city': '东城区',
+          'overview': '121',
+          'orgId': 751296138810368,
+          'shortName': '西咸新区指挥部'
+        }, {
+          'id': 761820310164480,
+          'name': '秦-项目A',
+          'manager': '项目经理',
+          'address': '呃呃呃呃呃呃鹅鹅鹅鹅鹅鹅饿',
+          'longitude': 116.43810506475762,
+          'latitude': 39.95286251819223,
+          'province': '北京',
+          'city': '丰台区',
+          'overview': '',
+          'orgId': 761820310164480,
+          'shortName': '秦-项目A'
+        }, {
+          'id': 843830043193856,
+          'name': '梁渊博测试项目部',
+          'manager': null,
+          'address': '新疆维吾尔自治区巴音郭楞蒙古自治州尉犁县',
+          'longitude': 85.4166280433267,
+          'latitude': 40.54613267314813,
+          'province': '新疆',
+          'city': '吐鲁番市',
+          'overview': '晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市晋城市',
+          'orgId': 843830043193856,
+          'shortName': '梁渊博测试项目部'
+        }, {
+          'id': 882704714592768,
+          'name': '宝鸡水电工程项目部',
+          'manager': '无名',
+          'address': '陕西省宝鸡市金台区',
+          'longitude': 107.29264058085292,
+          'latitude': 34.386017254604226,
+          'province': '陕西省',
+          'city': '宝鸡市',
+          'overview': '<p>1111111111111112</p><p>下班回家喽</p><p>开心哦！</p><table style="border-collapse: collapse;color: rgba(0, 0, 0, 0.7);border-top: 1px solid #ccc;border-left: 1px solid #ccc; display: table;table-layout: fixed;word-wrap: break-word;margin:10px 0;" border="0" width="100%" cellpadding="0" cellspacing="0"><tbody><tr style="height: 26px;border: 1px solid  #ccc;"><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">11&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">33&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">55&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">77&nbsp;</th><th style="border-bottom: 1px solid #ccc;text-align: center;border-right: 1px solid #ccc;">99&nbsp;</th></tr><tr style="height: 26px;border: 1px solid  #ccc;"><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;22</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;44</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;66</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;88</td><td style="border-bottom: 1px solid #ccc;border-right: 1px solid #ccc;">&nbsp;00</td></tr></tbody></table><p><br></p>',
+          'orgId': 882704714592768,
+          'shortName': '宝鸡水电项目部'
+        }, {
+          'id': 971365888684544,
+          'name': '杨周测试项目部',
+          'manager': null,
+          'address': '晋中市',
+          'longitude': 116.35296268038591,
+          'latitude': 40.40907921583191,
+          'province': '山西省',
+          'city': '晋中市',
+          'overview': '工程概况晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市晋中市',
+          'orgId': 971365888684544,
+          'shortName': '杨周测试项目部'
+        }
+      ]
+      const pointLayer = new window.L7.PointLayer({})
+        .source(data, {
+          parser: {
+            type: 'json',
+            x: 'longitude',
+            y: 'latitude'
+          }
+        })
+        .shape('circle') // 气泡图 shape 设置为 circle
+        .active(true) // 鼠标滑过高亮 开启 Active  使用默认高亮颜色
+        .animate(true)// 气泡图支持水波动画
+        .size(40) // 气泡图大小
+        .color('#4cfd47')
+        .style({
+          opacity: 1
+        });
+      pointLayer.on('mousemove', (ev) => {
+        const {feature} = ev
+        let {shortName,overview} = feature
+        if (overview && String(overview).length>160){
+          overview = String(overview).substr(0,150)+'...'
+        }
+        if(!overview){
+          overview ='未获取到项目简介, 请在项目概况填写...'
+        }
+        const html = `<div style="width: 140px;padding: 10px;">
+                        <p style="color: #777;font-size: 14px;">${shortName}</p>
+                        <div style="height: 1px;background: #eee;margin: 10px 0"></div>
+                        <div style="font-size: 14px;color: #777;text-align: justify;word-break:break-all;">${overview}</div>
+                    </div>`;
+        const popup = new L7.Popup().setLnglat([ev.lngLat.lng, ev.lngLat.lat]).setHTML(html);
+        scene.addPopup(popup);
+        popup.open()
+        console.log(ev)
+      });
+      scene.addLayer(pointLayer);
+    })
+    /*scene.on('loaded', () => {
+      fetch(
+        'https://gw.alipayobjects.com/os/basement_prod/9078fd36-ce8d-4ee2-91bc-605db8315fdf.csv'
+      )
+        .then(res => res.text())
+        .then(data => {
+          const pointLayer = new window.L7.PointLayer({})
+            .source(data, {
+              parser: {
+                type: 'csv',
+                x: 'Longitude',
+                y: 'Latitude'
+              }
+            })
+            .shape('circle') // 气泡图 shape 设置为 circle
+            .active(true) // 鼠标滑过高亮 开启 Active  使用默认高亮颜色
+            .animate(true)// 气泡图支持水波动画
+            .size(40) // 气泡图大小
+            .color('#4cfd47')
+            .style({
+              opacity: 1
+            });
+          pointLayer.on('click', (ev) => {
+            var html = '<p style="color:red">' + 'HelloWord' + '</p>';
+            const popup = new L7.Popup().setLnglat([ev.lngLat.lng, ev.lngLat.lat]).setHTML(html);
+            scene.addPopup(popup);
+            popup.open()
+            console.log(ev)
+          });
+          scene.addLayer(pointLayer);
+        });
+    });*/
+  }
+</script>
+<! --引入最新版的L7-->
+
+</body>
+</html>

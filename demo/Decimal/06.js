@@ -13,3 +13,5 @@ console.log(Number.isFinite(NaN))
 
 const m = ['5354499760000501478E940411D3772D']
 console.log([...new Set(m)])
+console.log(Decimal(0.3).gte(0.1))
+console.log(Decimal(110).gte(Decimal(521)))

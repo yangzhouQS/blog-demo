@@ -74,3 +74,4 @@ console.log(dayjs('2021-01-12 10:27:32').isValid())
 console.log(Number.isFinite(1221))
 console.log() // 2021
 console.log(`${ dayjs().format('YYYY') + '-01-01 00:00:00' }`, dayjs().format('YYYY-MM-DD') + ' 23:59:59') // 2021
+console.log(dayjs('07-27').format('YYYY-MM-DD'))

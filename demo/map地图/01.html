@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>地图炫酷点闪烁</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.2&key=c75741b6f2144f1c55dddbb864d76b4b"></script>
+    <style type="text/css">
+        body,
+        html,
+        #map {
+            height: 100%;
+            margin: 0px;
+            font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial;
+        }
+    </style>
+    <script src="flash.js"></script>
+</head>
+
+<body>
+<div id="map" tabindex="0"></div>
+<script type="text/javascript" src="flash.js"></script>
+<script>
+    var map = new AMap.Map('map', {
+        zoom: 5,
+        center: [108.305, 36.976]
+    });
+    map.setMapStyle('amap://styles/darkblue');
+    var citys = [{
+        name: '北京',
+        lng: '116.3',
+        lat: '39.9',
+        color: '#5070FF',
+        type: 'circle',
+    }, {
+        name: '上海',
+        lng: '121.29',
+        lat: '31.11',
+        color: '#6EE7FF',
+        type: 'circle',
+    }, {
+        name: '石家庄',
+        lng: '114.51',
+        lat: '38.06',
+        color: '#90EE90',
+        type: 'circle',
+    }, {
+        name: '拉萨',
+        lng: '90.99',
+        lat: '29.65',
+        color: '#90EE90',
+        type: 'circle',
+    },{
+        name: '哈尔滨',
+        lng: '126.32',
+        lat: '45.83',
+        color: '#90EE90',
+        type: 'circle',
+    },{
+        name: '乌鲁木齐',
+        lng: '87.47',
+        lat: '43.77',
+        color: '#90EE90',
+        type: 'circle',
+    },{
+        name: '澳门',
+        lng: '113.532918',
+        lat: '22.18242',
+        color: '#f8983a',
+        type: 'circle',
+    }, {
+        name: '成都',
+        lng: '104.05721',
+        lat: '30.577979',
+        color: '#FAFA32',
+        type: 'circle',
+    }];
+
+    var flashMarkerLayer = new FlashMarker(map, citys);
+
+</script>
+</body>

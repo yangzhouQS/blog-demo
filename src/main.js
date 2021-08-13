@@ -13,7 +13,7 @@ import VueVirtualScroller from 'vue-virtual-scroller'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+// import 'vuetify/dist/vuetify.min.css'
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import {AgGridVue} from 'ag-grid-vue';
@@ -21,8 +21,8 @@ import ElementUI from 'element-ui';
 // import 'cube-ui/lib/cube.min.css'
 // import Cube from 'cube-ui'
 
-Vue.use(Cube)
-Vue.use(ElementUI);
+// Vue.use(Cube)
+Vue.use(ElementUI,{size:'small'});
 Vue.component('ag-grid-vue', AgGridVue)
 Vue.use(Vuetify)
 Vue.use(Vant);

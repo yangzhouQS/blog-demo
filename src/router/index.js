@@ -7,6 +7,7 @@ import treeRouter from './tree/index'
 import testRouter from './testRouter';
 import bpmnRouter from './bpmn/index';
 import gridRouter from './grid/index';
+import quasar from './quasar/index';
 
 Vue.use(VueRouter)
 // 解决Vue-Router升级导致的Uncaught(in promise) navigation guard问题
@@ -16,6 +17,7 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 	return originalPush.call(this, location).catch(err => err)
 }
 const routes = [
+	...quasar,
 	...gridRouter,
 	...bpmnRouter,
 	...tableRouter,
@@ -74,8 +76,13 @@ const routes = [
 	},
 	{
 		path: '/demo2',
-		name: 'demo-index',
+		name: 'demo-index2',
 		component: () => import('@/views/demo-demo2.vue')
+	},
+	{
+		path: '/monaco-editor',
+		name: 'monaco-editor',
+		component: () => import('@/views/monaco-editor/monaco-editor.vue')
 	}
 ]
 

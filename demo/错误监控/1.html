@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<img src="https://yun.tuia.cn/image/kkk.png">
+<script>
+  /*try {
+    // 语法错误不能捕获
+    // const demo1
+
+    // 异步错误不能捕获
+    setTimeout(() => {
+
+      // console.log(csdcds)
+    })
+  } catch (e) {
+    console.log(e)
+    debugger
+  }*/
+
+
+  /**
+   * @param {String}  message    错误信息
+   * @param {String}  source    出错文件
+   * @param {Number}  lineno    行号
+   * @param {Number}  colno    列号
+   * @param {Object}  error  Error对象
+   */
+  window.onerror = function (message, source, lineno, colno, error) {
+    console.log('捕获到异常：', { message, source, lineno, colno, error });
+  }
+
+  // 常规运行时错误，可以捕获
+  // console.log(demo111) // error: ReferenceError: demo111 is not defined
+
+  // 语法错误，不能捕获 ❌
+  // const demoxxx
+
+  // 异步错误，可以捕获 ✅
+
+  setTimeout(() => {
+    // console.log(notdefined);// error: ReferenceError: notdefined is not defined
+  }, 0)
+
+  // 资源错误，不能捕获 ❌
+  // <img src="https://yun.tuia.cn/image/kkk.png">
+
+</script>
+</body>
+</html>
