@@ -17,11 +17,16 @@
                         :value="item.value">
                 </el-option>
             </el-select>
-            <el-button type="primary">运行</el-button>
+            <el-button type="primary" @click="_compileAndRunAsync">运行</el-button>
+            <el-button type="primary" @click="codeFormat">格式化</el-button>
             <el-button type="primary">获取</el-button>
             <el-button type="primary">设置</el-button>
         </div>
         <div ref="container" style="height: 360px;width: 100%;"></div>
+        <div style="height: 400px;width: 1200px;border:1px solid red">
+            <run-code></run-code>
+            <!--<iframe id="output" frameborder="0"></iframe>-->
+        </div>
     </div>
 </template>
 
@@ -37,14 +42,27 @@
   import 'monaco-editor/esm/vs/basic-languages/sql/sql.contribution'
   import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution'
   import { StandaloneCodeEditorServiceImpl } from 'monaco-editor/esm/vs/editor/standalone/browser/standaloneCodeServiceImpl'
+  import { Utilities } from './utilities'
+  import RunCode from './preview-component/run-code.vue'
 
   export default {
     name: 'monaco-editor',
+    components: { RunCode },
     data() {
       return {
         options: {
           theme: 'vs',
-          value: '',
+          value: `export default {
+            mixins: [],
+            data() {
+              return {}
+            },
+            computed: {},
+            mounted() {
+            },
+            methods: {}
+          }
+          `,
           // readOnly: true,
           language: 'javascript',
           minimap: {
@@ -74,122 +92,145 @@
           { label: 'sql', value: 'sql' },
           { label: 'yaml', value: 'yaml' }
         ],
-        editor: {},
+        editor: null,
         theme: {
           base: 'vs',
-          inherit: true,
-          colors: {
-            'activityBar.background': '#580000', //活动栏背景色
-            'tab.inactiveBackground': '#300a0a', //非活动选项卡的背景色
-            'tab.activeBackground': '#490000',//活动选项卡的背景色。
-            'sideBar.background': '#330000',//侧边栏背景色。
-            'statusBar.background': '#700000',//工作区打开时状态栏的背景色。
-
-            'statusBar.noFolderBackground': '#700000',//没有打开文件夹时状态栏的背景色。
-
-            'statusBarItem.remoteBackground': '#c33',//状态栏上远程指示器的背景色。
-
-            'editorGroupHeader.tabsBackground': '#330000',//启用选项卡时编辑器组标题的背景颜色。
-
-            'titleBar.activeBackground': '#770000',//窗口处于活动状态时的标题栏背景色。
-
-            'titleBar.inactiveBackground': '#772222',//窗口处于非活动状态时的标题栏背景色。
-
-            'selection.background': '#ff777788',//工作台所选文本的背景颜色。(不适用于编辑器。)
-
-            // editor
-
-            'editor.background': '#390000',//编辑器背景色。
-
-            'editorGroup.border': '#ff666633',//将多个编辑器组彼此分隔开的颜色。
-
-            'editorCursor.foreground': '#F8F8F8',//编辑器光标颜色。
-
-            'editor.foreground': '#F8F8F8',//编辑器默认前景色。
-
-            'editorWhitespace.foreground': '#c10000',//编辑器中空白字符的颜色。
-
-            'editor.selectionBackground': '#750000',//编辑器所选内容的颜色。
-
-            'minimap.selectionHighlight': '#750000',//编辑器选区在迷你地图中对应的标记颜色。
-
-            'editorLineNumber.foreground': '#ff777788',//编辑器行号的颜色。
-
-            'editorLineNumber.activeForeground': '#ffbbbb88',//编辑器活动行号的颜色
-
-            'editorWidget.background': '#300000',//编辑器组件(如查找/替换)背景颜色。
-
-            'editorHoverWidget.background': '#300000',//编辑器悬停提示的背景颜色。
-
-            'editorSuggestWidget.background': '#300000',//建议小组件的背景色。
-
-            'editorSuggestWidget.border': '#220000',//建议小组件的边框颜色。
-
-            'editor.lineHighlightBackground': '#ff000033',//光标所在行高亮内容的背景颜色。
-            'editor.hoverHighlightBackground': '#ff000044',//在下面突出显示悬停的字词。
-            'editor.selectionHighlightBackground': '#f5500039',//具有与所选项相关内容的区域的颜色。
-            'editorLink.activeForeground': '#FFD0AA',//活动链接颜色。
-            'peekViewTitle.background': '#550000',//速览视图标题区域背景颜色。
-            'peekView.border': '#ff000044',//速览视图边框和箭头颜色。
-            'peekViewResult.background': '#400000',//速览视图结果列表背景色。
-            'peekViewEditor.background': '#300000',//速览视图编辑器背景色。
-            // UI
-            'debugToolBar.background': '#660000',//调试工具栏背景颜色。
-            'focusBorder': '#ff6666aa',//焦点元素的整体边框颜色。
-            'button.background': '#833',//按钮背景色。
-
-            'dropdown.background': '#580000',//下拉列表背景色。
-
-            'input.background': '#580000',//输入框背景色。
-
-            'inputOption.activeBorder': '#cc0000',//输入字段中已激活选项的边框颜色。
-
-            'inputValidation.infoBackground': '#550000',//输入验证结果为信息级别时的背景色。
-
-            'inputValidation.infoBorder': '#DB7E58',//严重性为信息时输入验证的边框颜色。
-
-            'list.hoverBackground': '#800000',//使用鼠标移动项目时，列表或树的背景颜色。
-
-            'list.activeSelectionBackground': '#880000',//使用鼠标移动项目时，列表或树的背景颜色。
-
-            'list.inactiveSelectionBackground': '#770000',//已选项在列表或树非活动时的背景颜色。
-
-            'list.dropBackground': '#662222',//使用鼠标移动项目时，列表或树进行拖放的背景颜色。
-
-            'list.focusBackground': '#660000',//焦点项在列表或树活动时的背景颜色。
-
-            'list.highlightForeground': '#ff4444',//在列表或树中搜索时，其中匹配内容的高亮颜色。
-
-            'pickerGroup.foreground': '#cc9999',//快速选取器分组标签的颜色。
-
-            'pickerGroup.border': '#ff000033',//快速选取器分组标签的颜色。
-
-            'badge.background': '#cc3333',//Badge 背景色。Badge 是小型的信息标签。
-
-            'progressBar.background': '#cc3333',//表示长时间操作的进度条的背景色。
-
-            'errorForeground': '#ffeaea',//错误信息的整体前景色。
-
-            'extensionButton.prominentBackground': '#cc3333',//扩展中突出操作的按钮背景色
-
-            'extensionButton.prominentHoverBackground': '#cc333388'//扩展中突出操作的按钮被悬停时的颜色
-          }
-        }
+          inherit: true
+        },
+        currentCode: ''
       }
     },
     computed: {},
     mounted() {
-      const options = Object.assign({}, this.options)
-      // 初始化编辑器，确保dom已经渲染，dialog中要写在opened中
-      this.editor = monaco.editor.create(this.$refs.container, options);
-      // 编辑器内容发生改变时触发
-      this.editor.onDidChangeModelContent(() => {
-        this.editGetValue()
-      })
+      this._createEditor()
     },
     methods: {
+      codeFormat() {
+        this.editor.getAction(['editor.action.formatDocument'])._run();
+      },
+      async _compileAndRunAsync() {
+        let code = this.editor.getValue() // await this.getCompiledCode();
+        if (!code) {
+          return;
+        }
+        try {
+          Utilities.FastEval(code);
+        } catch (e) {
+          window.handleException(e);
+        }
+
+        const contentHtml = `<!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                                <meta charset="UTF-8">
+                                <title>Title</title>
+                            </head>
+                            <body>
+                            <h1>
+                                hello word
+                            </h1>
+                            </body>
+                            </html>
+                            `
+        let output = document.querySelector('#output')
+        debugger
+        if (output) {
+          debugger
+          output.parentNode.removeChild(output)
+          output = document.createElement('div')
+          output.id = 'output'
+          document.body.appendChild(output)
+        } else {
+
+        }
+        const iframe = document.createElement('iframe');
+        iframe.srcdoc = contentHtml
+        output.appendChild(iframe)
+      },
+      async _getRunCode() {
+        if (this.options.language === 'javascript') {
+          return this.editor.getValue()
+        } else {
+          const model = this.editor.getModel()
+          const uri = model.uri;
+
+          const worker = await monaco.languages.typescript.getTypeScriptWorker();
+          const languageService = await worker(uri);
+
+          const uriStr = uri.toString();
+          const result = await languageService.getEmitOutput(uriStr);
+          const diagnostics = await Promise.all([languageService.getSyntacticDiagnostics(uriStr), languageService.getSemanticDiagnostics(uriStr)]);
+
+          console.log(diagnostics)
+
+          //////////////////
+          var typescript = monaco.languages.typescript;
+          typescript.typescriptDefaults.setCompilerOptions({
+            module: typescript.ModuleKind.AMD,
+            target: typescript.ScriptTarget.ESNext,
+            noLib: false,
+            strict: false,
+            alwaysStrict: false,
+            strictFunctionTypes: false,
+            suppressExcessPropertyErrors: false,
+            suppressImplicitAnyIndexErrors: true,
+            noResolve: true,
+            suppressOutputPathCheck: true,
+
+            allowNonTsExtensions: true // required to prevent Uncaught Error: Could not find file: 'inmemory://model/1'.
+          });
+          // typescript.typescriptDefaults.addExtraLib(libContent, "babylon.d.ts");
+          console.log(this.editor.getValue())
+        }
+      },
+      getCompiledCode() {
+        return this._getRunCode
+      },
+      _createEditor() {
+        const editorOptions = {
+          lineNumbers: 'on',
+          roundedSelection: true,
+          automaticLayout: true,
+          scrollBeyondLastLine: false,
+          readOnly: false,
+          contextmenu: false,
+          folding: true,
+          showFoldingControls: 'always',
+          fontSize: 14,
+          renderIndentGuides: true,
+          minimap: {
+            enabled: true
+          },
+          formatOnPaste: true,
+          renderValidationDecorations: 'on',
+          scrollbar: {
+            verticalScrollbarSize: 8,
+            horizontalScrollbarSize: 8
+          }
+        };
+        if (this.editor) {
+          this.editor.dispose();
+        }
+
+        const options = Object.assign({}, editorOptions, this.options)
+        // 初始化编辑器，确保dom已经渲染，dialog中要写在opened中
+        this.editor = monaco.editor.create(this.$refs.container, options);
+        // 编辑器内容发生改变时触发
+        this.editor.onDidChangeModelContent(() => {
+          let newCode = this.editor.getValue();
+          window.localStorage.setItem('code', newCode)
+          if (this.currentCode !== newCode) {
+            this.currentCode = newCode;
+          }
+        })
+
+        this.editor.onKeyUp(() => {
+          // 当键盘按下，判断当前编辑器文本与已保存的编辑器文本是否一致
+          console.log('当键盘按下')
+        });
+      },
       editGetValue() {
-        console.log(this.editor.getValue())
+        // console.log(this.editor.getValue())
       },
       changeEditor() { // 更改editor内容
         this.editor.setValue(result.data);
@@ -201,13 +242,22 @@
       changeTheme(theme) {
         this.editor.setTheme(theme)
       },
-      changeLanguage(theme) {
-        var model = monaco.editor.createModel(
-          ['function x() {', '\tconsole.log("Hello world!");', '}'].join('\n'),
-          'javascript'
-        );
-        const m = monaco.editor.getModels()
-        debugger
+      changeLanguage(newLanguage) {
+        console.log(theme)
+
+
+        var oldModel = this.editor.getModel();//获取旧模型
+        var value = this.editor.getValue();//获取旧的文本
+        //创建新模型，value为旧文本，id为modeId，即语言（language.id）
+        //modesIds即为支持语言
+        //var modesIds = monaco.languages.getLanguages().map(function(lang) { return lang.id; });
+        var newModel = monaco.editor.createModel(value, newLanguage);
+        //将旧模型销毁
+        if (oldModel) {
+          oldModel.dispose();
+        }
+        //设置新模型
+        this.editor.setModel(newModel);
         // this.editor.setTheme(theme)
       }
     }
@@ -219,4 +269,27 @@
         width: 100%;
         height: 100%;
     }
+
+    #output {
+        border: 1px solid #0a74e5;
+    }
 </style>
+
+<!--
+
+https://www.jianshu.com/p/528e63705073
+//此例为更改编辑器为只读模式,其余以此类推
+this.editor.updateOptions({readOnly:true})
+
+
+触发编辑器事件
+//此为格式化代码,anything无用，后一个参数为action事件，自行查找，我也就找到这么一个
+this.editor.trigger('anything','editor.action.formatDocument');
+
+动态修改语言
+monaco.editor.setModelLanguage(monacoInstance.getModel(), 'html');
+monaco.editor.setModelLanguage(monacoInstance.getModel(), 'javascript');
+
+
+
+-->

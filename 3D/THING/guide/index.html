@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="baidu-site-verification" content="JbtQhyEmxw" />
+  <meta name="theme-color" content="#317EFB" />
+  <meta name="description" content="面向物联网的3D可视化PaaS开发平台.基于WebGL兼容各种浏览器及移动设备.零门槛、高效率、低成本开发各类3D应用" />
+  <meta name="keywords"
+    content="ThingJS,优锘科技,数字孪生,数字孪生城市,Threejs,模模搭,3D仿真,物联网仿真,数据中心可视化,3D机房,消防可视化,智能建筑,智慧粮仓可视化,智慧工厂可视化,地铁可视化,智慧监狱,智慧城市,智慧园区,安防系统可视化,3D电子沙盘,拓扑,电力,电信,网管" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,height=device-height, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title id="THINGJSTITLE">ThingJS - 物联网3D可视化PaaS平台 - 数字孪生可视化平台</title>
+  <link rel="stylesheet" href="./lib/layui/css/layui.css" />
+  <link rel="stylesheet" href="./css/bootstrap.min.css" />
+  <link rel="stylesheet" href="./css/bootstrap-grid.min.css" />
+  <link rel="stylesheet" href="./css/regfont/iconfont.css" />
+  <link rel="stylesheet" href="./lib/sweetalert2/sweetalert2.min.css" />
+  <link rel="stylesheet" href="./css/icon/iconfont.css" />
+  <link rel="icon" sizes="any" mask="" href="./favicon.ico" />
+  <link rel="stylesheet" href="./css/header.css" />
+  <link rel="stylesheet" href="./css/common.css" />
+  <link rel="stylesheet" href="./css/uino-animate.css" />
+  <link rel="stylesheet" href="./css/zoom-detect.css" />
+  <!-- 全局引入swiper -->
+  <link rel="stylesheet" href="../../guide/css/swiper.min.css">
+  <!-- 首页的css样式 -->
+  <link rel="stylesheet" href="../../guide/css/main.css">
+  <!-- 应用五个页面的css样式 -->
+  <link rel="stylesheet" href="/guide/css/application/application.css">
+  <!-- speedcity的css样式 -->
+  <link rel="stylesheet" href="/guide/css/platform/speedcityshow.css">
+  <link rel="stylesheet" href = "/guide/css/platform/speedCityDetailPages.css"> 
+  <link rel = "stylesheet" href = "/guide/css/wisdomScenarioVDC/wisdomScenarioVDC.css">
+  
+ <!-- 新增以下四行代码，引入introjs插件以及introForThingJs文件、jquery库-->
+  <link rel="stylesheet" href="../../guide/css/introjs.css">
+  <link rel="stylesheet" href="../../guide/css/introForThingJs.css">
+  <link rel="stylesheet" href="../../guide/css/priceNew.css">
+  <link rel="stylesheet" href="./lib/pagination/pagination.css">
+  <script src="../../guide/lib/intro.js"></script>
+  <script src="../../guide/js/introForThingJs.js"></script>
+
+  <!-- 同步接入SDK -->
+  <script type="text/javascript" src="./sdk/AnalysysAgent_JS_SDK.min.js"></script>
+
+  <!-- 同步接入加密模块SDK-->
+  <script type="text/javascript" src="./sdk/AnalysysAgent_Encrypt.min.js"></script>
+
+  <!-- 同步接入GBK转码模块SDK-->
+  <script type="text/javascript" src="./sdk/AnalysysAgent_GBK.min.js"></script>
+
+  <!-- 页面访问时长模块SDK-->
+  <script type="text/javascript" src="./sdk/AnalysysAgent_PageViewStayTime.min.js"></script>
+
+  <!-- SDK接口 -->
+  <!-- <script src="../../guide/js/sdkFunc.js"></script> -->
+  
+  <!-- End of KF5 supportbox script -->
+  <style>
+    a[href^="http://www.cnzz.com"] {
+      display: none;
+    }
+
+    a[title="站长统计"] {
+      display: none;
+    }
+  </style>
+  <style>
+
+    .monaco-editor .suggest-widget {
+      z-index: 104;
+      width: 430px;
+    }
+
+    .ienotice-div {
+      color: rgb(33, 30, 20);
+      font-size: 16px;
+      line-height: 45px;
+      height: 45px;
+      text-align: center;
+      background: rgba(179, 165, 105, 0.6);
+    }
+
+    .shadow {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.5;
+      position: absolute;
+      z-index: 9999999999;
+    }
+
+    .ienotice-div .ienotice-img {
+      width: 38px;
+      height: 34px;
+      margin-right: 30px;
+    }
+
+    .ienotice-div .ienotice-p {
+      display: inline-block;
+    }
+  </style>
+  <script>
+    var isMobile=navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i);
+    if(isMobile) {
+      var meteorscript=document.createElement("script");
+      meteorscript.text=`(function(r,d,s,l){var meteor=r.meteor=r.meteor||[];meteor.methods=["track","off","on"];meteor.factory=function(method){return function(){
+  var args=Array.prototype.slice.call(arguments);args.unshift(method);meteor.push(args);return meteor}};for(var i=0;i<meteor.methods.length;i++){
+  var key=meteor.methods[i];meteor[key]=meteor.factory(key)}meteor.load=function(){var js,fjs=d.getElementsByTagName(s)[0];js=d.createElement(s);
+  js.src="https://analytics.snssdk.com/meteor.js/v1/"+l+"/sdk";fjs.parentNode.insertBefore(js,fjs)};meteor.load();if(meteor.invoked){return}
+  meteor.invoked=true;meteor.track("pageview")})(window,document,"script","1697700945805390")`;
+      document.head.appendChild(meteorscript);
+    }
+  </script>
+  <!-- Bytedance Tracking -->
+<!-- <script>
+  (function(r,d,s,l){var meteor=r.meteor=r.meteor||[];meteor.methods=["track","off","on"];meteor.factory=function(method){return function(){
+  var args=Array.prototype.slice.call(arguments);args.unshift(method);meteor.push(args);return meteor}};for(var i=0;i<meteor.methods.length;i++){
+  var key=meteor.methods[i];meteor[key]=meteor.factory(key)}meteor.load=function(){var js,fjs=d.getElementsByTagName(s)[0];js=d.createElement(s);
+  js.src="https://analytics.snssdk.com/meteor.js/v1/"+l+"/sdk";fjs.parentNode.insertBefore(js,fjs)};meteor.load();if(meteor.invoked){return}
+  meteor.invoked=true;meteor.track("pageview")})(window,document,"script","1697700945805390");
+</script> -->
+<!-- End Bytedance Tracking -->
+</head>
+
+<body class="template-demos">
+  <script src="./lib/jquery-3.2.1.js"></script>
+  <script src="./lib/gVerify.js"></script>
+  <script src="./lib/jquery.cookie.js"></script>
+  <script src="./lib/jquery-ui.min.js"></script>
+  <script src="./lib/qrcode.min.js"></script>
+  <script src="./lib/jquery.qrcode.min.js"></script>
+  <script src="./lib/i18next.min.js"></script>
+  <script src="./lib/jquery-i18next.min.js"></script>
+  <script src="./lib/i18nextXHRBackend.min.js"></script>
+  <script src="./lib/template-web.js"></script>
+  <script src="./lib/sweetalert2/sweetalert2.all.min.js"></script>
+  <script src="./lib/bootstrap.min.js"></script>
+  <script src="./lib/base64.js"></script>
+  <script src="./lib/zoom-detect.js"></script>
+  <script src="./lib/layui/layui.all.js"></script>
+  <script src="./lib/identicon.js"></script>
+  <script src="./lib/pnglib.js"></script>
+  <script src="./lib/md5.js"></script>
+  <script src="./lib/pagination/jquery.pagination.js"></script>
+
+  <script>
+    function myBrowser() {
+      var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+      if (userAgent.indexOf("Opera") > -1) {
+        return "Op";
+      } //判断是否Opera浏览器
+      if (userAgent.indexOf("Firefox") > -1) {
+        return "FF";
+      } //判断是否Firefox浏览器
+      if (userAgent.indexOf("Chrome") > -1) {
+        return "Ch";
+      }
+      if (userAgent.indexOf("Safari") > -1) {
+        return "Sa";
+      } //判断是否Safari浏览器
+      if (
+        userAgent.indexOf("MSIE") > -1 ||
+        userAgent.indexOf("Trident") > -1
+      ) {
+        return "IE";
+      } //判断是否IE浏览器
+
+      if (userAgent.indexOf("AppleWebKit") > -1) {
+        return "Mo";
+      } //判断是否手机
+      return "None";
+    }
+    if (
+      !(
+        myBrowser() == "FF" ||
+        myBrowser() == "Ch" ||
+        myBrowser() == "Sa" ||
+        myBrowser() == "Mo"
+      )
+    ) {
+      //window.stop ? window.stop() : document.execCommand("Stop");
+      var d = document.createElement("div");
+
+      d.className = "ienotice-div";
+      var zhezhao = document.createElement("div");
+      zhezhao.className = "shadow";
+
+      var t =
+        '\
+                    <img class="ienotice-img" src="./image/ie-notice.png" alt="IE警告">\
+                        <p class="ienotice-p">\
+                            <span>此网站在<span style="color:red;">ie浏览器</span>中无法正常运行，请使用</span>\
+                            <a href="https://www.google.cn/chrome/" rel = "nofollow">Google Chrome</a>\
+                            <span>、</span>\
+                            <a href="https://browser.360.cn/ee/" rel = "nofollow">360极速浏览器（极速模式）</a>\
+                            <span>或者</span>\
+                            <a href="https://mozilla.org/firefox/" rel = "nofollow">Firefox浏览器</a>\
+                        </p>\
+                        <img src="./image/jiadetu.png" alt="截图">\
+                    ';
+
+      d.innerHTML = t;
+      document.getElementsByTagName("body")[0].appendChild(d);
+      document.getElementsByTagName("body")[0].appendChild(zhezhao);
+      $("body").css("overflow", "hidden");
+      $(".navHeader").css("display", "none");
+      $(".kf5-support-chat").css("display", "none");
+    }
+  </script>
+  <!-- 新增id控制指引功能-->
+  <div class="navHeader slide-bottom fix" id="navHeaderForTutorial">
+    <header class="navbar navbar-expand-lg navbar-light header">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+        aria-expanded="false" aria-label="navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand nav-href" href="https://www.thingjs.com/guide/?m=main">
+        <div class="title">
+          <div class="logo"></div>
+        </div>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarHeader">
+        <ul class="navbar-nav mt-2 mt-lg-0" id="sub-site-nav">
+          <a class="nav-link _公开项目 nav-link changNav" href="https://store.thingjs.com/projects" data-act="projectList"
+            data-act="projectList" data-i18n="nav.public">资源中心</a>
+          <!-- 3D城市指引框 -->
+          <a class="nav-link nav-href changNav wendang nav_mobile Double_eleven" i18n="nav.word"
+            href="https://www.thingjs.com/guide/speedcityshow" data-name = "speedcityshow"
+            >
+            3D城市
+          </a>
+            <!-- <li class="nav-menu nav_mobile storeLi">
+              <a id="" data-act="projectList"  class="nav-link nav-href changNav navbar-togglerPlat1" data-toggle="collapse" aria-expanded="false">资源中心</a>
+              <ul id='appPlat1' class="menu-ul storeUl">
+                <li><a style="text-align: center;" class="nav-link nav-href atitle" target="_blank" href="https://www.thingjs.com/guide/speedcityshow" data-act="speedcityshow">3D城市应用</a></li>
+                <li><a style="text-align: center;" class="nav-link nav-href atitle" target="_blank" href="https://store.thingjs.com/projects" data-act="ThingJS">公开项目</a></li>
+                <li><a style="text-align: center;" class="nav-link nav-href atitle" target="_blank" href="https://store.thingjs.com/tools" data-act="tools">工具&文档</a></li>
+                <li><a style="text-align: center;" class="nav-link nav-href atitle" target="_blank" href="https://store.thingjs.com/videos" data-act="videos">教程&案例</a></li>
+                <li><a id="goToTheComponent" style="text-align: center;" class="nav-link nav-href atitle" target="_blank" href="https://store.thingjs.com/models" data-act="models">平台模型库</a></li>                                
+              </ul>
+            </li> -->
+          <!-- 指引框 给4添加id-->
+          <a id="onlineDevelopment" class="nav-link nav-href changNav nav_mobile" href="https://www.thingjs.com/guide/?m=sample"
+            data-backhref="https://www.thingjs.com/guide?m=sample" data-act="sample" i18n="nav.online">在线开发</a>
+          
+          <li class="nav-menu campusLi nav_mobile">
+            <!-- 新增id控制指引功能-->
+            <!-- <div id='campusBuilderDownLoad' data-act="campus" class="nav-link nav-href changNav" data-toggle="dropdown"
+              i18n="nav.component">平台工具</div> -->
+            <div id='campusBuilderDownLoad' data-act="campus" class="nav-link nav-href changNav pingtaiyuyingyong" data-toggle="dropdown"
+              i18n="nav.component">平台与应用</div>
+            <!-- 新增id控制指引功能-->
+            <ul id='controlAlertForComponent' class="menu-ul campusUl">
+              <p class="tit">
+                <span class="titlep1 spantit">平台</span>
+                <span class="titlep2 spantit">应用</span>
+              </p>
+              <li class="firstLi">
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" id="thingjs1" target="_blank"
+                    href="https://www.thingjs.com/guide/platform" data-backhref="?m=thingjsPlatform"
+                    data-act="ThingJS" data-name = "thingjsPlatform">ThingJS Platform
+                    <span class="spanH" style="left:26%;">ThingJS平台</span>
+                  </a>
+                  <a style="margin-left: 17%; display:none;" class="nav-link nav-href atitle" id="thingjs"
+                    target="_blank" href="https://www.thingjs.com/guide/platform" data-backhref="?m=thingjsPlatform"
+                    data-act="ThingJS">ThingJS
+                    <span class="spanH" style="left:26%;">ThingJS平台</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="ThingJS平台" />
+                </p>
+                <p>
+                  <a id="goToTheComponent" style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/campus" data-backhref="?m=campus" data-act="campus" data-name = "campus">CampusBuilder
+                    <span class="spanH" style="left:26%;">3D园区搭建</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="3D园区搭建" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/city" data-backhref="?m=city" data-act="city">CityBuilder
+                    <span class="spanH" style="left:26%;"  data-name = "city">3D城市搭建</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="3D城市搭建" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%; " class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/mod" data-backhref="?m=mod" data-act="mod" data-name = "mod">ThingDepot
+                    <span class="spanH" style="left:26%;">3D模型库</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="3D模型库" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%; " class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/pano" data-backhref="?m=pano" data-act="pano">ThingPano
+                    <span class="spanH" style="left:26%;"  data-name = "pano">3D全景图</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="3D全景图" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%; " class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/thingjs-x/" data-backhref="?m=pano" data-act="pano">ThingJS-X
+                    <span class="spanH" style="left:26%;"  data-name = "pano">零代码开发平台</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="ThingJS-X" />
+                </p>
+                <!-- <p>
+                  <a style="margin-left: 17%; " class="nav-link nav-href atitle" target="_blank"
+                    href="?m=speedcity" data-backhref="?m=speedcity" data-act="speedcity">SpeedCity
+                    <span class="spanH" style="left:26%;">构建智慧城市</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="" />
+                </p> -->
+              </li>
+              <li class="secLi">
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/building" data-backhref="?m=building" data-act="building" data-name = "building">智慧建筑
+                    <span class="spanH" style="left:26%;">建筑可视化</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="建筑可视化" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/fire" data-backhref="?m=fire" data-act="fire" data-name = "fire">智慧消防
+                    <span class="spanH" style="left:26%;">消防可视化</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="消防可视化" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%;" target="_blank" class="nav-link nav-href atitle"
+                    href="https://www.thingjs.com/guide/safety" data-backhref="?m=safety" data-act="safety" data-name = "safety">安防管理
+                    <span class="spanH" style="left:26%;">安防管理可视化</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="安防管理可视化" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/port" data-backhref="?m=port" data-act="port" data-name = "port">数字港口
+                    <span class="spanH" style="left:26%;">港口可视化</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="港口可视化" />
+                </p>
+                <p>
+                  <a style="margin-left: 17%;" class="nav-link nav-href atitle" target="_blank"
+                    href="https://www.thingjs.com/guide/granary" data-backhref="?m=granary" data-act="granary" data-name = "granary">智慧仓储
+                    <span class="spanH" style="left:26%;">粮仓可视化</span>
+                  </a>
+                  <img class="imgH" src="../guide/image/orange_arrow_right1.png" alt="粮仓可视化" />
+                </p>
+              </li>
+            </ul>
+          </li>
+          <a class="nav-link nav-href changNav nav_mobile" href="https://www.thingjs.com/guide/store" data-act="store"
+            data-backhref="?m=store" i18n="nav.store" data-name = "store">应用商店</a>
+          <a class="nav-link nav-href changNav nav_mobile" href="https://www.thingjs.com/guide/price" data-act="price"
+            data-backhref="?m=price" i18n="nav.price" data-name = "price">价格</a>
+          <!-- <a class="nav-link nav-href changNav" href="?m=model" data-act="model" style="display: none!important;"
+            i18n="nav.3DBase">模型库</a> -->
+          <!-- <a class="nav-link nav-href changNav" href="?m=help" data-act="help" style="display: none">常见问题</a> -->
+          <a class="nav-link nav-href changNav wendang nav_mobile" i18n="nav.word"
+            href="http://docs.thingjs.com/" data-act="tutorial"
+            target="_blank">文档中心</a>
+          <a class="nav-link changNav luntan" href="http://developer.thingjs.com" target="_blank" rel="noopener"
+            i18n="nav.tribune">帮助</a>
+          <!-- <a class="nav-link nav-href changNav" href="https://www.thingjs.com/guide/aboutus" data-backhref="?m=aboutUs"
+            data-act="aboutUs" i18n="nav.aboutUs">关于我们</a> -->
+          <div class="nav-href changNav"><span id="phone" class="phone"
+              style="margin-right: 5px;background:url('../guide/image/new/phone2.png') no-repeat; width:15px;height:15px;display: inline-block;"></span><a
+              style="cursor:default"><span>400-666-9832</span></a></div>
+        </ul>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 query-group" style="display: flex;justify-content:left;height:70px;">
+          <span class="nav-separator"></span>
+          <li>
+            <!-- modelServer() camInfoServer('fromModelServer') camInfoServer('fromdevServer') devServer() -->
+            <a class="nav-link changNav nav-href" href="javascript:void(0);" id="modelSer"
+              onclick="modelServer(true);return false;"
+              style="cursor: pointer;white-space:nowrap;text-overflow:ellipsis;top: 19%;">
+              <span style="color:#fff;z-index: 1;">申请建模</span><img src="../../guide/image/fresh.png" alt="申请建模"
+                class="newPng">
+            </a>
+          </li>
+          <li>
+            <a class="nav-link changNav nav-href" href="javascript:void(0);" id="development"
+              onclick="devServer(true);return false;"
+              style="cursor: pointer;white-space:nowrap;text-overflow:ellipsis;top: 19%;">
+              <span style="color:#fff;z-index: 1;">请求协助</span><img src="../../guide/image/fresh.png" alt="请求协助"
+                class="newPng">
+            </a>
+          </li>
+          <!-- <li>
+          <a class="nav-link changNav nav-href" href="javascript:void(0);" id="recharge"
+            onclick="recharge();return false;"
+            style="cursor: pointer;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;top: 19%;">
+            <span style="color:#fff;z-index: 1;">充值</span>
+          </a>
+          </li> -->
+          <li>
+            <!-- camInfoServer('fromVIPServer'); -->
+            <a class="nav-link changNav nav-href" href="javascript:void(0);" id="developer" onclick="updateVIP(true);"
+              style="cursor: pointer;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;top: 19%;">
+              <span style="color:#fff;z-index: 1;">升级VIP</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link logout-show nav-login changNav" data-log="-1" id="login"
+              style="display:none;border-radius: 30px;width: 80px;margin-top: 13px;height: 30px;font-size: 14px;line-height: 14px;text-align: center;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">登录</a>
+          </li>
+          <li>
+            <a class="nav-link" id="nav-reg"
+              style="display:none;border-radius: 30px;width: 80px;height: 30px;border: 1px solid rgb(255, 127, 0);margin-top: 13px; text-align: center;color: rgb(255, 127, 0);font-size: 14px;line-height: 14px;">注册</a>
+          </li>
+
+          <li class="nav-link vipLi">            
+            <img class="vip" title="商业开发者" alt="商业开发者" />
+            <div class="logout-show nav-logout" style="display:none" id="headimg"></div>
+            <ul class="userInfoBox" id="userInfo" style="font-size:12px;">
+              <li style="cursor:pointer;">
+                <span style="margin-left: 15px;margin-right: 10px;">
+                  <img src="../../guide/image/signin1.png" style="width:16px;" alt = "签到"/>
+                </span>
+                <a class="see-more" href="javascript:void(0);" onclick="showSigninPage('from_main')" style="top:2px;">签到</a>
+              </li>
+              <li style="border-top: 1px solid #eeeeee;margin:0 2px;">
+                <div class="line"></div>
+              </li>
+              <li style="cursor:pointer;">
+                <span style="margin-left: 15px;margin-right: 10px;">
+                  <img src="../../guide/image/person.png" style="width:16px;" alt = "个人信息"/>
+                </span>
+                <a class="see-more" href="javascript:void(0);" onclick="openPer()" style="top:2px;">个人信息</a>
+              </li>
+              <!-- <li style="cursor:pointer;">
+                <span style="margin-left: 15px;margin-right: 10px;">
+                  <img src="../../guide/image/infolist.png" style="width:16px;" />
+                </span>
+                <a class="see-more" href="javascript:void(0);" onclick="openMsg()">系统信息</a>
+              </li> -->
+              <li style="cursor:pointer;">
+                <span style="margin-left: 15px;margin-right: 10px;">
+                  <img src="../../guide/image/ticket.png" style="width:16px;" alt = "我的订单"/>
+                </span>
+                <a class="see-more" href="javascript:void(0);" onclick="openTicket()" style="top:1px;">我的订单</a>
+              </li>
+              <li style="border-top: 1px solid #eeeeee;margin:0 2px;">
+                <div class="line"></div>
+              </li>
+              <li class="logout" style="cursor:pointer;" id="logout">
+                <span style="margin-left: 15px;margin-right: 10px;">
+                  <img src="../../guide/image/outlog.png" style="width:16px;margin-bottom: 3px;" alt = "退出"/>
+                </span>
+                <a style="cursor:pointer;top:0;">退出</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div id="login_container">
+
+        </div>
+      </div>
+    </header>
+  </div>
+  <!-- 手机端抽拉式导航 -->
+  <div id = "wapNav" class = "wap-nav">
+    <div class = "wap-nav-content">
+      <!-- 收起展开按钮 -->
+      <div class = "put-on">
+        <!-- 展开 -->
+        <p class = "wap-nav-put" onclick = "wapNavPut()" style = "display: block;">
+          <i class = "iconfont icon-caidan3"></i>
+        </p>
+        <!-- 收起 -->
+        <p class = "wap-nav-on" onclick = "wapNavOn()" style = "display: none;">
+          <i class = "iconfont icon-guanbi"></i>
+        </p>
+      </div>
+      <!-- logo -->
+      <h1 class = "wap-nav-logo">
+        <a href = "https://www.thingjs.com/guide/">
+          <img src = "../guide/image/new/logo-b.png" alt = "Thingjs">
+        </a>
+      </h1>
+      <!-- 登录注册 -->
+      <div class = "wap-nav-login">
+        <p class = "login-icon nav-login-two" data-log = "-1">
+          <i class = "iconfont icon-denglu2"></i>
+        </p>
+        <p class = "head-or-name vipLi" onclick = "audittojjles()">
+          <span id="headimgs" class = "wap-nav-name"></span>
+          <img class="vip" title="商业开发者" alt="商业开发者" />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class = "logouttwo" style="cursor:pointer;">
+    <ul class="logouttwo-ul">
+      <li class="logouttwo-li">
+        账号：<span id="login" class = "wap-nav-head login-active login-name"  data-log = "-1"></span>
+        <span class = "quit-login"  id="logouttwo">退出</span>
+      </li>
+      <!-- <li class="logouttwo-li" onclick="showSigninPage('from_main')">
+        签到
+      </li>
+      <li class="logouttwo-li" onclick="openPer()">
+        个人信息
+      </li>
+      <li class="logouttwo-li" onclick="openTicket()">
+        我的订单
+      </li> -->
+      <li class="logouttwo-li">
+        联系客服：400-666-9832
+      </li>
+    </ul>
+    <!-- <img src="../../guide/image/outlog.png" style="width:16px;margin-bottom: 3px;" alt = "退出"/> -->
+  </div>
+  <div id = "bg-shadow1"></div>
+  <div id = "bg-shadow2"></div>
+  <div class = "wap-nav-drawer">
+    <ul>
+      <li><a href = "https://store.thingjs.com/projects">资源中心</a></li>
+      <li><a href = "https://www.thingjs.com/guide/speedcityshow/">3D城市</a></li>
+      <!-- <li><a href = "https://www.thingjs.com/guide/store/">应用商店</a></li> -->
+      <li><a href = "https://www.thingjs.com/guide/price/">价格</a></li>
+      <li><a href = "http://developer.thingjs.com">帮助</a></li>
+    </ul>
+  </div>
+
+
+  <p class="footer-contant"
+    style="display:none;text-align:left;position:relative;top: 18%;border-bottom: 1px solid #999;width: 100%;max-width: 80%;margin: 0px auto;">
+    友情链接：
+    <a class="link_contant" target="_blank" href="https://www.hhekj.com/">深圳app开发</a>
+    <a class="link_contant" target="_blank" href="http://sz-hua-yang.com/">太阳能发电系统</a>
+    <a class="link_contant" target="_blank" href="http://www.lsfbweb.com/">成都APP开发</a>
+    <a class="link_contant" target="_blank" href="http://www.four-faith.com/">物联网解决方案</a>
+    <a class="link_contant" target="_blank" href="http://www.hyuusoft.com/">物流系统</a>
+    <a class="link_contant" target="_blank" href="http://www.ehsure.com/">一物一码</a>
+    <a class="link_contant" target="_blank" href="http://www.dimei88.com">展台设计</a>
+  </p>
+  <div class="signinBox"></div>
+
+  <div class="login-window" id="navRegOrIndexAndPopUp">
+    <div class="tologin-and-mask-box">
+      <div class="login-form-box">
+        <div class="login-win-header"><i class="iconfont icon-close" onclick="fadeOut();loginclose();"></i></div>
+        <div class="tologin-tittle" style="margin-bottom:19px;text-align: center;">
+          <div class="switch-login-box login-tab" tab-index="1">
+            密码登录<span class="border-bottom"></span>
+          </div>
+          <div class="switch-login-box" tab-index="0">
+            短信登录/注册<span class="border-bottom" ></span>
+          </div>
+        </div>
+        <div class="form-box verifica-code-login" style="display: none;">
+          <form class="login-form">
+            <div class="tologin-input-box">
+              <div class="tologin-input">
+                <span><i class="iconfont iconLogin icon-19" style="position:absolute;left:0px;top:0;width:16px;"></i></span>
+                <input id="login-reg-tel" name="name" class="tologin-input1" type="text" placeholder="请输入手机号" style="width:100%;">
+              </div>
+              <div class="error-hint-box" data-error="phone">
+                <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                <span></span>
+              </div>
+            </div>
+            <div class="tologin-input-box">
+              <div class="tologin-input" style="width:54%;float:left;">
+                <span><i class="iconfont icon-dunpai1" style="position:absolute;left:0px;top:0;width:16px;"></i></span>
+                <input id="reg-telreg-img" name="phoneVe" class="tologin-input1" type="text" placeholder="请输入图形验证码" style="width:100%;" onblur="checkPhoneCode()" autocomplete="new-password">
+              </div>
+              <div id="v_container_tel" style="width: 80px;height: 40px; float: left; margin-left: 7px; "></div>
+              <span class="changeVerify_tel" style="line-height: 40px;color: #999;cursor: pointer;margin-left:3px;">看不清?</span>
+              <div class="error-hint-box" data-error="phoneVe" style="right:138px;">
+                <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                <span></span>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+            <div class="tologin-input-box">
+              <div class="tologin-input">
+                <span><i class="iconfont icon-dunpai1" style="position:absolute;left:0px;top:0;width:16px;"></i></span>
+                <div style="float:left;width:187px;">
+                  <input id="phone-code" name="phone-code" class="tologin-input1" type="text" placeholder="请输入手机验证码" autocomplete="new-password">
+                </div>
+                <div style="float:left;">
+                  <input id="get_phone_code" class="noEvents" type="button" value="获取验证码" style="color:rgb(153, 153, 153)" >
+                </div>
+              </div>
+              <div class="error-hint-box" data-error="phoneCode">
+                <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                <span></span>
+              </div>
+            </div>
+            <div id="reg-btn" class="noEvents" style="text-align: center;border-radius: 4px; padding: 0px 10px; font-size: 18px; cursor: pointer; background-color:rgb(153, 153, 153); color: rgb(255, 255, 255); line-height: 40px; height: 40px; width: 100%; margin-bottom: 20px;">
+              <strong>登录/注册</strong>
+            </div>
+            <div class="tologin-input-box" style=" margin-bottom: 10px; font-size: 12px; ">
+              <p class="tologin-input-agree" style="word-break: break-all;">未注册的手机号验证后将自动注册和登录，注册即代表同意               
+                <a target="_blank" href="https://www.thingjs.com/guide/html/agreements/protocal.html" style="color: inherit; ">《ThingJS服务协议》</a>及<a target="_blank" href="https://www.thingjs.com/guide/html/agreements/serve.html" style="color: inherit; ">《隐私协议》</a>
+              </p>
+            </div>
+            <div class="register-or-find-password" style="overflow: hidden;display:flex;justify-content: center;">
+              <div class="other-tologin-link" style="height:24px;overflow: hidden;">
+                <a href="javascript:;" class="wei-xin" style="float:left;width:24px;height:24px;">
+                  <img src="../guide/image/weixin-login.png" class="wxlogin1" onclick="getLoginQR()" alt = "微信登录">
+                </a>
+                <a href="javascript:;" class="qq" style="float: left; width: 24px; height: 24px; margin-left: 15px; color: rgb(102, 102, 102);">
+                  <img src="../guide/image/qq-login.png" onclick="qqlogin(this)" alt = "qq登录">
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="form-box password-login">
+          <form class="login-form">
+            <div class="tologin-input-box">
+              <div class="tologin-input">
+                <span><i class="iconfont iconLogin icon-19" style="position:absolute;left:0px;top:0;width:16px;"></i></span>
+                <input id="username" class="tologin-input1" type="text" placeholder="请输入用户名/手机号/邮箱" style="width:100%;" autocomplete="off"></div>
+                <div class="error-hint-box" data-error="username">
+                  <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                  <span>请填写用户名</span>
+                </div>
+            </div>
+            <div class="tologin-input-box">
+              <div class="tologin-input">
+                <span><i class="iconfont icon-mima" style="position:absolute;left:0px;top:0;width:16px;"></i></span>
+                <input id="password" class="tologin-input1" type="password" placeholder="密码" style="width:100%;" autocomplete="off"></div>
+                <div class="error-hint-box" data-error="password">
+                  <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                  <span>请填写密码</span>
+                </div>
+            </div>
+            <div>
+              <a id="login-btn" class="reg-button" style="margin-top:16px; display: block;">立即登录</a>
+              <!-- <button id="login-btn" class="btn" type="submit"
+                style="border-radius: 4px; padding: 0px 10px;font-size:18px;cursor:pointer;background:#00af64;color:#fff;line-height:40px;height:40px;width:100%;margin-bottom: 20px;"><strong>立即登录</strong></button> -->
+            </div>
+            <div class="find-password" style="line-height: 26px;text-align: center;margin-bottom: 10px;cursor:pointer;">
+              <span id="login-forget" style="color:#999;">忘记密码?</span>
+            </div>
+            <div class="register-or-find-password" style="overflow: hidden;line-height: 14px;">
+              <div class="other-tologin-link"
+                style="height:24px;overflow: hidden;display:flex;justify-content: center;">
+                <a href="javascript:;"class="wei-xin" style="float: left;width:24px;height:24px;">
+                  <img src="../guide/image/weixin-login.png" onclick="getLoginQR()" alt="微信登录">
+                </a>
+                <a href="javascript:;" class="qq" style="float: left;width:24px;height:24px;margin-left:15px">
+                  <img src="../guide/image/qq-login.png" onclick="qqlogin(this)" alt="qq登录">
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="wxLogin-win">
+        <span class="close iconfont icon-close" style="display:none;position: absolute; font-size: 14px; line-height: 24px; font-weight: 100; right: 13px; top: 7px; color: #999;cursor: pointer;" onclick="fadeOut();loginclose();"></span>
+        <div class="login-window-header login-forget-header" style="text-align:center;font-size:18px;">
+          <span>账号登录</span>
+        </div>
+        <div class="wxlogin2"></div>
+      </div>
+      <!-- 忘记密码 -->
+      <div class="forget-window" style="display: none;">
+        <div class="login-forget-header" style="text-align:center;font-size:18px;">
+          <span>找回密码</span>
+          <i class="iconfont icon-close" onclick="fadeOut();loginclose();" style="position: absolute;top:7px;right:13px;font-size:14px;cursor: pointer;"></i>
+        </div>
+        <div class="login-forget-window">
+          <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+              <li class="layui-this forgetEmail">邮箱找回</li>
+              <li class="forgetTel">手机号找回</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item  layui-show">
+                <div class="forget-email-window">
+                  <div class="forget-tel-window">
+                    <div class="forget-input-email forget-inputdiv">
+                      <input id="forgetinp-email" placeholder="请输入您的注册邮箱" />
+                      <i class="iconfont icon-youjian" style="right:12px"></i>
+                      <div class="error-hint-box" data-error="forgetEmail" style="top:7px;">
+                        <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                        <span>邮箱格式错误</span>
+                      </div>
+                      <!-- <div class="forget-email-tip forget-input-tip"></div>
+                      <i class="iconfont icon-cuowu1 cuowu1" style="left: 225px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;display: none"></i> -->
+                    </div>
+                    <div class="forget-input-img forget-inputdiv" style="height: 36px;">
+                      <input id="forgetinp-emailreg-img" placeholder="请输入图片验证码"
+                        onblur="emailCheckImg()" style="width: 57%;float: left;" />
+                      <i class="iconfont icon-yanzhengma" style="right:90px;"></i>
+                      <div id="forget-email" style="width: 80px;height: 36px; float: left; margin-left: 10px; "></div>
+                      <span class="changeVerify_forEmail" style="line-height: 36px;color: #999;cursor: pointer;margin-left: 3px;font-size:12px;">看不清?</span>
+                      <div class="error-hint-box" data-error="forgetEmail-img" style="top:7px;right:144px;">
+                        <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                        <span>图形验证码错误</span>
+                      </div>
+                      <!-- <div class="forget-pic-tip forget-input-tip"></div>
+                      <i class="iconfont icon-cuowu1 cuowu2" style="left: 75px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;display: none"></i> -->
+                    </div>
+                    <div class="forget-input-telreg forget-inputdiv">
+                      <input id="forgetinp-telreg-email" placeholder="请输入邮箱验证码" style="width: 57%" />
+                      <i class="iconfont icon-yanzhengma" style="right:90px;top: 19px;"></i>
+                      <div class="forget-send-outh" id="getVerificaEmail">
+                        获取验证码
+                      </div>
+                      <div class="error-hint-box" data-error="forgetEmail-code" style="top:7px;">
+                        <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                        <span>验证码错误</span>
+                      </div>
+                      <!-- <div class="forget-yzm-tip forget-input-tip"></div>
+                      <i class="iconfont icon-cuowu1 cuowu3" style="left: 99px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;display:none;"></i> -->
+                    </div>
+                    <div class="forget-input-secret forget-inputdiv">
+                      <input id="forgetinp-telsec-email" type="password" placeholder="请输入新密码" />
+                      <i class="iconfont icon-ziyuanxhdpi" style="right:12px"></i>
+                      <div class="error-hint-box" data-error="forgetEmail-pwd" style="top:7px;">
+                        <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                        <span>密码格式错误</span>
+                      </div>
+                      <!-- <div class="forget--sec-tip forget-input-tip"></div>
+                      <i class="iconfont icon-cuowu1 cuowu4" style="left: 224px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;"></i> -->
+                    </div>
+                    <div class="forget-input-secret-again forget-inputdiv">
+                      <input id="forgetinp-telsec-again-email" type="password" placeholder="请再次输入密码" />
+                      <i class="iconfont icon-ziyuanxhdpi" style="right:12px"></i>
+                      <div class="error-hint-box" data-error="forgetEmail-pwd1" style="top:7px;">
+                        <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                        <span>密码格式错误</span>
+                      </div>
+                      <!-- <div class="forget--sec-tip1 forget-input-tip"></div>
+                      <i class="iconfont icon-cuowu1 cuowu5" style="left: 224px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;"></i> -->
+                    </div>
+                  </div>
+
+                  <a id="forget-btn1" class="forget-button forget-email-btn" onclick="forgetSecByEmail()">提交</a>
+                </div>
+              </div>
+              <div class="layui-tab-item">
+                <div class="forget-tel-window">
+                  <div class="forget-input-tel forget-inputdiv">
+                    <input id="forgetinp-tel" placeholder="请输入您的注册手机号" />
+                    <i class="iconfont icon-tubiao210" style="right:12px"></i>
+                    <div class="error-hint-box" data-error="forgetTel" style="top:7px;">
+                      <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                      <span>手机号格式错误</span>
+                    </div>
+                    <!-- <div class="forget-tel-tip forget-input-tip"></div>
+                    <i class="iconfont icon-cuowu1 cuowu1" style="left: 213px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;"></i> -->
+                  </div>
+
+                  <div class="forget-input-img forget-inputdiv" style="height: 36px;">
+                    <input id="forgetinp-telreg-img" placeholder="请输入图片验证码"
+                      onblur="emailCheckImg('tel')" style="width: 57%;float: left;" />
+                    <i class="iconfont icon-yanzhengma" style="right:90px;"></i>
+                    <div id="v_container" style="width: 80px;height: 36px; float: left; margin-left: 10px; "></div>
+                    <span class="changeVerify" style="line-height: 36px;color: #999;cursor: pointer;margin-left: 3px;font-size:12px;">看不清?</span>
+                    <div class="error-hint-box" data-error="forgetTel-img" style="top:7px;">
+                      <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                      <span>图形验证码错误</span>
+                    </div>
+                    <!-- <div class="forget-pic-tip forget-input-tip"></div>
+                    <i class="iconfont icon-cuowu1 cuowu2" style="left: 75px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;display: none"></i> -->
+                  </div>
+                  <div class="forget-input-telreg forget-inputdiv">
+                    <input id="forgetinp-telreg" placeholder="请输入手机验证码" style="width: 57%" />
+                    <i class="iconfont icon-yanzhengma" style="right:90px;top: 19px;"></i>
+                    <div class="forget-send-outh" id="getForgetNum">获取验证码</div>
+                    <div class="error-hint-box" data-error="forgetTel-code" style="top:23px;right:144px;">
+                      <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                      <span>验证码错误</span>
+                    </div>
+                    <!-- <div class="forget-yzm-tip forget-input-tip"></div>
+                    <i class="iconfont icon-cuowu1 cuowu3" style="left: 99px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 25px;display:none;"></i> -->
+                  </div>
+                  <div class="forget-input-secret forget-inputdiv">
+                    <input id="forgetinp-telsec" type="password" placeholder="请输入新密码" />
+                    <i class="iconfont icon-ziyuanxhdpi" style="right:12px"></i>
+                    <div class="error-hint-box" data-error="forgetTel-pwd" style="top:7px;">
+                      <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                      <span>密码格式错误</span>
+                    </div>
+                    <!-- <div class="forget--sec-tip forget-input-tip"></div>
+                    <i class="iconfont icon-cuowu1 cuowu4" style="left: 224px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;"></i> -->
+                  </div>
+                  <div class="forget-input-secret-again forget-inputdiv">
+                    <input id="forgetinp-telsec-again" type="password" placeholder="请再次输入密码" />
+                    <i class="iconfont icon-ziyuanxhdpi" style="right:12px"></i>
+                    <div class="error-hint-box" data-error="forgetTel-pwd1" style="top:7px;">
+                      <i class="iconfont icon-cuowu1 cuowu11" style="position:initial;right: 18px;width: 16px;color: #fff;font-size: 12px;line-height: 16px;"></i>
+                      <span>密码格式错误</span>
+                    </div>
+                    <!-- <div class="forget--sec-tip1 forget-input-tip"></div>
+                    <i class="iconfont icon-cuowu1 cuowu5" style="left: 224px;width: 16px;color: #fff;font-size: 12px;line-height: 18px;top: 9px;"></i> -->
+                  </div>
+                </div>
+                <a id="forget-btn" class="forget-button" onclick="sendemail()">提交</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="login-footer regBox">
+          <span id="login-fas" style="font-size:12px">返回登录</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 支付 -->
+  <div class="pay-window-in"></div>
+  <div id="content"></div>
+  <div class="pay-mb" id="pay-mb-out"></div>
+  <div class="shadowPage" style=""></div>
+  <div class="toolContainer">
+    <div class="pc-title">
+      <span class="pc-head" style="font-size:16px;float:left;">下载详情</span>
+      <span class="layui-layer-setwin close" onclick="closeDwn()"><a href="javascript:;"
+          class="layui-layer-ico layui-layer-close layui-layer-close1"></a></span>
+    </div>
+    <div class="shopInfoBox clearfix">
+      <div class="toolLeft">
+        <div class="img_box">
+          <img src="https://store.thingjs.com/static/img/tool/icon_khd.gif" alt="下载" />
+        </div>
+        <div class="downloadBox">
+          <div class="downloadBtn" id="client_2020">
+            下载客户端
+          </div>
+        </div>
+        <div class="link_box">
+          <a href="javascript:void(0);" target="_blank" id="client_ten">腾讯微云</a>
+        </div>
+      </div>
+      <div class="toolRight">
+        <h3 style="font-size: 16px; font-weight: normal;">
+          CampusBuilder客户端
+        </h3>
+        <ul class="tool_info_ul">
+          <li>
+            <div class="item_left">版本号:</div>
+            <div class="item_right" id="client_version">1.2.1.217</div>
+          </li>
+          <li>
+            <div class="item_left">文件大小:</div>
+            <div class="item_right" id="client_size">1.05GB</div>
+          </li>
+          <li>
+            <div class="item_left">更新时间:</div>
+            <div class="item_right" id="client_time">2019/05/29</div>
+          </li>
+          <!-- <li>
+            <div class="item_left">MD5:</div>
+            <div class="item_right" id="client_md5">
+              9881d4360141a396eaec995a9431783e
+            </div>
+          </li> -->
+          <li>
+            <div class="item_left">介绍:</div>
+            <div class="item_right" style="word-break: break-all;">
+              CampusBuilder 用于园区级 3D 可视化场景搭建。在建筑楼层和室内搭建方面表现卓越。提供大量模型，可直接使用，节省开发时间。
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 客服弹框 -->
+  <!-- <p>在线客服</p> -->
+  <!-- 上传场景弹窗 -->
+  <div class="bg-upload sceneUpload fileUpload" style="display:none">
+  </div>
+  <!-- 代码统计 -->
+  <!-- cnzz stats -->
+  <script type="text/javascript">
+    var cnzz_s_tag = document.createElement("script");
+    cnzz_s_tag.type = "text/javascript";
+    cnzz_s_tag.async = true;
+    cnzz_s_tag.charset = "utf-8";
+    cnzz_s_tag.src = "https://w.cnzz.com/c.php?id=1278206142&async=1";
+    var root_s = document.getElementsByTagName("script")[0];
+    root_s.parentNode.insertBefore(cnzz_s_tag, root_s);
+  </script>
+  <!-- 新增隐藏div控制新手指引。 -->
+  <div id='startTeach'></div>
+  <!-- 浏览器缩放 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?dab1236647c9b1f561fd1de291931348";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      hm = document.createElement("script");
+      hm.src = "https://www.thingjs.com/guide/ma.js";
+      s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    $(function () {
+      var flag = myBrowser();
+      if (flag != "None" && getQueryString('m') !== 'sample') {
+        WebpageZoomDetect.start({
+          //interval : 1000,// 每隔1s检测一次
+        });
+      }
+    });
+  </script>
+  <script src="./js/common.js"></script>
+  <script src="./js/header.js"></script>
+
+  <script>
+    //代码统计
+    $('a[href="?m=main"]').bind("click", function () {
+      _hmt_maidian("首页", "顶导", "首页");
+    });
+    $('a[href="?m=demo"][data-act="demo"]').bind("click", function () {
+      _hmt_maidian("首页", "顶导", "demo");
+    });
+    $('a[href="?m=demo#_仓储管理"][data-act="silohouse"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "仓储管理");
+      }
+    );
+    $('a[href="?m=demo#_建筑管理"][data-act="building"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "建筑管理");
+      }
+    );
+    $('a[href="?m=demo#_安防监控"][data-act="security"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "安防监控");
+      }
+    );
+    $('a[href="?m=demo#_资产管理"][data-act="fileLibrary"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "资产管理");
+      }
+    );
+    $('a[href="?m=demo#_数据中心"][data-act="comproom"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "数据中心");
+      }
+    );
+    $('a[href="?m=projectList#_公开项目"][data-act="projectList"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-demo", "公开项目");
+      }
+    );
+    $('a:contains("文档")[href="?m=tutorial"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-文档", "文档");
+    });
+    $('a[href="?m=tutorial"][data-act="tutorial"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-文档", "教程");
+    });
+    $('a[href="?m=api"][data-act="api"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-文档", "API");
+    });
+    $('a:contains("组件")[data-backhref="?m=campus"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-组件", "组件");
+    });
+    $('a[data-backhref="?m=campus"][data-act="campus"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-组件", "园区搭建工具");
+    });
+    $('a[data-backhref="?m=city"][data-act="city"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-组件", "城市搭建工具");
+    });
+    $('a[data-backhref="?m=chart"][data-act="chart"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-组件", "图表搭建工具");
+    });
+    $('a[data-backhref="?m=mod"][data-act="mod"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-组件", "模型库");
+    });
+    // $('a[data-backhref="?m=speedcity"][data-act="speedcity"]').bind("click", function () {
+    //   _hmt_maidian("顶导", "顶导点击-组件", "构建智慧城市");
+    // });
+    $('a:contains("价格")[href="?m=price"][data-act="price"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-价格", "价格");
+      }
+    );
+    $('a:contains("在线开发")[data-backhref="?m=sample"][data-act="sample"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-在线开发", "在线开发");
+      }
+    );
+    $(
+      'a:contains("论坛")[href="http://developer.thingjs.com"][target="_blank"]'
+    ).bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-论坛", "跳转论坛");
+    });
+    $('a:contains("关于我们")[data-backhref="?m=aboutUs"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-关于我们", "关于我们");
+    });
+    $('a:contains("登录")[data-log="-1"][id="login"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击-登录", "登录");
+      }
+    );
+    $('a:contains("注册")[id="nav-reg"]').bind("click", function () {
+      _hmt_maidian("顶导", "顶导点击-注册", "点击顶导注册");
+    });
+    $('a:contains("注册")[id="reg-btn"][class="reg-button"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "注册窗口", "提交注册信息");
+      }
+    );
+    $('a:contains("控制台")[data-act="dashboa:wrd"][id="msg"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("顶导", "顶导点击", "控制台");
+      }
+    );
+
+    //下载页面
+    $('div:contains("64位下载")[class="btn1"][id="client_64"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("CampusBuilder下载", "浏览器下载", "64位下载");
+      }
+    );
+    $('div:contains("64位下载")[class="btn1"][id="client_2020"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("CampusBuilder下载", "浏览器下载", "64位下载");
+      }
+    );
+    $('div:contains("32位下载")[class="btn1"][id="client_32"]').bind(
+      "click",
+      function () {
+        _hmt_maidian("CampusBuilder下载", "浏览器下载", "32位下载");
+      }
+    );
+    $('a:contains("腾讯微云")[id="client_ten"]').bind("click", function () {
+      _hmt_maidian("CampusBuilder下载", "网盘下载", "腾讯微云");
+    });
+    // $('a:contains("海外网盘")[id="client_over"]').bind("click", function () {
+    //   _hmt_maidian("CampusBuilder下载", "网盘下载", "海外网盘");
+    // });
+    // $('a:contains("百度网盘")[id="client_baidu"]').bind('click', function () {
+    //     _hmt_maidian('CampusBuilder下载', '网盘下载', '百度网盘');
+    // });
+
+    $("a.ke-link.ketang_url").bind("click", function () {
+      _hmt_maidian("腾讯课堂", $(".ketang_order").text(), "报名");
+    });
+
+    $('a[title="站长统计"]').hide();
+
+    function ketangClose(tag) {
+      $(tag)
+        .parent()
+        .fadeOut();
+    }
+
+    $('a').click(function () {
+      var eventName_ = $.trim($(this).text())
+      var eventName = (eventName_.split(" ")[0]).trim()      
+      // console.log(eventName, '<===================事件点击名称')
+      // 可以按照业务需求进行操作
+      switch (eventName) {
+        case '论坛':  
+        window.AnalysysAgent && window.AnalysysAgent.pageView('ThingJS - ' + eventName,{$url:'https://store.thingjs.com/projects'}); break;
+        case '价格':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_price_click'); break;
+        case '升级VIP':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_upgrade_VIP'); break;
+        case '申请建模':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_apply_model'); break;
+        case '请求协助':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_request_help'); break;
+        case '登录':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_login_click'); break;
+        case '注册':
+        window.AnalysysAgent && window.AnalysysAgent.track('top_registered_click'); break;
+        case '腾讯微云':
+        // window.AnalysysAgent && window.AnalysysAgent.track('tencent_netdisc'); break;
+        // case '海外网盘':
+        window.AnalysysAgent && window.AnalysysAgent.track('overseas_netdisc'); break;
+          default:  break;
+      }
+    });
+    
+    $('div:contains("64位下载")[class="downloadBtn"][id="client_64"]').bind(
+      "click",
+      function () {
+        window.AnalysysAgent && window.AnalysysAgent.track('camBuilder_nowDownload');
+      }
+    );
+    $('div:contains("64位下载")[class="downloadBtn"][id="client_2020"]').bind(
+      "click",
+      function () {
+        window.AnalysysAgent && window.AnalysysAgent.track('camBuilder_nowDownload');
+      }
+    );
+
+    // 获取Ip
+
+  </script>
+  <script>
+    var navHeaderHide = true; //价格页，顶导不隐藏
+    $(function () {
+      $(".demoLi").mouseover(function () {
+        $(".demoUl").css("display", "block");
+      });
+      $(".demoLi").mouseout(function () {
+        $(".demoUl").css("display", "none");
+      });
+      $(".wordLi").mouseover(function () {
+        $(".wordUl").css("display", "block");
+      });
+      $(".wordLi").mouseout(function () {
+        $(".wordUl").css("display", "none");
+      });
+      var sT;
+      $("#content").scroll(function (e) {
+        myFn();
+      });
+      function myFn() {
+        sT = $("#content").scrollTop();
+        if (sT == 0) {
+          $(".navHeader").css("display", "block");
+        }
+        if (sT > 50 && navHeaderHide) {
+          $(".navHeader").css("display", "none");
+        }
+      }
+    });
+  </script>
+
+  <!-- 新增引导判断 -->
+  <script>
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    }
+    var intoTheGuide = getUrlParam('step');
+    if (intoTheGuide == 2) {
+      document.getElementById("startTeach").style.color = 'red';
+      setTimeout("thisisstepTwoWork()", 800);
+    }
+
+  </script>
+  <script>
+    var campusBuilderDownLoad = document.getElementById('campusBuilderDownLoad');
+    var controlAlertForComponent = document.getElementById('controlAlertForComponent');
+    var temp = 0;//二级界面隐藏
+    if (campusBuilderDownLoad) {
+      controlAlertForComponent.style.display = 'none';
+      $("#campusBuilderDownLoad").on("click", function (e) {
+        if (temp == 0) {
+          controlAlertForComponent.style.display = 'block';//点击一级应用菜单，显示二级
+          temp = 1;
+        } else {
+          controlAlertForComponent.style.display = 'none';//点击一级应用菜单，显示二级
+          temp = 0;
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

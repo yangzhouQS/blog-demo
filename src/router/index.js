@@ -83,6 +83,11 @@ const routes = [
 		path: '/monaco-editor',
 		name: 'monaco-editor',
 		component: () => import('@/views/monaco-editor/monaco-editor.vue')
+	},
+	{
+		path: '/edit',
+		name: 'monaco-editor-edit',
+		component: () => import('@/views/monaco-editor/edit.vue')
 	}
 ]
 

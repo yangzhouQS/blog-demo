@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/systemjs/dist/system.js"></script>
+    <script src="../../node_modules/typescript/lib/typescript.js"></script>
+</head>
+<body>
+<div id="container" style="width: 800px;height: 800px;"></div>
+<!-- https://www.cnblogs.com/y896926473/articles/9332468.html -->
+<script>
+  // System.import('./hello.ts')
+  System.config({
+    transpiler: 'typescript',
+    packages: {
+      './': {
+        defaultExtension: 'ts'  //编译（转译）当前目录（./）下的所有
+      }
+    }
+  });
+  // System.import('./demo.js').then(null, console.error.bind(console));
+  System.import('./zrender.ts').then((result) => {
+    init(result)
+  });
+
+  function init(zrender) {
+    const zr = zrender.init(document.getElementById('container'))
+
+    debugger
+  }
+</script>
+</body>
+</html>

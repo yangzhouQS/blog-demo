@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/systemjs/dist/system.js"></script>
+    <script src="../../node_modules/typescript/lib/typescript.js"></script>
+</head>
+<body>
+<div id="container" style="width: 800px;height: 800px;"></div>
+<script>
+  System.config({
+    transpiler: 'typescript',
+    packages: {
+      './': {
+        defaultExtension: 'ts'  //编译（转译）当前目录（./）下的所有
+      }
+    }
+  });
+  System.import('./index.ts').then((result) => {
+    console.log(result)
+    init(result)
+  });
+
+  function init(zrender) {
+    const zr = zrender.init(document.getElementById('container'))
+    const rect = new zrender.Rect({
+      shape: {
+        x: 0,
+        y: 0,
+        width: 50,
+        height: 50
+      },
+      style: {
+        fill: 'red',
+        lineWidth: 0
+      }
+    })
+    const line = new zrender.Polyline({
+      shape: {
+        points: [
+          [100, 100],
+          [250, 75],
+          [300, 100]
+        ]
+      },
+      style: {
+        stroke: 'blue',
+        lineWidth: 1
+      }
+    });
+    zr.add(line)
+    zr.add(rect)
+    debugger
+    zr.addHover(rect, { background: '#0992dc' })
+  }
+</script>
+</body>
+</html>

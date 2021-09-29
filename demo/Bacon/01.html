@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../node_modules/baconjs/dist/Bacon.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #app {
+        height: 400px;
+        border: 1px solid red;
+      }
+
+      button {
+        margin: 12px;
+        outline: none;
+        padding: 5px 6px;
+        font-size: 16px;
+      }
+    </style>
+</head>
+<body>
+<button id="btn">点击</button>
+<h1>输入事件</h1>
+<input type="text" id="input">
+<br>
+<h1>输入事件</h1>
+<div id="combo">
+    <h2>Combination lock:</h2>
+    <select>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option selected="selected">9</option>
+    </select>
+    <select>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option selected="selected">9</option>
+    </select>
+    <select>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option selected="selected">9</option>
+    </select>
+    <button>Open vault</button>
+    <small>Hint: Try combo <b>180</b></small>
+    <div class="vault-contents" style="display:none">
+        <p style="font-style:italic">“Your bacon, sir.” <span style="font-weight:bold; color:red">≈</span></p>
+        <p><small>Fun fact: It takes approximately 180 seconds to microwave two slices of bacon</small></p>
+    </div>
+</div>
+<div id="app"></div>
+<script>
+  console.log(Bacon)
+  Bacon.fromEvent(document.querySelector('#btn'), 'click').subscribe(function (event) {
+    console.log(event)
+    console.log(this)
+    debugger
+  })
+  Bacon.fromEvent(document.querySelector('#input'), 'keyup')
+    .map(event => event.target.value)
+    .onValue(inputVal => {
+      console.log(inputVal)
+    })
+  const selectArray = Array.from(document.querySelector('#combo select'))
+  const selectElementValuesAsProperties = selectArray.map(el => {
+    return Bacon.fromEvent(el, 'change')
+      .map(el => el.value)
+      .toProperty(el.value)
+  })
+  const currentCombination = Bacon.combineAsArray(selectElementValuesAsProperties)
+  const currentComboString = currentCombination.map(values => values.join(''))
+  currentComboString.log('currentCombo')
+
+  Bacon.once('hello').log()
+</script>
+</body>
+</html>
