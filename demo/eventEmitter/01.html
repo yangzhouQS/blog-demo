@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="event.js"></script>
+</head>
+<body>
+<button id="btn">订阅</button>
+<script>
+  const p = new EventEmitter()
+  const btn = document.getElementById('btn')
+  btn.onclick = function () {
+    p.emit('refresh')
+  }
+  p.on('refresh', function () {
+    console.log('refresh')
+  }, btn)
+  p.on('dbclick', function () {
+    console.log('dbclick')
+  }, btn)
+  console.log(p)
+  debugger
+</script>
+</body>
+</html>
