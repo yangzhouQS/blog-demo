@@ -38,6 +38,6 @@ namespace DemoA {
         console.log('fn');
     };
 }
-const a = DemoA;
-console.log(a);
+// const a = DemoA;
+// console.log(a);
 console.dir(DemoA);
