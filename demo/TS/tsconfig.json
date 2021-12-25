@@ -5,9 +5,13 @@
     //    "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "types": [
+      "reflect-metadata",
+      "node"
+    ],
     "declaration": true,
     //    "declarationMap": true,
-//    "strictNullCheck": true,
+    //    "strictNullCheck": true,
     "paths": {
       "*.ts": [
         "./"

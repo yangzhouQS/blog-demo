@@ -29,16 +29,16 @@ console.log(dayjs().startOf('week').add(1, 'day').format('YYYY-MM-DD HH:mm:ss'))
 console.log(dayjs().endOf('week').add(1, 'day').format('YYYY-MM-DD HH:mm:ss'))
 
 const formatDate = (date = new Date(), format = 'YYYY-MM-DD HH:mm:ss') => {
-	return dayjs(date).format(format)
+  return dayjs(date).format(format)
 }
 
 const last = [
-	formatDate(dayjs().subtract(1, 'week').startOf('week').add(1, 'day')),
-	formatDate(dayjs().subtract(1, 'week').endOf('week').add(1, 'day'))
+  formatDate(dayjs().subtract(1, 'week').startOf('week').add(1, 'day')),
+  formatDate(dayjs().subtract(1, 'week').endOf('week').add(1, 'day'))
 ]
 const week2 = [
-	formatDate(dayjs().startOf('week').add(1, 'day')),
-	formatDate(dayjs().endOf('week').add(1, 'day'))
+  formatDate(dayjs().startOf('week').add(1, 'day')),
+  formatDate(dayjs().endOf('week').add(1, 'day'))
 ]
 console.log(last, week2)
 console.log(dayjs().get('month'))
@@ -64,7 +64,7 @@ console.log(dayjs('2021-05-16').get('day'));
 console.log('--------')
 const day = 0
 for (let i = 1; i <= 1; i++) {
-	console.log(i)
+  console.log(i)
 }
 
 console.log(dayjs().add(7, 'day').format('YYYY-MM-DD'))
@@ -75,3 +75,12 @@ console.log(Number.isFinite(1221))
 console.log() // 2021
 console.log(`${ dayjs().format('YYYY') + '-01-01 00:00:00' }`, dayjs().format('YYYY-MM-DD') + ' 23:59:59') // 2021
 console.log(dayjs('07-27').format('YYYY-MM-DD'))
+console.log(dayjs().add(30, 'day').format('YYYY-MM-DD'))
+console.log(dayjs().add(30, 'day'))
+console.log(new Date(dayjs().add(30, 'day')).getTime())
+console.log()
+console.log(dayjs(1640765179793).format('YYYY-MM-DD HH:mm:ss'))
+console.log(dayjs(1606737600).format('YYYY-MM-DD HH:mm:ss'))
+console.log(dayjs(new Date('2008-10-09 21:35:28')).unix())
+console.log(Date.now())
+console.log(dayjs().add(30, 'day').unix())

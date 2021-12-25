@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "umd",
+    "target": "esnext",
+    //    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": true,
+    //    "declarationMap": true,
+    //    "strictNullCheck": true,
+    "paths": {
+      "*.ts": [
+        "./"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
