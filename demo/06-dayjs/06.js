@@ -11,3 +11,10 @@ if (Math.abs(dayjs(startDate).diff(endDate, 'hour')) > 24) {
 }
 console.log(endDate)
 console.log(dayjs('2021-10-09').isValid())
+
+console.log(dayjs('2021-01-09 22:00:00').diff(dayjs('2021-01-09 22:20:00'), 'minute'))
+
+
+console.log(dayjs('2022-02').startOf('month').format('YYYY-MM-DD HH:mm:ss'))
+console.log(dayjs('2022-02').endOf('month').format('YYYY-MM-DD HH:mm:ss'))
+
