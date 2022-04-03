@@ -18,3 +18,4 @@ console.log(dayjs('2021-01-09 22:00:00').diff(dayjs('2021-01-09 22:20:00'), 'min
 console.log(dayjs('2022-02').startOf('month').format('YYYY-MM-DD HH:mm:ss'))
 console.log(dayjs('2022-02').endOf('month').format('YYYY-MM-DD HH:mm:ss'))
 
+console.log(dayjs().subtract(1, 'year').format('YYYY-MM-DD HH:mm:ss'))

@@ -17,13 +17,13 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 	return originalPush.call(this, location).catch(err => err)
 }
 const routes = [
-	...quasar,
-	...gridRouter,
-	...bpmnRouter,
 	...tableRouter,
-	...formRouter,
-	...treeRouter,
-	...testRouter,
+	// ...quasar,
+	// ...gridRouter,
+	// ...bpmnRouter,
+	// ...formRouter,
+	// ...treeRouter,
+	// ...testRouter,
 	{
 		path: '/',
 		name: 'Home',
