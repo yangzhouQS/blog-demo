@@ -9,5 +9,5 @@ child.exec(`${ updatePath }`, (err, stdout, stderr) => {
 
 */
 
-console.log(!!{id:1})
-console.log(!!{})
+const utils = require('utils')
+console.log(utils.getFullName())

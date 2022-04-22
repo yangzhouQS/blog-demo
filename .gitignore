@@ -21,7 +21,6 @@ yarn-error.log*
 *.sw?
 # yarn
 yarn.lock
-.idea
 xxxyyy
 ./.*/node_modules
 

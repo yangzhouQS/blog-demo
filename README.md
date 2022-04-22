@@ -14,6 +14,8 @@
 
 ## 2.vue-cheetah-grid
 
+## 3.dom-to-image (将DOM结构转换为图片或者SVG)
+
 > vue-cheetah-grid
 > Cheetah Grid
 

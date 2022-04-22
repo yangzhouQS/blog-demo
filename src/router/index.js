@@ -8,6 +8,7 @@ import testRouter from './testRouter';
 import bpmnRouter from './bpmn/index';
 import gridRouter from './grid/index';
 import quasar from './quasar/index';
+import konvaRouter from './konva/index'
 
 Vue.use(VueRouter)
 // 解决Vue-Router升级导致的Uncaught(in promise) navigation guard问题
@@ -17,6 +18,7 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 	return originalPush.call(this, location).catch(err => err)
 }
 const routes = [
+	...konvaRouter,
 	...tableRouter,
 	// ...quasar,
 	// ...gridRouter,
@@ -40,24 +42,9 @@ const routes = [
 		component: () => import('@/views/test.vue')
 	},
 	{
-		path: '/tree',
-		name: 'tree',
-		component: () => import('../views/yl-tree.vue')
-	},
-	{
 		path: '/child-sync',
 		name: 'child-sync',
 		component: () => import('../views/child-sync/A.vue')
-	},
-	{
-		path: '/params-type',
-		name: 'params-type',
-		component: () => import('@/views/params-type/demo.vue')
-	},
-	{
-		path: '/parent',
-		name: 'params-type2',
-		component: () => import('@/views/parent/demo.vue')
 	},
 	{
 		path: '/row',
