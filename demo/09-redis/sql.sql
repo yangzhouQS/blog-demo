@@ -1,0 +1,20 @@
+SELECT
+tenant,
+       org_id,
+       id,
+       org_name,
+       ori_order_id,
+       order_code,
+       log_time,
+       error_type,
+       error_log,
+       content,
+       creator_id,
+       creator_name,
+       created_at,
+       modifier_id,
+       modifier_name,
+       updated_at,
+       version,
+       is_removed
+FROM dev_global_mtlp.q_receive_log;

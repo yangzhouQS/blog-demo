@@ -11,6 +11,13 @@ class Redis {
     return await redis.get(key)
   }
 
+  /**
+   * ley存储
+   * @param key 存储的key
+   * @param value 存储的value
+   * @param expire 过期时间
+   * @returns {Promise<*>}
+   */
   static async set(key, value, expire) {
     if (expire) {
       return await redis.setex(key, expire, value)
@@ -19,10 +26,21 @@ class Redis {
     }
   }
 
+  /**
+   * 对指定key设置过期时间
+   * @param key
+   * @param time
+   * @returns {Promise<*>}
+   */
   static async setKetExpires(key, time = 0) {
     return await redis.expire(key, time)
   }
 
+  /**
+   * 判断key是否存在
+   * @param key
+   * @returns {Promise<*>}
+   */
   static async has(key) {
     return await redis.exists(key)
   }
@@ -55,10 +73,11 @@ async function setKeyString() {
   console.log(ret)
 }
 
-async function setHash() {
+module.exports = { Redis }
+/*async function setHash() {
 
 }
 
 setKeyString().then(r => {
 
-})
+})*/
