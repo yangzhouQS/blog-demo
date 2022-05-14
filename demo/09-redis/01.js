@@ -56,28 +56,32 @@ class Redis {
 
 async function setKeyString() {
   const key = 'hello:word:content'
-  let ret = await Redis.set(key, 999)
-  // await redis.expire('hello', 10)
+  let ret = await Redis.set(key, 'xsaxsxaxs')
+  await redis.expire(key, 5)
   // ret = await redis.get('hello')
 
   // 获取指定的key
   ret = await Redis.get(key)
 
   // 判断key是否存在
-  ret = await Redis.has(key)
+  // ret = await Redis.has(key)
 
   // 删除key
   // ret = await Redis.del(key)
 
-  ret = await Redis.getKeyType(key)
+  // ret = await Redis.getKeyType(key)
   console.log(ret)
 }
 
 module.exports = { Redis }
-/*async function setHash() {
+
+async function setHash() {
 
 }
 
 setKeyString().then(r => {
+  console.log(r)
+})
 
-})*/
+const dayjs = require('dayjs')
+console.log(dayjs().add(10,'second').format("YYYY-MM-DD HH:mm:ss"))

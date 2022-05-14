@@ -21,248 +21,416 @@ function dicingChar(series) {
 }
 
 
-const count = 1000
-let maxCode = 20220400000 + 1
-for (let i = 0; i < count; i++) {
-  ;(function (i) {
-    // const orderCode = `收料${ maxCode + i }`
-    const orderCode = `收料${ idGen() }`
-    console.log(orderCode)
-    const plateNumber = getPlate()
-    const upData = {
-      'qReceive': {
+async function uploadQReceive() {
+  const orderId = 'd9b49a33-3ab6-4bf7-ae4d-57c33912716a'
+  const plateNumber = getPlate()
+  const upData2 = {
+    'qReceive': {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'orgName': '杨周测试项目部',
+      'recordedDate': '2021-04-17',
+      'orderDate': '2021-11',
+      'orderCode': '收料20211100493', // '收料20211100493',
+      'serviceType': 10,
+      'orderType': 4,
+      'weightType': '进料过磅',
+      'materialCollection': '',
+      'maker': '高亮',
+      'makerDate': '2021-04-17',
+      'remark': '',
+      'printTimes': 1,
+      'plateNumber': plateNumber,
+      'oriSupplierId': '0eec5f1d-65fd-467f-a720-89fd3482e83d',
+      'supplierName': 'zzz用料单位123',
+      'oriLabourId': '',
+      'labourName': '',
+      'oriGhId': '',
+      'ghFullId': '',
+      'ghFullName': '',
+      'ghName': '',
+      'enterTime': '2021-04-17 15:29:17',
+      'exitTime': '2021-04-17 15:33:14',
+      'isRed': false,
+      'isAudit': true,
+      'auditor': '高亮',
+      'auditDate': '2021-04-17',
+      'orgId': 971365888684544,
+      'supplierId': 1225965220434432,
+      'ghId': 0,
+      'labourId': 0,
+      'oriRedId': '',
+      'discernPlateNumber': '',
+      'stockbinFullName': '',
+      'stockbinName': '',
+      'oriStockbinId': '',
+      'stockbinId': 0,
+      'isExit': true,
+      'isTare': false,
+      'roughQuantity': 48.44,
+      'tareQuantity': 19.34,
+      'deductRate': 0,
+      'deductQuantity': 2,
+      'auxiliaryNetQuantity': 27.1,
+      'oriNetQuantity': 0,
+      'isAffirm': false,
+      'isUseOriNetQuantity': false,
+      'sortOrderCode': '20211100493',
+      'isReturn': false,
+      'isRemoved': false,
+      'versionCode': 'v9.1',
+      'isMultiplication': 'false',
+      'clientVersion': '3.1.8',
+      'discernMode': '1'
+    },
+    'qReceiveMoreMaterials': [
+      {
         'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
         'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-        'orgName': '杨周测试项目部',
-        'recordedDate': '2021-04-17',
-        'orderDate': '2021-11',
-        'orderCode': orderCode, // '收料20211100493',
-        'serviceType': 10,
-        'orderType': 4,
-        'weightType': '进料过磅',
-        'materialCollection': '',
-        'maker': '高亮',
-        'makerDate': '2021-04-17',
-        'remark': '',
-        'printTimes': 1,
-        'plateNumber': plateNumber,
-        'oriSupplierId': '0eec5f1d-65fd-467f-a720-89fd3482e83d',
-        'supplierName': 'zzz用料单位123',
-        'oriLabourId': '',
-        'labourName': '',
-        'oriGhId': '',
-        'ghFullId': '',
-        'ghFullName': '',
-        'ghName': '',
-        'enterTime': '2021-04-17 15:29:17',
-        'exitTime': '2021-04-17 15:33:14',
-        'isRed': false,
-        'isAudit': true,
-        'auditor': '高亮',
-        'auditDate': '2021-04-17',
-        'orgId': 971365888684544,
-        'supplierId': 1225965220434432,
-        'ghId': 0,
-        'labourId': 0,
-        'oriRedId': '',
-        'discernPlateNumber': '',
-        'stockbinFullName': '',
-        'stockbinName': '',
-        'oriStockbinId': '',
-        'stockbinId': 0,
-        'isExit': true,
-        'isTare': false,
-        'roughQuantity': 48.44,
-        'tareQuantity': 19.34,
-        'deductRate': 0,
-        'deductQuantity': 2,
-        'auxiliaryNetQuantity': 27.1,
+        'oriItemId': '9c88c073-6a45-43b5-a809-09554fe4e7ee',
+        'oriMaterialId': 'b8f7165e-c594-45bd-8fb6-769384378f36',
+        'materialCode': '00002',
+        'materialName': '混凝土C10',
+        'materialModel': 'C10 C10',
+        'materialUnit': '立方',
+        'auxiliaryUnit': '立方',
+        'netQuantity': 27.1,
+        'conversionRate': 1,
         'oriNetQuantity': 0,
-        'isAffirm': false,
-        'isUseOriNetQuantity': false,
-        'sortOrderCode': '20211100493',
-        'isReturn': false,
-        'isRemoved': false,
-        'versionCode': 'v3.0',
-        'isMultiplication': 'false',
-        'clientVersion': '3.1.8',
-        'discernMode': '1'
+        'mainNetQuantity': 27.1,
+        'materialId': 973557170901504,
+        'classId': 0,
+        'orgId': 0,
+        'isRed': false,
+        'isRemoved': false
+      }
+    ],
+    'qReceivePhotos': [
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '18962cd4-33ff-4686-be6f-7e70fd93c6d8',
+        'cameraPosition': '车尾',
+        'photoType': '入场',
+        'cameraCode': '02',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
       },
-      'qReceiveMoreMaterials': [
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '9c88c073-6a45-43b5-a809-09554fe4e7ee',
-          'oriMaterialId': 'b8f7165e-c594-45bd-8fb6-769384378f36',
-          'materialCode': '00002',
-          'materialName': '混凝土C10',
-          'materialModel': 'C10 C10',
-          'materialUnit': '立方',
-          'auxiliaryUnit': '立方',
-          'netQuantity': 27.1,
-          'conversionRate': 1,
-          'oriNetQuantity': 0,
-          'mainNetQuantity': 27.1,
-          'materialId': 973557170901504,
-          'classId': 0,
-          'orgId': 0,
-          'isRed': false,
-          'isRemoved': false
-        }
-      ],
-      'qReceivePhotos': [
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '18962cd4-33ff-4686-be6f-7e70fd93c6d8',
-          'cameraPosition': '车尾',
-          'photoType': '入场',
-          'cameraCode': '02',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '53ec107a-ebf0-4c51-a346-49e52379d1a6',
-          'cameraPosition': '磅房',
-          'photoType': '入场',
-          'cameraCode': '04',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '82ed2fea-01b0-4b7c-ab95-68b3fbb0d55d',
-          'cameraPosition': '车顶',
-          'photoType': '出场',
-          'cameraCode': '03',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '88704041-e455-493f-b710-d15babc74547',
-          'cameraPosition': '车顶',
-          'photoType': '入场',
-          'cameraCode': '03',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': 'aff7665a-4f24-40ab-a9c2-ddf48e20330a',
-          'cameraPosition': '车前',
-          'photoType': '入场',
-          'cameraCode': '01',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': 'b842fef8-b6e2-4253-a7ad-f0e5217c9b29',
-          'cameraPosition': '车尾',
-          'photoType': '出场',
-          'cameraCode': '02',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': 'b906077c-b861-4714-9b69-8f1b98d9b9d2',
-          'cameraPosition': '磅房',
-          'photoType': '出场',
-          'cameraCode': '04',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': 'f661a15a-26fc-4560-8ef6-2df7f526de29',
-          'cameraPosition': '车前',
-          'photoType': '出场',
-          'cameraCode': '01',
-          'photoUrl': '1649923496630.png',
-          'isRemoved': false
-        }
-      ],
-      'qReceiveGpys': [],
-      'qReceiveVehicles': [
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '29856af3-bc01-4651-965a-30ef9a903634',
-          'photoType': '出场',
-          'carNum': plateNumber,
-          'photoUrl': '1649923546154.png',
-          'isRemoved': false
-        },
-        {
-          'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
-          'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
-          'oriItemId': '70ae6d7d-df13-41de-8c4d-d1935fab40e3',
-          'photoType': '入场',
-          'carNum': plateNumber,
-          'photoUrl': '1649923546154.png',
-          'isRemoved': false
-        }
-      ],
-      'isComplex': true
-    }
-    const orderId = idGen()
-    upData.qReceive.oriOrderId = orderId
-    upData.qReceiveMoreMaterials[0].oriOrderId = orderId
-    upData.qReceivePhotos.map(row => {
-      row.oriOrderId = orderId
-      row.oriItemId = idGen()
-      return row
-    })
-    upData.qReceiveVehicles.map(row => {
-      row.oriOrderId = orderId
-      row.oriItemId = idGen()
-      return row
-    })
-    let data = JSON.stringify(upData);
-
-    let config = {
-      method: 'post',
-      url: 'http://localhost:7878/mp-product/mquantitys-upload?resource=qReceive&tag=weight&version=1',
-      headers: {
-        'x-tenant-id': '10001',
-        'x-org-id': '832499207122944',
-        'x-user-id': '98765',
-        'x-user-name': 'U2FsdGVkX1/LWVfuOCaK3eKQO/pz0nINp3ZU7t+FAQE=',
-        'x-tenant-code': 'gslq4dev',
-        'Content-Type': 'application/json',
-        'x-product-id': 'smconfig',
-        'x-feature-packs': '',
-        'x-client-ajax': 'true'
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '53ec107a-ebf0-4c51-a346-49e52379d1a6',
+        'cameraPosition': '磅房',
+        'photoType': '入场',
+        'cameraCode': '04',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
       },
-      data: data
-    };
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '82ed2fea-01b0-4b7c-ab95-68b3fbb0d55d',
+        'cameraPosition': '车顶',
+        'photoType': '出场',
+        'cameraCode': '03',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '88704041-e455-493f-b710-d15babc74547',
+        'cameraPosition': '车顶',
+        'photoType': '入场',
+        'cameraCode': '03',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': 'aff7665a-4f24-40ab-a9c2-ddf48e20330a',
+        'cameraPosition': '车前',
+        'photoType': '入场',
+        'cameraCode': '01',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': 'b842fef8-b6e2-4253-a7ad-f0e5217c9b29',
+        'cameraPosition': '车尾',
+        'photoType': '出场',
+        'cameraCode': '02',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': 'b906077c-b861-4714-9b69-8f1b98d9b9d2',
+        'cameraPosition': '磅房',
+        'photoType': '出场',
+        'cameraCode': '04',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': 'f661a15a-26fc-4560-8ef6-2df7f526de29',
+        'cameraPosition': '车前',
+        'photoType': '出场',
+        'cameraCode': '01',
+        'photoUrl': '1649923496630.png',
+        'isRemoved': false
+      }
+    ],
+    'qReceiveGpys': [],
+    'qReceiveVehicles': [
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '29856af3-bc01-4651-965a-30ef9a903634',
+        'photoType': '出场',
+        'carNum': plateNumber,
+        'photoUrl': '1649923546154.png',
+        'isRemoved': false
+      },
+      {
+        'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+        'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+        'oriItemId': '70ae6d7d-df13-41de-8c4d-d1935fab40e3',
+        'photoType': '入场',
+        'carNum': plateNumber,
+        'photoUrl': '1649923546154.png',
+        'isRemoved': false
+      }
+    ],
+    'isComplex': true
+  }
+  const upData = {
+    'qReceive': {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'orgName': '杨周测试项目部',
+      'recordedDate': '2021-04-17',
+      'orderDate': '2021-11',
+      'orderCode': '收料20211100493',
+      'serviceType': 10,
+      'orderType': 4,
+      'weightType': '进料过磅',
+      'materialCollection': '',
+      'maker': '高亮',
+      'makerDate': '2021-04-17',
+      'remark': '',
+      'printTimes': 1,
+      'plateNumber': '蒙J59613',
+      'oriSupplierId': '0eec5f1d-65fd-467f-a720-89fd3482e83d',
+      'supplierName': 'zzz用料单位123',
+      'oriLabourId': '',
+      'labourName': '',
+      'oriGhId': '',
+      'ghFullId': '',
+      'ghFullName': '',
+      'ghName': '',
+      'enterTime': '2021-04-17 15:29:17',
+      'exitTime': '2021-04-17 15:33:14',
+      'isRed': false,
+      'isAudit': true,
+      'auditor': '高亮',
+      'auditDate': '2021-04-17',
+      'orgId': 971365888684544,
+      'supplierId': 1225965220434432,
+      'ghId': 0,
+      'labourId': 0,
+      'oriRedId': '',
+      'discernPlateNumber': '',
+      'stockbinFullName': '',
+      'stockbinName': '',
+      'oriStockbinId': '',
+      'stockbinId': 0,
+      'isExit': true,
+      'isTare': false,
+      'roughQuantity': 48.44,
+      'tareQuantity': 19.34,
+      'deductRate': 0,
+      'deductQuantity': 2,
+      'auxiliaryNetQuantity': 27.1,
+      'oriNetQuantity': 0,
+      'isAffirm': false,
+      'isUseOriNetQuantity': false,
+      'sortOrderCode': '20211100493',
+      'isReturn': false,
+      'isRemoved': false,
+      'versionCode': 'v3.0',
+      'isMultiplication': 'false',
+      'clientVersion': '3.1.8',
+      'discernMode': '1'
+    },
+    'qReceiveMoreMaterials': [{
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '9c88c073-6a45-43b5-a809-09554fe4e7ee',
+      'oriMaterialId': 'b8f7165e-c594-45bd-8fb6-769384378f36',
+      'materialCode': '00002',
+      'materialName': '混凝土C10',
+      'materialModel': 'C10 C10',
+      'materialUnit': '立方',
+      'auxiliaryUnit': '立方',
+      'netQuantity': 27.1,
+      'conversionRate': 1,
+      'oriNetQuantity': 0,
+      'mainNetQuantity': 27.1,
+      'materialId': 973557170901504,
+      'classId': 0,
+      'orgId': 0,
+      'isRed': false,
+      'isRemoved': false
+    }],
+    'qReceivePhotos': [{
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '18962cd4-33ff-4686-be6f-7e70fd93c6d8',
+      'cameraPosition': '车尾',
+      'photoType': '入场',
+      'cameraCode': '02',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '53ec107a-ebf0-4c51-a346-49e52379d1a6',
+      'cameraPosition': '磅房',
+      'photoType': '入场',
+      'cameraCode': '04',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '82ed2fea-01b0-4b7c-ab95-68b3fbb0d55d',
+      'cameraPosition': '车顶',
+      'photoType': '出场',
+      'cameraCode': '03',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '88704041-e455-493f-b710-d15babc74547',
+      'cameraPosition': '车顶',
+      'photoType': '入场',
+      'cameraCode': '03',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': 'aff7665a-4f24-40ab-a9c2-ddf48e20330a',
+      'cameraPosition': '车前',
+      'photoType': '入场',
+      'cameraCode': '01',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': 'b842fef8-b6e2-4253-a7ad-f0e5217c9b29',
+      'cameraPosition': '车尾',
+      'photoType': '出场',
+      'cameraCode': '02',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': 'b906077c-b861-4714-9b69-8f1b98d9b9d2',
+      'cameraPosition': '磅房',
+      'photoType': '出场',
+      'cameraCode': '04',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': 'f661a15a-26fc-4560-8ef6-2df7f526de29',
+      'cameraPosition': '车前',
+      'photoType': '出场',
+      'cameraCode': '01',
+      'photoUrl': '1649923496630.png',
+      'isRemoved': false
+    }],
+    'qReceiveGpys': [],
+    'qReceiveVehicles': [{
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '29856af3-bc01-4651-965a-30ef9a903634',
+      'photoType': '出场',
+      'carNum': '蒙J59613',
+      'photoUrl': '1649923546154.png',
+      'isRemoved': false
+    }, {
+      'oriOrgId': '21a76bcb-c097-46c7-84f2-fb20134399a4',
+      'oriOrderId': 'b2cc5645-ef88-496c-a133-f04cc8011386',
+      'oriItemId': '70ae6d7d-df13-41de-8c4d-d1935fab40e3',
+      'photoType': '入场',
+      'carNum': '蒙J59613',
+      'photoUrl': '1649923546154.png',
+      'isRemoved': false
+    }],
+    'isComplex': true
+  }
+  // const orderId = idGen()
+  upData.qReceive.oriOrderId = orderId
+  upData.qReceiveMoreMaterials[0].oriOrderId = orderId
+  upData.qReceivePhotos.map(row => {
+    row.oriOrderId = orderId
+    row.oriItemId = idGen()
+    return row
+  })
+  upData.qReceiveVehicles.map(row => {
+    row.oriOrderId = orderId
+    row.oriItemId = idGen()
+    return row
+  })
+  let data = JSON.stringify(upData);
 
-
-    axios(config)
-      .then((response) => {
-        console.log(`index = ${ i } : `, JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  })(i)
+  let config = {
+    method: 'post',
+    url: 'http://localhost:7878/mp-product/mquantitys-upload?resource=qReceive&tag=weight&version=1',
+    headers: {
+      'x-tenant-id': '10001',
+      'x-org-id': '832499207122944',
+      'x-user-id': '98765',
+      'x-user-name': 'U2FsdGVkX1/LWVfuOCaK3eKQO/pz0nINp3ZU7t+FAQE=',
+      'x-tenant-code': 'gslq4dev',
+      'Content-Type': 'application/json',
+      'x-product-id': 'smconfig',
+      'x-feature-packs': '',
+      'x-client-ajax': 'true'
+    },
+    data: data
+  };
+  const response = await axios(config)
+  return response.data
 }
 
+let _index = 0
 
-/*axios(config)
-  .then((response) => {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch((error) => {
-    console.log(error);
-  });*/
+function query() {
+  const count = 9
+  for (let i = 0; i < count; i++) {
+    ;(async function (i) {
+      uploadQReceive().then((data) => {
+        console.log(`index = ${ ++_index } : `, JSON.stringify(data));
+      }).catch(e => {
+        console.log(e)
+      })
+    })(i)
+  }
+}
+
+setInterval(query, 1000)
+
