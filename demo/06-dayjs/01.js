@@ -63,3 +63,5 @@ console.log(dayjs(time).add(24, 'hour').format('YYYY-MM-DD HH:ss:mm'));
 // console.log(dayjs().add(7, 'year'));
 console.log(dayjs('2018-06-01').isBefore(dayjs('2018-06-02')))
 console.log(dayjs(null).isBefore(dayjs('2018-06-02')))
+console.log('-------')
+console.log(dayjs('').format('YYYY-MM-DD HH:ss:mm'));

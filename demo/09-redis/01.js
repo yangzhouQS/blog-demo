@@ -1,10 +1,14 @@
 const RedisClient = require('ioredis');
-const port = 6379
+const port = 16379
 const host = '127.0.0.1'
 const options = {
+  host: 'r-2ze55udkssormt59y8pd.redis.rds.aliyuncs.com',
+  username: 'r-2ze55udkssormt59y8',
+  password: 'Ylkj88227793@#',
+  port: 16379,
   db: 1
 }
-const redis = new RedisClient(port, host, options);
+const redis = new RedisClient(port, options);
 
 class Redis {
   static async get(key) {
@@ -84,4 +88,4 @@ setKeyString().then(r => {
 })
 
 const dayjs = require('dayjs')
-console.log(dayjs().add(10,'second').format("YYYY-MM-DD HH:mm:ss"))
+console.log(dayjs().add(10, 'second').format('YYYY-MM-DD HH:mm:ss'))
