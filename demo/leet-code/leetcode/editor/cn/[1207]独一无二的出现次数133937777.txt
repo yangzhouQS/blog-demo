@@ -1,0 +1,11 @@
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var uniqueOccurrences = function (arr) {
+    const ret = arr.reduce((memo, cur) => memo.set(cur, (memo.get(cur) || 0) + 1), new Map())
+    return new Set(ret.values()).size === ret.size
+};
+
+//runtime:76 ms
+//memory:39 MB
