@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>KonvaJS Sandbox</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+    <!-- <script src="https://cdn.rawgit.com/hammerjs/touchemulator/master/touch-emulator.js"></script> -->
+    <script>
+      // TouchEmulator();
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.7/hammer.js"></script> -->
+    <!-- <script src="https://cdn.rawgit.com/hammerjs/touchemulator/master/touch-emulator.js"></script> -->
+    <!-- <script src="./hammer.js"></script> -->
+  </head>
+
+  <body>
+    Some text
+    <div id="container"></div>
+    <script src="../src/index.ts"></script>
+    <script>
+      // noprotect
+      class Ktest {
+        constructor() {
+          this.testLayer = new Konva.Group();
+          this.image = (() => {
+            const img = new Image();
+            img.onerror = () => console.error(`Failed to load image`);
+            img.src = 'https://www.webkit.org/blog-files/acid3-100.png';
+            return img;
+          })();
+        }
+
+        redraw() {
+          console.log('redraw()');
+          for (let n = 0; n < 20; ++n) {
+            const g = this.testLayer;
+            g.destroyChildren();
+            for (let i = 0; i < 10; ++i) {
+              const icon = new Konva.Image({ image: this.image });
+              g.add(icon);
+            }
+          }
+        }
+      }
+
+      const ktest = new Ktest();
+      setInterval(() => ktest.redraw(), 500);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+@import "./abstracts/variable";
+@import "./abstracts/mixin";
+@import "./icon.scss";
+
+@include b(tooltip) {
+  display: inline-block;
+  position: relative;
+ 
+  @include e(body) {
+    position: absolute;
+    z-index: $-tooltip-z-index;
+    line-height: $-tooltip-line-height;
+    min-width: 138px;
+    font-size: $-tooltip-fs;
+    backdrop-filter: blur($-tooltip-blur);
+    background-clip: padding-box;
+    border-radius: $-tooltip-radius;
+    text-align: center;
+    box-sizing: border-box;
+    transition: opacity 0.2s;
+    background: $-tooltip-bg;
+    color: $-tooltip-color;
+  }
+
+  @include e(inner) {
+    padding: $-tooltip-padding;
+    white-space: nowrap;
+    line-height: $-tooltip-line-height;
+  }
+
+  @include e(close-icon) {
+    font-size: 12px;
+    position: absolute;
+    right: -8px;
+    top: -10px;
+    transform: scale(0.5);
+    padding: 10px;
+  }
+  @include triangleArrow($-tooltip-arrow-size, $-tooltip-bg);
+}

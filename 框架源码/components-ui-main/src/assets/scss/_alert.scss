@@ -1,0 +1,127 @@
+.sol-alert {
+  @apply flex items-center text-small rounded border border-solid border-transparent;
+
+  i {
+    @apply bg-gray7 w-7 h-7 mr-4 flex items-center justify-center text-white font-rubik text-tiny font-bold rounded-full flex-none;
+    font-style: initial;
+    line-height: 32px;
+  }
+
+  .alert-close {
+    background: url(~@img/icon/icon-close-black.svg) no-repeat center
+      center/12px 12px;
+    @apply rounded w-6 h-6 block ml-auto flex-none bg-gray4 cursor-pointer;
+
+    em {
+      @apply hidden;
+    }
+  }
+
+  &.alert-icon {
+    &:before {
+      @apply w-6 h-6 block mr-4 flex-none;
+      background: url(~@img/icon/icon-info-line.svg) no-repeat center center;
+      content: '';
+    }
+  }
+
+  &.success {
+    @apply bg-green2 text-gray7;
+
+    &:before {
+      background: url(~@img/icon/icon-success.svg) no-repeat center center;
+    }
+
+    .alert-close {
+      @apply bg-green1;
+    }
+  }
+
+  &.error {
+    @apply bg-red2 text-gray7;
+
+    &:before {
+      background: url(~@img/icon/icon-error.svg) no-repeat center center;
+    }
+
+    .alert-close {
+      @apply bg-red1;
+    }
+  }
+
+  &.warning {
+    @apply bg-orangePrimary text-gray7;
+
+    &:before {
+      background: url(~@img/icon/icon-warning.svg) no-repeat center center;
+    }
+
+    .alert-close {
+      @apply bg-orange1;
+    }
+  }
+
+  &.info {
+    @apply bg-grayPrimary text-white;
+
+    &:before {
+      background: url(~@img/icon/icon-info.svg) no-repeat center center;
+    }
+
+    i {
+      @apply bg-white text-gray7;
+    }
+  }
+
+  &.info-neutral {
+    @apply bg-gray2;
+  }
+
+  &.info-line {
+    @apply border-gray3;
+  }
+
+  &.small {
+    @apply p-4;
+    min-height: 58px;
+  }
+
+  &.medium {
+    @apply p-6;
+    min-height: 74px;
+  }
+
+  &.large {
+    @apply p-7;
+    min-height: 90px;
+  }
+
+  &.extra-large {
+    @apply p-8;
+    min-height: 106px;
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    &.small {
+      @apply p-4;
+      min-height: 58px;
+    }
+
+    &.medium {
+      @apply p-6;
+      min-height: 74px;
+    }
+
+    &.large {
+      @apply p-7;
+      min-height: 90px;
+    }
+
+    &.extra-large {
+      @apply p-8;
+      min-height: 106px;
+    }
+  }
+}

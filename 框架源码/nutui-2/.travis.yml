@@ -1,0 +1,9 @@
+sudo: required
+language: node_js
+node_js:
+  - '10'
+script:
+  - npm test
+  - npm run coveralls
+notifications:
+  webhooks: https://coveralls.io/webhook?repo_token=bOzghLfr6hi9xqh8LDKUPB07Q56vdl1YG

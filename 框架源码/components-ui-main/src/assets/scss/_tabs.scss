@@ -1,0 +1,24 @@
+.sol-tabs {
+  @apply flex bg-white text-modest;
+  user-select: none;
+
+  li {
+    @apply cursor-pointer border-b-2 border-solid border-gray3 flex-1 text-center duration-200 ease-linear transition-all p-4;
+
+    &.active {
+      @apply border-orangePrimary text-orangePrimary cursor-default;
+    }
+
+    &.disabled {
+      @apply cursor-default opacity-75;
+    }
+  }
+
+  @screen lg {
+    &:not(.small) {
+      li {
+        @apply py-6 text-medium;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import "./abstracts/variable";
+@import "./abstracts/mixin";
+
+@include b(loading) {
+  font-size: 0;
+  line-height: 0;
+  vertical-align: middle;
+
+  @include e(body) {
+    animation: wd-rotate 0.8s linear infinite;
+    animation-duration: 2s;
+  }
+}
+
+@keyframes wd-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

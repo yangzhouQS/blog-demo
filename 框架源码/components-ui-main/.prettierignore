@@ -1,0 +1,4 @@
+.github/*
+.storybook/*
+dist/*
+CHANGELOG.md

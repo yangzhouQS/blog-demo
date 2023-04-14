@@ -1,0 +1,291 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #fbfbfb;
+    overflow: hidden;
+}
+
+/* header */
+
+header {
+    background-color: #1c2128;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+header .kaka-icon {
+    position: absolute;
+    top: 7px;
+}
+
+header .grid-title {
+    left: 48px;
+    position: absolute;
+    top: 10px;
+}
+
+header .grid-title .kaka-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+header .grid-title .kaka-version {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8e9195;
+    margin-left: 4px;
+}
+
+header .grid-tools {
+    position: absolute;
+    bottom: 0px;
+    left: 160px;
+    right: 0px;
+    top: 0px;
+    padding-top: 12px;
+    overflow: hidden;
+}
+
+header .grid-tools-wrap {
+    float: right;
+    width: 800px;
+}
+
+header .grid-filter {
+    float: right;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #8e9195;
+    display: none;
+}
+
+header .grid-filter.show {
+    display: block;
+}
+
+header .grid-time {
+    float: right;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #8e9195;
+}
+
+header .grid-theme {
+    float: right;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 1px solid #8e9195;
+}
+
+header .code-actions {
+    float: right;
+}
+
+header .code-action {
+    color: #8e9195;
+    cursor: pointer;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+header .code-action.selected {
+    color: #d0d5db;
+}
+
+header .code-action-javascript,
+header .code-action-style {
+    border-right: 1px solid #8e9195;
+}
+
+/* sidebar */
+
+.sidebar {
+    background-color: #20262e;
+    border-top: 1px solid #2d333b;
+    bottom: 0px;
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 210px;
+    top: 40px;
+    z-index: 0;
+}
+
+.sidebar ul {
+    margin: 14px 0px 0px 10px;
+    padding: 0px;
+}
+
+.sidebar ul ul {
+    margin: 0px 0px 0px 20px;
+    display: none;
+}
+
+.sidebar ul ul.expanded {
+    display: block;
+}
+
+.sidebar li {
+    line-height: 20px;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sidebar li li {
+    color: #8e9195;
+    display: list-item;
+    list-style: outside;
+    text-align: -webkit-match-parent;
+}
+
+.sidebar .group-title {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 100;
+    height: 32px;
+    line-height: 32px;
+}
+
+.sidebar .group-title.selected {
+    font-weight: 700;
+}
+
+.sidebar .item-title {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 100;
+    height: 20px;
+    line-height: 20px;
+}
+
+.sidebar .item-title.selected {
+    color: #d0d5db;
+    font-weight: 700;
+}
+
+/* content */
+
+.content-grid,
+.content-code {
+    background-color: #20262e;
+    border-left: 1px solid #2d333b;
+    border-top: 1px solid #2d333b;
+    bottom: 0px;
+    left: 210px;
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    z-index: 2;
+}
+
+.content-code {
+    font-size: 18px;
+    display: none;
+}
+
+.code .content-grid {
+    display: none;
+}
+
+.code .content-code {
+    display: block;
+}
+
+/* grid */
+
+#kaka-grid {
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    bottom: 0px;
+    left: 10px;
+}
+
+/* code */
+
+.cm-s-monokai.CodeMirror,
+.cm-s-monokai .CodeMirror-gutters {
+    background: #20262e;
+}
+
+/* theme */
+
+.theme-key {
+    color: #8e9195;
+}
+
+.theme-value {
+    cursor: pointer;
+}
+
+.theme-dropdown {
+    position: absolute;
+    left: 300px;
+    top: 30px;
+    z-index: 3;
+    display: none;
+}
+
+.theme-dropdown.show {
+    display: block;
+}
+
+.theme-dropdown-pointer {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #0084ff;
+    width: 0;
+    height: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.theme-dropdown-pointer-shadow {
+    position: absolute;
+    margin-left: -8px;
+    margin-top: 3.5px;;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #20262e;
+}
+
+.theme-dropdown-items {
+    background-color: #20262e;
+    border: 2px solid #0084ff;
+    border-radius: 5px;
+    padding: 4px 0;
+    text-align: center;
+}
+
+.theme-dropdown-item {
+    padding: 4px 8px;
+    color: #8e9195;
+    cursor: pointer;
+}
+
+.theme-dropdown-item:hover {
+    background-color: #2d333b;
+    color: #fbfbfb;
+}
+
+/* filter */
+
+.grid-filter-label {
+    color: #8e9195;
+}
+
+#grid-filter-input {
+    color: #fbfbfb;
+    background-color: #2d333b;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    padding: 0 4px;
+    width: 140px;
+}
+
+#grid-filter-input:focus {
+    box-shadow: 0 0 0 2px #0084ff;
+}

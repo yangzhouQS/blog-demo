@@ -1,0 +1,63 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+
+@include b(swipe) {
+  position: relative;
+  overflow: hidden;
+
+  @include e(container) {
+    white-space: nowrap;
+  }
+  @include e(indicators) {
+    position: absolute;
+    display: inline-block;
+    left: 50%;
+    bottom: $-swipe-indicators-bottom;
+    transform: translate(-50%, -50%);
+    font-size: 0;
+  }
+  @include e(indicator) {
+    display: inline-block;
+    width: $-swipe-indicator-width;
+    height: $-swipe-indicator-height;
+    border-radius: 4px 0 4px 0;
+    margin-right: 3px;
+    transition: width 0.2s ease-in-out;
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include when(active) {
+      width: $-swipe-indicator-active-width;
+    }
+  }
+  @include when(vertical) {
+    .wd-swipe__container {
+      white-space: normal;
+    }
+    .wd-swipe-item {
+      display: block;
+    }
+    .wd-swipe__indicators {
+      left: $-swipe-indicators-vertical-left;
+      bottom: auto;
+      top: 50%;
+    }
+    .wd-swipe__indicator {
+      display: block;
+      margin-right: 0;
+      margin-bottom: 3px;
+      transition: height 0.2s ease-in-out;
+      width: $-swipe-indicator-height;
+      height: $-swipe-indicator-width;
+      border-radius: 0 4px 0 4px;
+
+      @include when(active) {
+        height: $-swipe-indicator-active-width;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

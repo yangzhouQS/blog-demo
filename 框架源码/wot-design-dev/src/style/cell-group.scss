@@ -1,0 +1,69 @@
+@import "./abstracts/variable";
+@import "./abstracts/mixin";
+
+@include b(cell-group) {
+  background-color: $-color-white;
+
+  @include when(border) {
+    .wd-cell {
+      .wd-cell__wrapper {
+        @include halfPixelBorder;
+      }
+      &:last-child .wd-cell__wrapper::after {
+        display: none;
+      }
+    }
+    .wd-cell-group__title {
+      @include halfPixelBorder;
+    }
+    .wd-input.is-cell {
+      @include halfPixelBorder('bottom', $-cell-padding);
+
+      &:last-child::after {
+        display: none;
+      }
+    }
+    .wd-col-picker {
+      .wd-col-picker__cell {
+        @include halfPixelBorder('bottom', $-cell-padding);
+      }
+      &:last-child .wd-col-picker__cell::after {
+        display: none;
+      }
+    }
+    .wd-picker {
+      .wd-picker__field {
+        @include halfPixelBorder('bottom', $-cell-padding);
+      }
+      &:last-child .wd-picker__field::after {
+        display: none;
+      }
+    }
+    .wd-calendar {
+      .wd-calendar__cell {
+        @include halfPixelBorder('bottom', $-cell-padding);
+      }
+      &:last-child .wd-col-picker__cell::after {
+        display: none;
+      }
+    }
+  }
+  @include e(title) {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: $-cell-group-padding;
+    background: $-color-white;
+    font-size: $-cell-group-title-fs;
+    color: $-cell-group-title-color;
+    font-weight: $-fw-medium;
+    line-height: 1.43;
+  }
+  @include e(right) {
+    color: $-cell-group-value-color;
+    font-size: $-cell-group-value-fs;
+  }
+  @include e(body) {
+    background: $-color-white;
+  }
+}

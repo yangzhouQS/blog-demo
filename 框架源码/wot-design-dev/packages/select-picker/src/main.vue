@@ -1,0 +1,355 @@
+<template>
+  <div class="wd-col-picker wd-select-picker">
+    <div class="wd-col-picker__field" @click="open">
+      <slot>
+        <div
+          class="wd-col-picker__cell"
+          :class="[
+            {
+            'is-disabled': disabled,
+            'is-readonly': readonly,
+            'is-align-right': alignRight,
+            'is-error': error
+            },
+            size ? `is-${size}` : ''
+          ]"
+        >
+          <div
+            v-if="label || $slots.label"
+            class="wd-col-picker__label"
+            :class="{
+              'is-required': required
+            }"
+            :style="labelWidth ? `min-width: ${labelWidth}; max-width: ${labelWidth}` : ''"
+          >
+            <slot name="label">{{ label }}</slot>
+          </div>
+          <div
+            class="wd-col-picker__value"
+            :class="{
+              'wd-col-picker__value--placeholder': (!value || (value instanceof Array && !value.length)),
+              'is-ellipsis': ellipsis
+            }"
+          >{{ ((!value || (value instanceof Array && !value.length)) ? placeholder : showValue) || t('wd.colPicker.placeholder') }}</div>
+          <i v-if="!disabled && !readonly" class="wd-col-picker__arrow wd-icon-arrow-right"></i>
+        </div>
+      </slot>
+    </div>
+    <!-- 弹出框 -->
+    <wd-action-sheet
+      v-model="pickerShow"
+      :teleport="teleport"
+      :duration="250"
+      :title="title || t('wd.colPicker.title')"
+      :close-on-click-modal="closeOnClickModal"
+      :close-on-popstate="closeOnPopstate"
+      :safe-area-inset-bottom="safeAreaInsetBottom"
+      @close="handlePickerClose"
+    >
+      <wd-search v-if="filterable" v-model="filterVal" :placeholder="filterPlaceholder" placeholder-left hide-cancel />
+      <div class="wd-select-picker__wrapper" :class="{ 'is-filterable': filterable }" :style="inputFocus ? `height: ${focusHeight}; max-height: ${focusHeight}` : ''">
+        <!-- 多选 -->
+        <wd-checkbox-group
+          v-if="type === 'checkbox'"
+          v-model="selectList"
+          cell
+          :size="selectSize"
+          :checked-color="checkedColor"
+          :min="min"
+          :max="max"
+          @change="handleChange"
+        >
+          <wd-checkbox
+            v-for="(item, index) in filterColumns"
+            :key="index"
+            :value="item[valueKey]"
+            :disabled="item.disabled"
+          >
+            <template v-if="filterable && filterVal">
+              <template v-for="(text, index) in getFilterText(item[labelKey])">
+                <span v-if="text.type === 'active'" :key="index" class="wd-select-picker__text-active">{{ text.label }}</span>
+                <span v-else :key="index">{{ text.label }}</span>
+              </template>
+            </template>
+            <template v-else>{{ item[labelKey] }}</template>
+          </wd-checkbox>
+        </wd-checkbox-group>
+        <!-- 单选 -->
+        <wd-radio-group
+          v-if="type === 'radio'"
+          v-model="selectList"
+          cell
+          :size="selectSize"
+          :checked-color="checkedColor"
+          @change="handleChange"
+        >
+          <wd-radio
+            v-for="(item, index) in filterColumns"
+            :key="index"
+            :value="item[valueKey]"
+            :disabled="item.disabled"
+          >
+            <template v-if="filterable && filterVal">
+              <template v-for="(text, index) in getFilterText(item[labelKey])">
+                <span v-if="text.type === 'active'" :key="index" class="wd-select-picker__text-active">{{ text.label }}</span>
+                <span v-else :key="index">{{ text.label }}</span>
+              </template>
+            </template>
+            <template v-else>{{ item[labelKey] }}</template>
+          </wd-radio>
+        </wd-radio-group>
+        <div v-if="loading" class="wd-picker-view__loading" @touchmove.stop.prevent>
+          <wd-loading :color="loadingColor" />
+        </div>
+      </div>
+      <!-- 确认按钮 -->
+      <footer v-if="!inputFocus" class="wd-select-picker__footer">
+        <wd-button
+          block
+          size="large"
+          @click="onConfirm"
+          :disabled="loading"
+        >{{confirmButtonText || t('wd.picker.confirm')}}</wd-button>
+      </footer>
+    </wd-action-sheet>
+  </div>
+</template>
+
+<script>
+import locale from 'wot-design/src/mixins/locale'
+import WdActionSheet from 'wot-design/packages/action-sheet'
+import WdCheckbox from 'wot-design/packages/checkbox'
+import WdCheckboxGroup from 'wot-design/packages/checkbox-group'
+import WdRadio from 'wot-design/packages/radio'
+import WdRadioGroup from 'wot-design/packages/radio-group'
+import WdButton from 'wot-design/packages/button'
+import WdSearch from 'wot-design/packages/search'
+import cellProps from 'wot-design/packages/select-picker/src/cellProps'
+import selectProps from 'wot-design/packages/select-picker/src/selectProps'
+import WdLoading from 'wot-design/packages/loading'
+
+export default {
+  name: 'WdSelectPicker',
+  mixins: [locale],
+  components: {
+    WdActionSheet,
+    WdCheckbox,
+    WdCheckboxGroup,
+    WdRadio,
+    WdRadioGroup,
+    WdButton,
+    WdLoading,
+    WdSearch
+  },
+
+  data () {
+    return {
+      pickerShow: false,
+      selectList: this.valueFormat(this.value),
+      showValue: '',
+      isConfirm: false,
+      lastSelectList: [],
+      filterVal: '',
+      winHeight: 0,
+      inputFocus: false
+    }
+  },
+
+  props: {
+    ...cellProps,
+    ...selectProps,
+    columns: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    value: [Array, String, Number, Boolean],
+    // type: checkbox/radio
+    type: {
+      type: String,
+      default: 'checkbox'
+    },
+    teleport: [String, Object],
+    displayFormat: Function,
+    beforeConfirm: Function,
+    valueKey: {
+      type: String,
+      default: 'value'
+    },
+    labelKey: {
+      type: String,
+      default: 'label'
+    },
+    confirmButtonText: {
+      type: String,
+      default: '确定'
+    },
+    closeOnClickModal: {
+      type: Boolean,
+      default: true
+    },
+    closeOnPopstate: {
+      type: Boolean,
+      default: true
+    },
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: true
+    },
+    filterable: Boolean,
+    filterPlaceholder: String,
+    ellipsis: Boolean
+  },
+
+  computed: {
+    filterColumns () {
+      if (this.filterable && this.filterVal) {
+        return this.columns.filter((item) => {
+          const visible = item[this.labelKey].indexOf(this.filterVal) > -1
+
+          return visible
+        })
+      }
+
+      return this.columns
+    }
+  },
+
+  watch: {
+    value: {
+      handler (val) {
+        this.selectList = this.valueFormat(val)
+        this.lastSelectList = this.selectList
+        this.setShowValue(this.selectList)
+      },
+      immediate: true
+    }
+  },
+
+  mounted () {
+    // fix android keyboard
+    this.winHeight = document.documentElement.clientHeight
+    window.addEventListener('resize', this.resizeListener)
+  },
+
+  beforeDestroy () {
+    window.removeEventListener('resize', this.resizeListener)
+  },
+
+  methods: {
+    resizeListener () {
+      const currentHeight = document.documentElement.clientHeight
+      // wrapper's height add footer's height, and sub keyboard's height
+      this.focusHeight = 314 + 92 - (this.winHeight - currentHeight) + 'px'
+      this.inputFocus = currentHeight < this.winHeight
+    },
+
+    getSelectedItem (value) {
+      const selecteds = this.columns.filter(item => {
+        return item[this.valueKey] === value
+      })
+
+      if (selecteds.length > 0) {
+        return selecteds[0]
+      }
+
+      return {
+        [this.valueKey]: value,
+        [this.labelKey]: ''
+      }
+    },
+
+    valueFormat (value) {
+      return this.type === 'checkbox' ? Array.prototype.slice.call(value) : value
+    },
+
+    handleChange (val) {
+      this.$emit('change', val)
+    },
+
+    handlePickerClose () {
+      // 未确定选项时，数据还原复位
+      if (!this.isConfirm) {
+        this.selectList = this.valueFormat(this.lastSelectList)
+      }
+      this.$emit('cancel')
+    },
+
+    /**
+     * @description 外部可调用方法，打开弹框
+     */
+    open () {
+      if (this.disabled || this.readonly) return
+      this.selectList = this.valueFormat(this.value)
+      this.pickerShow = true
+      this.isConfirm = false
+    },
+
+    /**
+     * @description 外部可调用方法，关闭弹框
+     */
+    close () {
+      this.pickerShow = false
+      this.handlePickerClose()
+    },
+
+    onConfirm () {
+      if (this.loading) {
+        this.pickerShow = false
+        this.$emit('confirm', this.valueFormat(this.selectList))
+        return
+      }
+      if (this.beforeConfirm) {
+        this.beforeConfirm(this.selectList, isPass => {
+          isPass && this.handleConfirm()
+        })
+      } else {
+        this.handleConfirm()
+      }
+    },
+
+    handleConfirm () {
+      this.isConfirm = true
+      this.pickerShow = false
+      this.lastSelectList = this.valueFormat(this.selectList)
+      this.$emit('input', this.lastSelectList)
+      this.$emit('confirm', this.lastSelectList)
+      this.setShowValue(this.lastSelectList)
+    },
+
+    setShowValue (value) {
+      if (this.displayFormat) {
+        this.showValue = this.displayFormat(value)
+      } else {
+        let showValue = ''
+        if (this.type === 'checkbox') {
+          const selectedItems = value.map(item => {
+            return this.getSelectedItem(item)
+          })
+          showValue = selectedItems.map(item => {
+            return item[this.labelKey]
+          }).join(', ')
+        } else if (this.type === 'radio') {
+          const selectedItem = this.getSelectedItem(value)
+          showValue = selectedItem[this.labelKey]
+        } else {
+          showValue = value
+        }
+        this.showValue = showValue
+      }
+    },
+
+    getFilterText (label) {
+      const reg = new RegExp(`(${this.filterVal})`, 'g')
+
+      return label.split(reg).map((text) => {
+        return {
+          type: text === this.filterVal ? 'active' : 'normal',
+          label: text
+        }
+      })
+    }
+  }
+}
+</script>

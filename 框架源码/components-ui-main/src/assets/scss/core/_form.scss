@@ -1,0 +1,85 @@
+textarea,
+input[type='date'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'] {
+  @apply bg-white border border-gray3 text-grayPrimary text-small flex items-center rounded px-4 h-8 duration-200 ease-linear transition-all leading-tight w-full appearance-none font-rubik shadow-sm;
+
+  &:focus,
+  &:hover,
+  &:active {
+    @apply bg-gray1;
+    outline: none;
+  }
+
+  &:disabled {
+    @apply bg-gray2;
+  }
+
+  &::-webkit-input-placeholder {
+    @apply text-gray4;
+  }
+
+  &:-moz-placeholder {
+    @apply text-gray4;
+  }
+
+  &::-moz-placeholder {
+    @apply text-gray4;
+  }
+
+  &:-ms-input-placeholder {
+    @apply text-gray4;
+  }
+
+  &::-ms-input-placeholder {
+    @apply text-gray4;
+  }
+
+  &::placeholder {
+    @apply text-gray4;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #666 !important;
+
+    &:focus,
+    &:active,
+    &:hover {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
+  }
+
+  &.invalid {
+    @apply border-red2;
+  }
+
+  &.search {
+    padding-right: 88px;
+  }
+}
+
+textarea {
+  @apply py-3 resize-none;
+}
+
+label {
+  @apply text-small leading-tight font-rubik block mb-1 text-grayPrimary;
+}
+
+.msg-error {
+  @apply block text-slight leading-tight text-red2 mt-1;
+}
+
+/* clears the ‘X’  */
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}

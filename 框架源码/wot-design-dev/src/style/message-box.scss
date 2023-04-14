@@ -1,0 +1,84 @@
+@import "./abstracts/variable";
+@import "./abstracts/mixin";
+@import "./popup.scss";
+@import "./button.scss";
+@import "./input.scss";
+
+@include b(message-box) {
+  width: $-message-box-width;
+  border-radius: $-message-box-radius;
+  overflow: hidden;
+
+  @include e(body) {
+    background-color: $-message-box-bg;
+    padding: $-message-box-padding;
+
+    // TODO 待补充没有标题场景
+    @include when(no-title) {
+      padding: 25px 24px 0px;
+    }
+  }
+  @include e(title) {
+    text-align: center;
+    font-size: $-message-box-title-fs;
+    color: $-message-box-title-color;
+    line-height: 20px;
+    font-weight: 500;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+  @include e(content) {
+    max-height: $-message-box-content-max-height;
+    color: $-message-box-content-color;
+    font-size: $-message-box-content-fs;
+    line-height: 1.43;
+
+    &::-webkit-scrollbar {
+      width: $-message-box-content-scrollbar-width;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: $-message-box-content-scrollbar-width;
+      background: $-message-box-content-scrollbar-color;
+      border-radius: $-message-box-content-scrollbar-width / 2;
+    }
+  }
+  @include e(content-text) {
+    max-height: $-message-box-content-max-height;
+    overflow: auto;
+    word-break: break-all;
+    text-align: center;
+  }
+  @include e(input-container) {
+    margin-top: 12px;
+  }
+
+  // TODO 待设计出图补充错误提示场景
+  @include e(input-error) {
+    min-height: 18px;
+    margin-top: 2px;
+    color: $-message-box-input-error-color;
+    text-align: left;
+
+    @include when(hidden) {
+      visibility: hidden;
+    }
+  }
+  @include e(actions) {
+    display: flex;
+    padding: 24px;
+    .is-info {
+      margin-right: 16px;
+    }
+  }
+
+  &.wd-zoom-in-enter-active,
+  &.wd-zoom-in-leave-active {
+    transition-property: opacity, transform;
+    transform-origin: center center;
+  }
+  &.wd-zoom-in-enter,
+  &.wd-zoom-in-leave-to {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+  }
+}

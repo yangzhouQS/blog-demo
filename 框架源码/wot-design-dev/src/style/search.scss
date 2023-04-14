@@ -1,0 +1,107 @@
+@import './abstracts/variable';
+@import './abstracts/mixin';
+@import './icon.scss';
+
+@include b(search) {
+  display: flex;
+  padding: $-search-padding;
+  align-items: center;
+  background: #fff;
+
+  @include e(block) {
+    position: relative;
+    flex: 1;
+    display: flex;
+    background-color: $-search-input-bg;
+    border-radius: $-search-input-radius;
+  }
+  @include e(field) {
+    position: relative;
+    flex: 1;
+  }
+  @include e(input) {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: $-search-input-height;
+    border-radius: $-search-input-radius;
+    box-sizing: border-box;
+    padding: $-search-input-padding;
+    border: none;
+    background: transparent;
+    font-size: $-search-input-fs;
+    -webkit-appearance: none;
+    outline: none;
+    color: $-search-input-color;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 2;
+
+    @include lineEllipsis;
+
+    &::-webkit-search-cancel-button{
+      -webkit-appearance: none;
+    }
+  }
+  @include e(placeholder) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    top: 50%;
+    text-align: center;
+    font-size: 0;
+    user-select: none;
+
+    @include when(focus) {
+      left: 16px;
+      text-align: left;
+    }
+  }
+  @include e(search-icon) {
+    display: inline-block;
+    color: $-search-icon-search-color;
+    vertical-align: middle;
+    font-size: $-search-input-search-fs;
+  }
+  @include e(placeholder-txt) {
+    display: inline-block;
+    margin-left: 8px;
+    color: $-search-placeholder-color;
+    font-size: $-search-input-fs;
+    vertical-align: middle;
+  }
+  @include e(clear) {
+    position: absolute;
+    display: inline-block;
+    padding: 7px;
+    right: 2px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 0;
+    z-index: 3;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @include e(clear-icon) {
+    font-size: $-search-input-close-fs;
+    color: $-search-icon-close-color;
+  }
+  @include e(cancel) {
+    padding: $-search-cancel-padding;
+    height: $-search-input-height;
+    line-height: $-search-input-height;
+    font-size: $-search-cancel-fs;
+    color: $-search-cancel-color;
+    -webkit-tap-highlight-color: transparent;
+  }
+  @include when(light) {
+    background: $-search-light-bg;
+
+    .wd-search__block {
+      background: #fff;
+    }
+  }
+  @include when(without-cancel) {
+    padding-right: $-search-side-padding;
+  }
+}
