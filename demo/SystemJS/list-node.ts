@@ -153,3 +153,5 @@ export class List<T> {
         return ret
     }
 }
+const list = new List()
+debugger
